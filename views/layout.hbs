@@ -1,25 +1,48 @@
-<!DOCTYPE html>
-<html lang="en">
+<html lang='en'>
+
   <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-    <title>{{title}}</title>
-    <link rel="stylesheet" href="/styles/style.css" />
+    <meta charset='utf-8' />
+    <meta
+      name='viewport'
+      content='width=device-width, initial-scale=1, shrink-to-fit=no'
+    />
+    <title>Recipe Application</title>
+
+    <!-- ### Link Bootstrap 5.1.1 CSS CDN ### -->
+    <link
+      href='https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css'
+      rel='stylesheet'
+      integrity='sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU'
+      crossorigin='anonymous'
+    />
+
+    <!-- ### Link own CSS stylesheet ### -->
+    <link rel='stylesheet' href='/styles/style.css' />
   </head>
+
   <body>
     <nav>
-      <a href="/">Home</a>
+      <a href='/'>Home</a>
       {{#if user}}
-        <a href="/private">{{user.name}}'s Profile</a>
-        <form action="/authentication/sign-out" method="POST">
+        <a href='/private'>{{user.name}}'s Profile</a>
+        <form action='/authentication/sign-out' method='POST'>
           <button>Sign Out</button>
         </form>
-        {{else}}
-        <a href="/authentication/sign-in">Sign In</a>
-        <a href="/authentication/sign-up">Sign Up</a>
+      {{else}}
+        <a href='/authentication/sign-in'>Sign In</a>
+        <a href='/authentication/sign-up'>Sign Up</a>
       {{/if}}
     </nav>
     {{{body}}}
-    <script src="/scripts/script.js"></script>
+
+    <!-- ### Link Bootstrap 5.1.1 JavaScript bundle ### -->
+    <script
+      src='https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js'
+      integrity='sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ'
+      crossorigin='anonymous'
+    ></script>
+
+    <script src='/scripts/script.js'></script>
   </body>
+
 </html>
