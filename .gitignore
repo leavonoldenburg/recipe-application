@@ -15,3 +15,6 @@ node_modules
 .env
 # dist directories
 dist
+# css files
+*.css
+*.css.map
