@@ -1,6 +1,6 @@
 <nav class='navbar navbar-expand-md navbar-dark bg-dark'>
    <div class='container-fluid'>
-      <a class='navbar-brand' href='/'>RECIPE-APP</a>
+      <a class='navbar-brand' href='/'>Recipe-app</a>
       <button class='navbar-toggler' type='button' data-bs-toggle='collapse' data-bs-target='#navbarSupportedContent'
          aria-controls='navbarSupportedContent' aria-expanded='false' aria-label='Toggle navigation'>
          <span class='navbar-toggler-icon'></span>
@@ -14,22 +14,13 @@
                <li class='nav-item'>
                   <a class='nav-link active' aria-current='page' href='/'>Browse</a>
                </li>
-               {{#if user}}
                <li class='nav-item'>
-                  <a class='nav-link active' aria-current='page' href='/'>Users</a>
+                  <a class='nav-link active {{#unless user}}disabled{{/unless}}' aria-current='page' href='/'>Users</a>
                </li>
                <li class='nav-item'>
-                  <a class='nav-link active' aria-current='page' href='/'>Submit a recipe</a>
-               </li>
-               {{else}}
-               <li class='nav-item'>
-                  <a class='nav-link active disabled' aria-current='page'>Users</a>
-               </li>
-               <li class='nav-item'>
-                  <a class='nav-link active disabled' aria-current='page'>Submit a
+                  <a class='nav-link active {{#unless user}}disabled{{/unless}}' aria-current='page' href='/'>Submit a
                      recipe</a>
                </li>
-               {{/if}}
             </div>
             <div class='navbar-divide'>
                {{#if user}}

@@ -11,12 +11,10 @@
 }
 
 body {
-  max-width: 52em;
-  padding: 0 1em;
-  margin: 0 auto;
-  font-family: sans-serif;
-  font-family: $font-sans;
-  line-height: 2;
+  margin: 0px;
+  padding: 0px;
+  display: flex;
+  justify-content: center;
 }
 
 a {
@@ -33,11 +31,6 @@ p {
   &:not(:last-child) {
     margin-bottom: 1rem;
   }
-}
-
-img {
-  width: 100%;
-  max-width: 100%;
 }
 
 form {
@@ -71,6 +64,16 @@ label {
 }
 
 // ### Navbar styles ###
+
+.navbar {
+  padding: 0.4em 0.6em;
+}
+
+.navbar-brand {
+  font-family: $font-oleo;
+  font-size: 1.5em;
+  color: $orange !important;
+}
 
 #logout-form {
   height: 0;
