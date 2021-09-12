@@ -1,5 +1,6 @@
 'use strict';
 
+// ### Require express modules ###
 const path = require('path');
 const express = require('express');
 const createError = require('http-errors');
@@ -12,8 +13,12 @@ const basicAuthenticationDeserializer = require('./middleware/basic-authenticati
 const bindUserToViewLocals = require('./middleware/bind-user-to-view-locals.js');
 const baseRouter = require('./routes/index');
 const authenticationRouter = require('./routes/authentication');
+const hbs = require('hbs');
 
 const app = express();
+
+// ### Register partials ###
+hbs.registerPartials(path.join(__dirname, 'views/partials'));
 
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'hbs');

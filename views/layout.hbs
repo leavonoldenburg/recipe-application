@@ -21,19 +21,8 @@
   </head>
 
   <body>
-    <div class='container'>
-      <nav>
-        <a href='/'>Home</a>
-        {{#if user}}
-          <a href='/private'>{{user.name}}'s Profile</a>
-          <form action='/authentication/sign-out' method='POST'>
-            <button>Sign Out</button>
-          </form>
-        {{else}}
-          <a href='/authentication/sign-in'>Sign In</a>
-          <a href='/authentication/sign-up'>Sign Up</a>
-        {{/if}}
-      </nav>
+    <div class='container-fluid'>
+      {{>navbar}}
       {{{body}}}
 
       <!-- ### Link Bootstrap 5.1.1 JavaScript bundle ### -->

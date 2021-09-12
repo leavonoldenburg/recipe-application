@@ -24,21 +24,6 @@ a {
   text-decoration: none;
 }
 
-nav {
-  display: flex;
-  a,
-  button {
-    padding: 1em 0;
-    border: 0;
-    &:not(:last-child) {
-      margin-right: 1em;
-    }
-    &:first-child {
-      margin-right: auto;
-    }
-  }
-}
-
 h1,
 h2,
 h3,
@@ -83,4 +68,27 @@ textarea {
 
 label {
   margin-bottom: 0.5em;
+}
+
+// ### Navbar styles ###
+
+#logout-form {
+  height: 0;
+}
+
+.navbar-nav {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  button {
+    border: 0;
+  }
+}
+
+.navbar-divide {
+  display: inherit;
+}
+
+.disabled {
+  color: $darkgrey !important;
 }
