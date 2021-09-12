@@ -21,28 +21,30 @@
   </head>
 
   <body>
-    <nav>
-      <a href='/'>Home</a>
-      {{#if user}}
-        <a href='/private'>{{user.name}}'s Profile</a>
-        <form action='/authentication/sign-out' method='POST'>
-          <button>Sign Out</button>
-        </form>
-      {{else}}
-        <a href='/authentication/sign-in'>Sign In</a>
-        <a href='/authentication/sign-up'>Sign Up</a>
-      {{/if}}
-    </nav>
-    {{{body}}}
+    <div class='container'>
+      <nav>
+        <a href='/'>Home</a>
+        {{#if user}}
+          <a href='/private'>{{user.name}}'s Profile</a>
+          <form action='/authentication/sign-out' method='POST'>
+            <button>Sign Out</button>
+          </form>
+        {{else}}
+          <a href='/authentication/sign-in'>Sign In</a>
+          <a href='/authentication/sign-up'>Sign Up</a>
+        {{/if}}
+      </nav>
+      {{{body}}}
 
-    <!-- ### Link Bootstrap 5.1.1 JavaScript bundle ### -->
-    <script
-      src='https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js'
-      integrity='sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ'
-      crossorigin='anonymous'
-    ></script>
+      <!-- ### Link Bootstrap 5.1.1 JavaScript bundle ### -->
+      <script
+        src='https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js'
+        integrity='sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ'
+        crossorigin='anonymous'
+      ></script>
 
-    <script src='/scripts/script.js'></script>
+      <script src='/scripts/script.js'></script>
+    </div>
   </body>
 
 </html>
