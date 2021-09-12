@@ -1,5 +1,6 @@
-$font-sans: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-$grey: hsl(0, 0, 90%);
+// ### Import mixins/vars ###
+@import "_mixins";
+@import "_variables";
 
 * {
   &,
@@ -59,9 +60,9 @@ form {
   flex-direction: column;
 }
 
-input:not([type='checkbox']),
-input:not([type='radio']),
-input:not([type='range']),
+input:not([type="checkbox"]),
+input:not([type="radio"]),
+input:not([type="range"]),
 textarea,
 select,
 button,
