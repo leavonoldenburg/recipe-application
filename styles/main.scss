@@ -15,6 +15,7 @@ body {
   padding: 0px;
   display: flex;
   justify-content: center;
+  background-image: url("/images/background_wood.jpg");
 }
 
 a {
@@ -42,16 +43,14 @@ input:not([type="checkbox"]),
 input:not([type="radio"]),
 input:not([type="range"]),
 textarea,
-select,
-button,
-.btn {
+select {
   padding: 1em;
   border: 1px solid $grey;
   border-radius: 0;
   margin-bottom: 1em;
   font: inherit;
   color: inherit;
-  background-color: transparent;
+  // background-color: $white;
 }
 
 textarea {
@@ -61,12 +60,14 @@ textarea {
 
 label {
   margin-bottom: 0.5em;
+  color: white;
 }
 
 // ### Navbar styles ###
 
 .navbar {
-  padding: 0.4em 0.6em;
+  padding: 0.6em 0.6em 0.4em;
+  border-radius: 0.4em;
 }
 
 .navbar-brand {
@@ -75,9 +76,9 @@ label {
   color: $orange !important;
 }
 
-#logout-form {
-  height: 0;
-}
+// #logout-form {
+//   height: 0;
+// }
 
 .navbar-nav {
   display: flex;
@@ -90,8 +91,20 @@ label {
 
 .navbar-divide {
   display: inherit;
+  align-items: center;
+  height: 3em;
+}
+
+.btn-register {
+  background-color: $orange;
+}
+
+.btn-logout {
+  background-color: transparent;
+  text-align: center;
+  margin-top: 1em;
 }
 
 .disabled {
-  color: $darkgrey !important;
+  color: $grey !important;
 }
