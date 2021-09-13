@@ -1,6 +1,7 @@
 // ### Import mixins/vars ###
 @import "_mixins";
 @import "_variables";
+@import "header";
 
 * {
   &,
@@ -67,7 +68,7 @@ label {
 
 .navbar {
   padding: 0.6em 0.6em 0.4em;
-  border-radius: 0.4em;
+  @include rounded;
 }
 
 .navbar-brand {
@@ -75,10 +76,6 @@ label {
   font-size: 1.5em;
   color: $orange !important;
 }
-
-// #logout-form {
-//   height: 0;
-// }
 
 .navbar-nav {
   display: flex;

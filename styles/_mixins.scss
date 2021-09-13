@@ -1,5 +1,11 @@
 // ### Mixins ###
-@mixin text-reset {
-   font: inherit;
-   color: inherit;
+
+// rounded corners
+@mixin rounded {
+   border-radius: 0.4em;
+}
+
+// box-shadow
+@mixin shadow {
+   box-shadow: 1px 1px 2px black;
 }
