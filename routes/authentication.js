@@ -13,7 +13,7 @@ router.get('/sign-up', (req, res, next) => {
 });
 
 router.post('/sign-up', upload.single('picture'), (req, res, next) => {
-  const { username, firstname, lastname, email, password } = req.body;
+  const { username, email, password } = req.body;
   let picture;
   if (req.file) {
     picture = req.file.path;
@@ -23,15 +23,13 @@ router.post('/sign-up', upload.single('picture'), (req, res, next) => {
     .then((hash) => {
       return User.create({
         username,
-        //firstname,
-        //lastname,
         email,
         passwordHashAndSalt: hash
       });
     })
     .then((user) => {
       req.session.userId = user._id;
-      res.redirect('/private');
+      res.redirect('/profile');
     })
     .catch((error) => {
       next(error);
