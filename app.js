@@ -20,7 +20,7 @@ const app = express();
 // const User = require('./models/user');
 // const Recipe = require('./models/recipe');
 // const Comment = require('./models/comment');
-
+// const Relation = require('./models/relation');
 // ### Register partials ###
 hbs.registerPartials(path.join(__dirname, 'views/partials'));
 
