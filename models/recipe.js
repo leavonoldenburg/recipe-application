@@ -6,21 +6,19 @@ const recipeSchema = new mongoose.Schema({
     required: true,
     minlength: 3,
     maxlength: 1000
-
   },
 
-creator: {
-      type: mongoose.Schema.Types.ObjectId,
-      required: true,
-      ref: 'User'
-    },
+  creator: {
+    type: mongoose.Schema.Types.ObjectId,
+    required: true,
+    ref: 'User'
+  },
 
-picture: {
+  picture: {
     type: String
-  },
+  }
 
-  //ref recipe 
-
+  //ref recipe
 });
 
 const Recipe = mongoose.model('Recipe', recipeSchema);
