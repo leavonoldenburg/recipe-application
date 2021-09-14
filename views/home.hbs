@@ -1,2 +1,25 @@
-<h1>{{title}}</h1>
-<p>Welcome to {{title}}</p>
+<main>
+   <div id="home-bar">
+      <div id="recipe-count">64 Recepies</div>
+      <div id="paging">
+         <div class="homebar-label">PAGE</div>
+         <div class="btn btn-sm btn-page-active">1</div>
+         <div class="btn btn-sm btn-page">2</div>
+         <div class="btn btn-sm btn-page">3</div>
+      </div>
+      <div id="sorting">
+         <div class="homebar-label">SORT BY</div>
+         <select class="form-select form-select-sm" aria-label=".form-select-sm example">
+            <option selected>Rating</option>
+            <option value="1">Date added</option>
+            <option value="2">Dish type</option>
+            <option value="3">Ingredients</option>
+         </select>
+      </div>
+   </div>
+   <hr>
+   <div id="recipe-list">
+      <h1>Recipes</h1>
+      <p>A lot of recipe cards ...</p>
+   </div>
+</main>
