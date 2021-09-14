@@ -38,7 +38,7 @@ const userSchema = new mongoose.Schema({
   passwordHashAndSalt: {
     type: String,
     required: true,
-    minlength: 5
+    minlength: '5'
   }
 });
 
