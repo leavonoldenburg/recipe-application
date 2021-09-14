@@ -13,7 +13,7 @@ router.get('/sign-up', (req, res, next) => {
 });
 
 router.post('/sign-up', upload.single('picture'), (req, res, next) => {
-  const { name, firstname, lastname, email, password } = req.body;
+  const { username, firstname, lastname, email, password } = req.body;
   let picture;
   if (req.file) {
     picture = req.file.path;
@@ -22,7 +22,7 @@ router.post('/sign-up', upload.single('picture'), (req, res, next) => {
     .hash(password, 10)
     .then((hash) => {
       return User.create({
-        name,
+        username,
         //firstname,
         //lastname,
         email,
