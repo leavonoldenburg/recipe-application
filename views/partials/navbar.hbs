@@ -25,7 +25,7 @@
             <div class='navbar-divide'>
                {{#if user}}
                <li class='nav-item'>
-                  <a class='nav-link active' aria-current='page' href='/private'>{{user.name}}'s Profile</a>
+                  <a class='nav-link active' aria-current='page' href='/private'>{{user.username}}'s Profile</a>
                </li>
                <li class='nav-item'>
                   <form id='logout-form' action='/authentication/sign-out' method='POST'>
