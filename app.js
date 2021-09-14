@@ -17,10 +17,9 @@ const hbs = require('hbs');
 
 const app = express();
 
-const User = require('./models/user');
-const Recipe = require('./models/recipe');
-const Comment = require('./models/comment');
-
+// const User = require('./models/user');
+// const Recipe = require('./models/recipe');
+// const Comment = require('./models/comment');
 
 // ### Register partials ###
 hbs.registerPartials(path.join(__dirname, 'views/partials'));

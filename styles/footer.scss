@@ -1,0 +1,34 @@
+// ### Footer styles ###
+
+footer {
+   background-color: $dark;
+   margin-top: 1em;
+   height: 5em;
+   @include rounded;
+   display: flex;
+   justify-content: space-between;
+   align-items: flex-end;
+   padding: 0 1em;
+}
+
+#footer-logo {
+   color: $orange;
+   font-family: $font-oleo;
+   font-size: 1.3em;
+   margin-bottom: 0.4em;
+}
+
+#ironhack {
+   color: $white;
+   align-self: center;
+   img {
+      width: 1.5em;
+      margin-bottom: 0.2em;
+   }
+}
+
+#group {
+   font-size: 0.8em;
+   color: $white;
+   margin-bottom: 1em;
+}
