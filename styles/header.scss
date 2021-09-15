@@ -28,9 +28,21 @@ header {
    padding: 0.1em 0.5em;
 }
 
-#login {
+#login,
+#profile,
+.btn-logout {
    font-weight: bold;
    color: $petrol;
-   margin-right: 1em;
+   margin-right: 0.8em;
    font-size: 1.3em;
+}
+
+.btn-logout {
+   background: transparent;
+   margin-right: 0;
+   border: 0;
+}
+
+#logout-form {
+   margin: 0;
 }
