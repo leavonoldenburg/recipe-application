@@ -1,1 +1,16 @@
-header
+<header>
+   <div id="logo"><img src="/images/logo.png" alt="Small Victories Logo"></div>
+   <div id='register-login'>
+      {{#if user}}
+      <a class='active' href='/profile'>{{user.username}}'s Profile</a>
+      <form id='logout-form' action='/authentication/sign-out' method='POST'>
+         <button class='btn-logout'>Logout</button>
+      </form>
+      {{else}}
+      <a href='/authentication/sign-in' id='login'><u>Login</u></a>
+      <a href='/authentication/sign-up'>
+         <button class='btn btn-sm btn-register'>Register</button>
+      </a>
+      {{/if}}
+   </div>
+</header>

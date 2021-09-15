@@ -22,27 +22,6 @@
                      recipe</a>
                </li>
             </div>
-            <div class='navbar-divide'>
-               {{#if user}}
-               <li class='nav-item'>
-                  <a class='nav-link active' aria-current='page' href='/profile'>{{user.username}}'s Profile</a>
-               </li>
-               <li class='nav-item'>
-                  <form id='logout-form' action='/authentication/sign-out' method='POST'>
-                     <button class='nav-link btn-logout'>Logout</button>
-                  </form>
-               </li>
-               {{else}}
-               <li class='nav-item'>
-                  <a class='nav-link' href='/authentication/sign-in'>Login</a>
-               </li>
-               <li class='nav-item'>
-                  <a class='nav-link' href='/authentication/sign-up'>
-                     <button class='btn btn-sm btn-register'>Register</button>
-                  </a>
-               </li>
-               {{/if}}
-            </div>
          </ul>
       </div>
    </div>

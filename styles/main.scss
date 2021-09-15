@@ -15,8 +15,6 @@
 }
 
 body {
-  margin: 0px;
-  padding: 0px;
   display: flex;
   justify-content: center;
 }
@@ -66,6 +64,10 @@ label {
   color: white;
 }
 
+.wrapper {
+  box-shadow: 0px 0px 5px $grey;
+}
+
 // ### Navbar styles ###
 
 .navbar {
@@ -92,10 +94,6 @@ label {
   display: inherit;
   align-items: center;
   height: 3em;
-}
-
-.btn-register {
-  background-color: $orange;
 }
 
 .btn-logout {

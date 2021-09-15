@@ -1,11 +1,13 @@
 // ### Fonts ###
 @import url("https://fonts.googleapis.com/css2?family=Oleo+Script:wght@700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Patrick+Hand&display=swap");
 
 $font-sans: "Helvetica Neue", Helvetica, Arial, sans-serif;
+$font-patrick: "Patrick Hand", cursive;
 $font-oleo: "Oleo Script", cursive;
 
 // ### Colors ###
-$white: #e2dede;
+
 $offwhite: #d8d8d8;
 $grey: #818181;
 $dark: #212529;
@@ -13,3 +15,9 @@ $black: #1f1f1f;
 $orange: #ff9100;
 $brown: #461f00;
 $green: #21a700;
+
+$white: #ffffff;
+$petrol: #36a890;
+$turquoise: #c4f1c6;
+$beige: #fff4e0;
+$powderblue: powderblue;

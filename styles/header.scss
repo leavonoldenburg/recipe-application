@@ -1,0 +1,36 @@
+// ### Header styles ###
+
+header {
+   height: 8em;
+   display: flex;
+   justify-content: space-between;
+   align-items: center;
+   font-family: $font-patrick;
+}
+
+#logo img {
+   width: 25em;
+   margin: 1em 0 0 2em;
+}
+
+#register-login {
+   display: flex;
+   align-self: flex-start;
+   align-items: center;
+   margin: 1em 2em 0 0;
+}
+
+.btn-register {
+   background-color: $petrol;
+   color: white;
+   font-weight: bold;
+   font-size: 1.1em;
+   padding: 0.1em 0.5em;
+}
+
+#login {
+   font-weight: bold;
+   color: $petrol;
+   margin-right: 1em;
+   font-size: 1.3em;
+}
