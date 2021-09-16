@@ -1,12 +1,21 @@
-<h1>Your Profile</h1>
-<span><strong>Name</strong>: {{user.username}}</span>
+{{#if ownProfile}}
+  <h1>Your Profile</h1>
+{{else}}
+  <h1>{{profile.username}}'s Profile</h1>
+{{/if}}
+
+{{#if profile.picture}}
+  <img src='{{profile.picture}}' alt='{{profile.name}}' height='50px' />
+{{/if}}
+<span><strong>Name</strong>: {{profile.username}}</span>
 <br />
-<span><strong>Email</strong>: {{user.email}}</span>
 
-<a href='/profile/edit'>
-  <button> Edit User Info</button>
-
-</a>
+{{#if ownProfile}}
+  <span><strong>Email</strong>: {{profile.email}}</span>
+  <a href='/profile/edit/{{profile._id}}'>
+    <button>Edit User Info</button>
+  </a>
+{{/if}}
 
 {{!-- {{user.recipes}} --}}
 {{!-- {{user.comments}} --}}

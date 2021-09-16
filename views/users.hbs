@@ -1,0 +1,7 @@
+{{#each users}}
+  {{#if picture}}
+    <img src='{{picture}}' alt='{{username}}' height='50px' />
+  {{/if}}
+  <a href='/profile/{{_id}}'><h3>{{username}}</h3></a>
+
+{{/each}}

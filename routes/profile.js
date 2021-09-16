@@ -5,12 +5,24 @@ const upload = require('../middleware/file-upload');
 
 const profileRouter = express.Router();
 
-profileRouter.get('/edit', routeGuardMiddleware, (req, res, next) => {
-  res.render('profile-edit');
+profileRouter.get('/edit/:id', routeGuardMiddleware, (req, res, next) => {
+  const { id } = req.params;
+  User.findById(id)
+    .then((profile) => {
+      const ownProfile =
+        req.user && String(req.user._id) === String(profile._id);
+      res.render('profile-edit', {
+        profile,
+        ownProfile
+      });
+    })
+    .catch((error) => {
+      next(error);
+    });
 });
 
 profileRouter.post(
-  '/edit',
+  '/edit/:id',
   routeGuardMiddleware,
   upload.single('picture'),
   (req, res, next) => {
@@ -27,7 +39,7 @@ profileRouter.post(
       picture
     })
       .then((document) => {
-        res.redirect(`/profile`);
+        res.redirect(`/profile/:id`);
       })
       .catch((error) => {
         next(error);
@@ -35,8 +47,20 @@ profileRouter.post(
   }
 );
 
-profileRouter.get('/', (req, res, next) => {
-  res.render('profile');
+profileRouter.get('/:id', routeGuardMiddleware, (req, res, next) => {
+  const { id } = req.params;
+  User.findById(id)
+    .then((profile) => {
+      const ownProfile =
+        req.user && String(req.user._id) === String(profile._id);
+      res.render('profile', {
+        profile,
+        ownProfile
+      });
+    })
+    .catch((error) => {
+      next(error);
+    });
 });
 
 // profileRouter.get('/:id', (req, res, next) => {
