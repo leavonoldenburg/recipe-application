@@ -8,7 +8,6 @@
 .navbar-nav {
    display: flex;
    justify-content: center;
-   padding-top: 0.3em;
    gap: 2em;
    width: 100%;
    button {
@@ -25,4 +24,23 @@
 
 .disabled {
    color: $pine !important;
+}
+
+a {
+   position: relative;
+}
+
+nav a:hover {
+   color: $pine !important;
+}
+
+nav a:hover::after {
+   content: "";
+   position: absolute;
+   left: 5px;
+   right: 5px;
+   bottom: 10px;
+   border: 1.2px solid $pine;
+   background-color: $pine;
+   @include rounded;
 }
