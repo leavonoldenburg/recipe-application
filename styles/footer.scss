@@ -1,7 +1,7 @@
 // ### Footer styles ###
 
 footer {
-   background-color: $dark;
+   background-color: $pine;
    margin-top: 1em;
    height: 5em;
    @include rounded;
@@ -13,7 +13,7 @@ footer {
 
 #footer-logo {
    color: orange;
-   font-family: $font-oleo;
+   font-family: $font-rancho;
    font-size: 1.3em;
    margin-bottom: 0.4em;
 }

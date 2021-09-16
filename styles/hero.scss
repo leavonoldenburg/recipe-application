@@ -1,9 +1,9 @@
 // ### Header styles ###
 
 #hero-section {
-   height: 15em;
-   margin-top: 1em;
-   @include rounded;
+   background-image: url("/images/header.png");
+   background-size: cover;
+   height: 18em;
    display: flex;
    flex-direction: column;
    justify-content: center;
@@ -22,8 +22,9 @@
 
 #welcome {
    text-align: center;
-   font-size: 2.6em;
-   width: 12em;
-   font-family: $font-hand;
-   text-shadow: 2px 2px 4px rgb(0, 0, 0);
+   font-size: 3em;
+   width: 9em;
+   line-height: 1em;
+   font-family: $font-rancho;
+   text-shadow: 2px 2px 3px rgb(20, 20, 20);
 }
