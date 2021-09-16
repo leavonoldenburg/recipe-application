@@ -1,10 +1,8 @@
 // ### Import mixins/vars ###
-@import "_mixins";
-@import "_variables";
-@import "header";
-@import "hero";
-@import "home";
-@import "footer";
+@import "_mixins", "_variables";
+
+// ### Import scss files ###
+@import "header", "navbar", "hero", "home", "footer";
 
 * {
   &,
@@ -46,7 +44,7 @@ input:not([type="range"]),
 textarea,
 select {
   padding: 1em;
-  border: 1px solid $grey;
+  border: 1px solid grey;
   border-radius: 0;
   margin-bottom: 1em;
   font: inherit;
@@ -65,37 +63,5 @@ label {
 }
 
 .wrapper {
-  box-shadow: 0px 0px 5px $grey;
-}
-
-// ### Navbar styles ###
-
-.navbar {
-  padding: 0.6em 0.6em 0.4em;
-  @include rounded;
-}
-
-.navbar-brand {
-  font-family: $font-oleo;
-  font-size: 1.5em;
-  color: $orange !important;
-}
-
-.navbar-nav {
-  display: flex;
-  justify-content: space-between;
-  width: 100%;
-  button {
-    border: 0;
-  }
-}
-
-.navbar-divide {
-  display: inherit;
-  align-items: center;
-  height: 3em;
-}
-
-.disabled {
-  color: $grey !important;
+  box-shadow: 0px 0px 5px grey;
 }

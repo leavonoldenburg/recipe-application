@@ -1,0 +1,28 @@
+// ### Navbar styles ###
+
+.navbar {
+   background-color: $turquoise;
+   height: 3em;
+}
+
+.navbar-nav {
+   display: flex;
+   justify-content: center;
+   padding-top: 0.3em;
+   gap: 2em;
+   width: 100%;
+   button {
+      border: 0;
+   }
+}
+
+.nav-link {
+   color: $dark;
+   font-family: $font-hand;
+   font-weight: bold;
+   font-size: 1.2em;
+}
+
+.disabled {
+   color: $dark !important;
+}
