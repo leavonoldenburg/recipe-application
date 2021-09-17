@@ -5,11 +5,7 @@
 @import "header", "navbar", "hero", "home", "users", "footer";
 
 * {
-  &,
-  &:before,
-  &:after {
-    box-sizing: border-box;
-  }
+  box-sizing: border-box;
 }
 
 body {
@@ -71,4 +67,9 @@ label {
   align-items: center;
   background: $beige;
   height: 3em;
+}
+
+.spacer {
+  height: 0.8em;
+  background-color: $beige;
 }

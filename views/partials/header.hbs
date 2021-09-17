@@ -2,17 +2,17 @@
   <div id='logo'><img src='/images/logo.png' alt='Small Victories Logo' /></div>
   <div id='register-login'>
     {{#if user}}
-      <a href='/profile/{{user._id}}' id='profile'><u>{{user.username}}'s
-          Profile</u></a>
-      <form id='logout-form' action='/authentication/sign-out' method='POST'>
-        <button class='btn-logout'><u>Logout</u></button>
-      </form>
+    <a href='/profile/{{user._id}}' id='profile'><u>{{user.username}}'s
+        Profile</u></a>
+    <form id='logout-form' action='/authentication/sign-out' method='POST'>
+      <button class='btn-logout'><u>Logout</u></button>
+    </form>
     {{else}}
-      <a href='/authentication/sign-in' id='login'><u>Login</u></a>
-      <a href='/authentication/sign-up'>
-        <button class='btn btn-sm btn-register'>Register</button>
-      </a>
+    <a href='/authentication/sign-in' id='login'><u>Login</u></a>
+    <a href='/authentication/sign-up'>
+      <button class='btn btn-sm btn-register'>Register</button>
+    </a>
     {{/if}}
   </div>
 </header>
-<div id='spacer'></div>
+<div class='spacer'></div>

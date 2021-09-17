@@ -1,20 +1,22 @@
+<div class="secondary-bar">
+</div>
 {{#if ownProfile}}
-  <h1>Your Profile</h1>
+<h1>Your Profile</h1>
 {{else}}
-  <h1>{{profile.username}}'s Profile</h1>
+<h1>{{profile.username}}'s Profile</h1>
 {{/if}}
 
 {{#if profile.picture}}
-  <img src='{{profile.picture}}' alt='{{profile.name}}' height='50px' />
+<img src='{{profile.picture}}' alt='{{profile.name}}' height='50px' />
 {{/if}}
 <span><strong>Name</strong>: {{profile.username}}</span>
 <br />
 
 {{#if ownProfile}}
-  <span><strong>Email</strong>: {{profile.email}}</span>
-  <a href='/profile/edit/{{profile._id}}'>
-    <button>Edit User Info</button>
-  </a>
+<span><strong>Email</strong>: {{profile.email}}</span>
+<a href='/profile/edit/{{profile._id}}'>
+  <button>Edit User Info</button>
+</a>
 {{/if}}
 
 {{!-- {{user.recipes}} --}}

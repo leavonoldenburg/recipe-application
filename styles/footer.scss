@@ -1,34 +1,48 @@
 // ### Footer styles ###
 
 footer {
+   color: $white;
    background-color: $pine;
-   margin-top: 1em;
    height: 5em;
-   @include rounded;
    display: flex;
    justify-content: space-between;
    align-items: flex-end;
    padding: 0 1em;
+   a:hover {
+      color: $turquoise;
+   }
 }
 
-#footer-logo {
-   color: orange;
-   font-family: $font-rancho;
-   font-size: 1.3em;
-   margin-bottom: 0.4em;
+#repository {
+   font-family: $font-acme;
+   font-size: 1.1em;
+   margin-bottom: 0.5em;
+   display: flex;
 }
 
 #ironhack {
-   color: $white;
    align-self: center;
+   font-family: $font-acme;
+   font-weight: light;
+   font-size: 1.5em;
+   margin-top: 0.5em;
    img {
       width: 1.5em;
-      margin-bottom: 0.2em;
+      margin-bottom: 0.5em;
    }
 }
 
 #group {
    font-size: 0.8em;
-   color: $white;
    margin-bottom: 1em;
+   display: flex;
+}
+
+.separate {
+   color: $beige;
+}
+
+.spacer-footer {
+   height: 0.8em;
+   background-color: $turquoise;
 }
