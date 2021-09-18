@@ -1,13 +1,13 @@
-<div class="secondary-bar">
-  <div class="heading-user">23 registered users</div>
-  <div class="heading-user">64 Recipes</div>
-  <div class="heading-user">12 Restaurants</div>
+<div class='secondary-bar'>
+  <div class='heading-user'>{{users.length}} registered users</div>
+  <div class='heading-user'>64 Recipes</div>
+  <div class='heading-user'>12 Restaurants</div>
 </div>
 {{#each users}}
-{{#if picture}}
-<img src='{{picture}}' alt='{{username}}' height='50px' />
-{{/if}}
-<a href='/profile/{{_id}}'>
-  <h3>{{username}}</h3>
-</a>
+  {{#if picture}}
+    <img src='{{picture}}' alt='{{username}}' height='50px' />
+  {{/if}}
+  <a href='/profile/{{_id}}'>
+    <h3>{{username}}</h3>
+  </a>
 {{/each}}
