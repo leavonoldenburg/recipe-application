@@ -69,7 +69,7 @@ app.use('/authentication', authenticationRouter);
 app.use('/profile', profileRouter);
 app.use('/users', usersRouter);
 app.use('/create-recipe', recipeRouter);
-app.user('/contact', contactRouter);
+app.use('/contact', contactRouter);
 
 // Catch missing routes and forward to error handler
 app.use((req, res, next) => {
