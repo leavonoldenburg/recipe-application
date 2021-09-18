@@ -1,0 +1,41 @@
+<h1>Create your own recipe</h1>
+<form method='POST' enctype='multipart/form-data'>
+
+  <label for='input-title'></label>
+  <input
+    type='text'
+    name='title'
+    id='input-title'
+    placeholder='What did you cook today?'
+    required
+  />
+
+  <label for='input-ingredients'></label>
+  <input
+    type='text'
+    name='ingredients'
+    id='input-ingredients'
+    placeholder='Ingredients Needed'
+    required
+  />
+
+  <label for='input-instructions'></label>
+  <input
+    type='text'
+    name='instructions'
+    id='input-instructions'
+    placeholder='How To Make The Dish'
+    required
+  />
+
+  <label for='input-picture'>Add your images</label>
+  <input
+    id='input-picture'
+    type='file'
+    name='picture'
+    accept='image/*'
+    required
+  />
+  <button>Publish</button>
+
+</form>

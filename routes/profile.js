@@ -38,8 +38,8 @@ profileRouter.post(
       password,
       picture
     })
-      .then((document) => {
-        res.redirect(`/profile/:id`);
+      .then((user) => {
+        res.redirect(`/profile/${user._id}`);
       })
       .catch((error) => {
         next(error);
@@ -62,27 +62,5 @@ profileRouter.get('/:id', routeGuardMiddleware, (req, res, next) => {
       next(error);
     });
 });
-
-// profileRouter.get('/:id', (req, res, next) => {
-//   const { id } = req.params;
-//   let profile;
-//   User.findById(id)
-//     .then((document) => {
-//       profile = document;
-//       return Publication.find({ creator: id }).sort({ publishingDate: -1 });
-//     })
-//     .then((publications) => {
-//       const ownProfile =
-//         req.user && String(req.user._id) === String(profile._id);
-//       res.render('profile/detail', {
-//         profile,
-//         publications,
-//         ownProfile
-//       });
-//     })
-//     .catch((error) => {
-//       next(error);
-//     });
-// });
 
 module.exports = profileRouter;
