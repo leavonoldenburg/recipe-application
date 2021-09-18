@@ -14,10 +14,24 @@ recipeRouter.post(
   routeGuardMiddleware,
   upload.single('picture'),
   (req, res, next) => {
-    const { title, ingredients, instructions } = req.body;
+    const {
+      title,
+      level,
+      cookingTime,
+      diet,
+      cuisine,
+      dishType,
+      ingredients,
+      instructions
+    } = req.body;
     const picture = req.file.path;
     Recipe.create({
       title,
+      level,
+      cookingTime,
+      diet,
+      cuisine,
+      dishType,
       ingredients,
       instructions,
       picture

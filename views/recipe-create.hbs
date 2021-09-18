@@ -1,7 +1,7 @@
 <h1>Create your own recipe</h1>
 <form method='POST' enctype='multipart/form-data'>
 
-  <label for='input-title'></label>
+  <label for='input-title'>Recipe Name:</label>
   <input
     type='text'
     name='title'
@@ -10,7 +10,49 @@
     required
   />
 
-  <label for='input-ingredients'></label>
+  <label for='input-level'>Difficulty level:</label>
+  <select name='level' id='input-level'>
+    <option value='Easy'>Easy</option>
+    <option value='Intermediate'>Intermediate</option>
+    <option value='Advanced'>Advanced</option>
+  </select>
+
+  <label for='input-cookingtime'>Cooking Time:</label>
+  <input type='number' name='cookingTime' id='input-cookingtime' />
+  <span>min</span>
+
+  <label for='input-diet'>Diet:</label>
+  <select name='diet' id='input-diet' multiple>
+    <option value='Omnivore'>Omnivore</option>
+    <option value='Pescatarian'>Pescatarian</option>
+    <option value='Vegetarian'>Vegetarian</option>
+    <option value='Vegan'>Vegan</option>
+  </select>
+
+  <label for='input-cuisine'>Cuisine:</label>
+  <select name='cuisine' id='input-cuisine' multiple>
+    <option value='Asian'>Asian</option>
+    <option value='European'>European</option>
+    <option value='Amerian'>Amerian</option>
+    <option value='African'>African</option>
+  </select>
+
+  <label for='input-dishtype'>Dish Type:</label>
+  <select name='dishType' id='input-dishtype' multiple>
+    <option value='Appetizers & Starters'>Appetizers & Starters</option>
+    <option value='Salads'>Salads</option>
+    <option value='Soups & Stews'>Soups & Stews</option>
+    <option value='Beans, Grains & Legumes'>Beans, Grains & Legumes</option>
+    <option value='Casseroles & Gratins'>Casseroles & Gratins</option>
+    <option value='Meat dishes'>Meat dishes</option>
+    <option value='Burgers'>Burgers</option>
+    <option value='Pizzas'>Pizzas</option>
+    <option value='Pasta & Noodles'>Pasta & Noodles</option>
+    <option value='Desserts'>Desserts</option>
+    <option value='Baked Goods'>Baked Goods</option>
+  </select>
+
+  <label for='input-ingredients'>Ingredients:</label>
   <input
     type='text'
     name='ingredients'
@@ -19,7 +61,7 @@
     required
   />
 
-  <label for='input-instructions'></label>
+  <label for='input-instructions'>Instructions:</label>
   <input
     type='text'
     name='instructions'

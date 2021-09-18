@@ -8,8 +8,8 @@ const Contact = require('./../models/contact');
 const transporter = nodemailer.createTransport({
   service: 'Gmail',
   auth: {
-    user: 'ironhacknodetest@gmail.com',
-    pass: 'ironhack'
+    user: process.env.MAIL_USER,
+    pass: process.env.MAIL_PASSWORD
   }
 });
 
