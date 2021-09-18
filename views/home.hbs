@@ -10,13 +10,62 @@
       <div id="sorting">
          <div class="homebar-label">Sort by</div>
          <select class="form-select form-select-sm" aria-label=".form-select-sm example">
-            <option selected>Rating</option>
+            <option value="1">Rating</option>
             <option value="1">Date added</option>
-            <option value="2">Dish type</option>
-            <option value="3">Ingredients</option>
+            <option value="1">Cooking Time</option>
+            <optgroup label="Difficulty">
+               <option value="1">Easy</option>
+               <option value="2">Intermediate</option>
+               <option value="3">Advanced</option>
+            </optgroup>
+            <optgroup label="Diet">
+               <option value="1">Veggie</option>
+               <option value="2">Omnivore</option>
+               <option value="3">Vegan</option>
+               <option value="4">Pescatarian</option>
+            </optgroup>
+            <optgroup label="Cuisine">
+               <option value="1">Asian</option>
+               <option value="2">European</option>
+               <option value="3">American</option>
+               <option value="4">African</option>
+            </optgroup>
+            <optgroup label="Dish Type">
+               <option value="1">Appetizers & Starters</option>
+               <option value="1">Meat dishes</option>
+               <option value="3">Soups & Stews</option>
+               <option value="2">Pasta & Noodles</option>
+               <option value="4">Salads</option>
+               <option value="2">Burgers</option>
+               <option value="2">Beans, Grains & Legumes</option>
+               <option value="3">Casseroles & Gratins</option>
+               <option value="2">Desserts</option>
+               <option value="3">Pizzas</option>
+               <option value="1">Baked Goods</option>
+            </optgroup>
          </select>
       </div>
    </div>
+
+   {{!-- <select class="custom-select">
+      <optgroup label="Group 1">
+      <optgroup label="Sub Group 1">
+         <option>Item 1</option>
+         <option>Item 2</option>
+         <option>Item 3</option>
+      </optgroup>
+
+      <option>Item 2</option>
+      <option>Item 3</option>
+      </optgroup>
+
+      <optgroup label="Group 2">
+         <option>Item 1</option>
+         <option>Item 2</option>
+         <option>Item 3</option>
+      </optgroup>
+   </select> --}}
+
    <div class="container recipe-container">
       <div class="row row-cols-xl-4 row-cols-lg-3 row-cols-md-2 row-cols-1">
          <div class="col">
