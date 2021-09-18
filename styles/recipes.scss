@@ -1,5 +1,9 @@
 // ### Recipe styles ###
 
+.recipe-container {
+   padding: 0 1.5em;
+}
+
 .recipe-image {
    background-size: cover;
    height: 23em;
@@ -16,12 +20,13 @@
 
 .recipe-card {
    padding: 0.8em;
-   margin-top: 1em;
+   margin-top: 1.5em;
    @include card-shadow;
-   // background-color: #a9e9d46c;
    background-color: #f3ebd94b;
+   transition: transform 0.5s ease, box-shadow 0.5s ease;
 }
 
-.recipe-container {
-   padding: 0 1.5em;
+.recipe-card:hover {
+   box-shadow: 0 3px 8px #00000054;
+   transform: scale(1.01);
 }
