@@ -24,6 +24,7 @@ router.post('/sign-up', upload.single('picture'), (req, res, next) => {
       return User.create({
         username,
         email,
+        picture,
         passwordHashAndSalt: hash
       });
     })
