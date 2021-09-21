@@ -1,20 +1,25 @@
 <header>
-  <div id='logo'><img
-      src='/images/ironhack_logo.png'
-      alt='IRON COOKING WILL Logo'
-    /></div>
+  <div id='logo'><img src='/images/ironhack_logo.png' alt='IRON COOKING WILL Logo' /></div>
   <div id='register-login'>
+    <div id='social-media'>
+      <i class="fab fa-lg fa-instagram-square"></i>
+      <i class="fab fa-lg fa-pinterest-square"></i>
+      <i class="fab fa-lg fa-twitter-square"></i>
+      <i class="fab fa-lg fa-facebook-square"></i>
+      <i class="fab fa-lg fa-youtube-square"></i>
+      <i class="fab fa-lg fa-vimeo"></i>
+    </div>
     {{#if user}}
-      <a href='/profile/{{user._id}}' id='profile'><u>{{user.username}}'s
-          Profile</u></a>
-      <form id='logout-form' action='/authentication/sign-out' method='POST'>
-        <button class='btn-logout'><u>Logout</u></button>
-      </form>
+    <a href='/profile/{{user._id}}' id='profile'><u>{{user.username}}'s
+        Profile</u></a>
+    <form id='logout-form' action='/authentication/sign-out' method='POST'>
+      <button class='btn-logout'><u>Logout</u></button>
+    </form>
     {{else}}
-      <a href='/authentication/sign-in' id='login'><u>Login</u></a>
-      <a href='/authentication/sign-up'>
-        <button class='btn btn-sm btn-register'>Register</button>
-      </a>
+    <a href='/authentication/sign-in' id='login'><u>Login</u></a>
+    <a href='/authentication/sign-up'>
+      <button class='btn btn-sm btn-register'>Register</button>
+    </a>
     {{/if}}
   </div>
 </header>
