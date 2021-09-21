@@ -1,5 +1,6 @@
 const express = require('express');
 const Recipe = require('../models/recipe');
+const Ingredient = require('../models/ingredient');
 const upload = require('../middleware/file-upload');
 
 const routeGuardMiddleware = require('../middleware/route-guard');
@@ -21,7 +22,7 @@ recipeRouter.post(
       diet,
       cuisine,
       dishType,
-      ingredients,
+      // ingredients,
       instructions
     } = req.body;
     const picture = req.file.path;
@@ -32,14 +33,46 @@ recipeRouter.post(
       diet,
       cuisine,
       dishType,
-      ingredients,
+      // ingredients,
       instructions,
       picture
     }).then((recipe) => {
+      console.log(recipe);
       res.redirect(`/recipe/${recipe._id}`);
     });
   }
 );
+
+recipeRouter.get('/newingredient', (req, res, next) => {
+  Ingredient.find({})
+    .then((ingredients) => {
+      res.render('ingredients', { ingredients });
+    })
+    .catch((error) => {
+      next(error);
+    });
+});
+
+recipeRouter.post('/newingredient', (req, res, next) => {
+  console.log(req.body);
+  const ingredients = req.body.ingredients;
+  // const id = req.body._id;
+  // if (id) {
+  //   Ingredient.findByIdAndUpdate(id, {
+  //     $push: { name: { ingredients } }
+  //   });
+  // } else {
+  Ingredient.create({
+    name: ingredients
+  })
+    .then(() => {
+      res.redirect('/recipe/newingredient');
+    })
+    .catch((error) => {
+      next(error);
+    });
+  // }
+});
 
 recipeRouter.get('/:id', (req, res, next) => {
   const { id } = req.params;

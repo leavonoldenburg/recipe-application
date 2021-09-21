@@ -7,7 +7,6 @@
     name='title'
     id='input-title'
     placeholder='What did you cook today?'
-    required
   />
 
   <label for='input-level'>Difficulty level:</label>
@@ -53,13 +52,7 @@
   </select>
 
   <label for='input-ingredients'>Ingredients:</label>
-  <input
-    type='text'
-    name='ingredients'
-    id='input-ingredients'
-    placeholder='Ingredients Needed'
-    required
-  />
+  <a href='/recipe/newingredient'>Add Ingredients</a>
 
   <label for='input-instructions'>Instructions:</label>
   <input
@@ -67,7 +60,6 @@
     name='instructions'
     id='input-instructions'
     placeholder='How To Make The Dish'
-    required
   />
 
   <label for='input-picture'>Add your images</label>
@@ -78,6 +70,7 @@
     accept='image/*'
     required
   />
+
   <button>Publish</button>
 
 </form>

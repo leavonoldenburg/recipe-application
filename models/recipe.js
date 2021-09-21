@@ -47,11 +47,13 @@ const recipeSchema = new mongoose.Schema(
       ]
     },
 
-    ingredients: {
-      type: String,
-      required: true,
-      minlength: 3
-    },
+    // ingredients: [
+    //   {
+    //     type: String,
+    //     minlength: 3,
+    //     maxlength: 120
+    //   }
+    // ],
 
     instructions: {
       type: String,
