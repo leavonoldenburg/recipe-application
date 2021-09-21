@@ -68,46 +68,9 @@
 
    <div class="container recipe-container">
       <div class="row row-cols-xl-4 row-cols-lg-3 row-cols-md-2 row-cols-1">
-         <div class="col">
-            <div class="card recipe-card">
-               <div class="recipe-image p-2" style="background-image: url('/images/recipe_dummy_1.jpg')">
-                  <div class="card-body card">
-                     <h5 class="card-title">Recipe 01</h5>
-                     <p class="card-text">Lorem ipsum dolor sit amet, consetetur sadipscing elitr...</p>
-                  </div>
-               </div>
-            </div>
-         </div>
-         <div class="col">
-            <div class="card recipe-card">
-               <div class="recipe-image p-2" style="background-image: url('/images/recipe_dummy_2.jpg')">
-                  <div class="card-body card">
-                     <h5 class="card-title">Recipe 02</h5>
-                     <p class="card-text">Lorem ipsum dolor sit amet, consetetur sadipscing elitr...</p>
-                  </div>
-               </div>
-            </div>
-         </div>
-         <div class="col">
-            <div class="card recipe-card">
-               <div class="recipe-image p-2" style="background-image: url('/images/recipe_dummy_3.jpg')">
-                  <div class="card-body card">
-                     <h5 class="card-title">Recipe 03</h5>
-                     <p class="card-text">Lorem ipsum dolor sit amet, consetetur sadipscing elitr...</p>
-                  </div>
-               </div>
-            </div>
-         </div>
-         <div class="col">
-            <div class="card recipe-card">
-               <div class="recipe-image p-2" style="background-image: url('/images/recipe_dummy_4.jpg')">
-                  <div class="card-body card">
-                     <h5 class="card-title">Recipe 04</h5>
-                     <p class="card-text">Lorem ipsum dolor sit amet, consetetur sadipscing elitr...</p>
-                  </div>
-               </div>
-            </div>
-         </div>
+         {{#each recipes}}
+         {{>recipe}}
+         {{/each}}
       </div>
    </div>
 </main>
