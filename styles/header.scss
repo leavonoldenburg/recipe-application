@@ -25,7 +25,12 @@ header {
   margin: 1em 2em 0 0;
 }
 
-.btn-register {
+.btn {
+  margin-top: 0.1em;
+}
+
+.btn-register,
+.btn-logout {
   background-color: $pine;
   color: $beige;
   font-weight: bold;
@@ -33,21 +38,35 @@ header {
   padding: 0.1em 0.5em;
 }
 
-#login,
-#profile,
-.btn-logout {
-  font-weight: bold;
+.btn-login,
+.btn-profile {
+  background-color: $beige;
   color: $pine;
-  margin-right: 0.8em;
-  font-size: 1.1em;
-}
-
-.btn-logout {
-  background: transparent;
-  margin-right: 0;
-  border: 0;
+  font-weight: bold;
+  font-size: 1em;
+  padding: 0.1em 0.5em;
+  margin-right: 0.4em;
 }
 
 #logout-form {
   margin: 0;
+}
+
+#social-media {
+  margin-right: 1.3em;
+  font-size: 1em;
+  line-height: 1em;
+}
+
+.fa-inverse {
+  color: $pine;
+}
+
+.icon {
+  color: $turquoise;
+}
+
+.fa-stack {
+  width: 30px;
+  font-size: 0.9em;
 }
