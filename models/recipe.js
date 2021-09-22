@@ -21,12 +21,12 @@ const recipeSchema = new mongoose.Schema(
     },
 
     diet: {
-      type: String,
+      type: [String],
       enum: ['Vegetarian', 'Omnivore', 'Vegan', 'Pescatarian']
     },
 
     cuisine: {
-      type: String,
+      type: [String],
       enum: ['Asian', 'European', 'American', 'African']
     },
 
@@ -47,13 +47,9 @@ const recipeSchema = new mongoose.Schema(
       ]
     },
 
-    // ingredients: [
-    //   {
-    //     type: String,
-    //     minlength: 3,
-    //     maxlength: 120
-    //   }
-    // ],
+    ingredients: {
+      type: [String]
+    },
 
     instructions: {
       type: String,
@@ -61,15 +57,15 @@ const recipeSchema = new mongoose.Schema(
       minlength: 3
     },
 
-    // creator: {
-    //   type: mongoose.Schema.Types.ObjectId,
-    //   required: true,
-    //   ref: 'User'
-    // },
-
-    picture: {
-      type: String
+    creator: {
+      type: mongoose.Schema.Types.ObjectId,
+      required: true,
+      ref: 'User'
     }
+
+    // picture: {
+    //   type: String
+    // }
 
     //ref recipe
   },

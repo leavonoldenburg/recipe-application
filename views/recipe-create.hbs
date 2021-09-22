@@ -1,13 +1,10 @@
 <h1>Create your own recipe</h1>
+<button id="add-ingredient">Add Ingredient!</button>
+<button id="remove-ingredient">Remove Ingredient!</button>
 <form method='POST' enctype='multipart/form-data'>
 
   <label for='input-title'>Recipe Name:</label>
-  <input
-    type='text'
-    name='title'
-    id='input-title'
-    placeholder='What did you cook today?'
-  />
+  <input type='text' name='title' id='input-title' placeholder='What did you cook today?' />
 
   <label for='input-level'>Difficulty level:</label>
   <select name='level' id='input-level'>
@@ -32,7 +29,7 @@
   <select name='cuisine' id='input-cuisine' multiple>
     <option value='Asian'>Asian</option>
     <option value='European'>European</option>
-    <option value='Amerian'>Amerian</option>
+    <option value='American'>American</option>
     <option value='African'>African</option>
   </select>
 
@@ -51,25 +48,50 @@
     <option value='Baked Goods'>Baked Goods</option>
   </select>
 
-  <label for='input-ingredients'>Ingredients:</label>
-  <a href='/recipe/newingredient'>Add Ingredients</a>
+  <div id="ingredient-container" style="display: flex; flex-direction: column">
+    <label for='input-ingredients'>Ingredients:</label>
+    {{!-- <a href='/recipe/newingredient'>Add Ingredients</a> --}}
+
+    <input class='input-ingredients' type="text" name="ingredients" placeholder='Ingredient 1'>
+
+    <script>
+
+      let ingredientCount = 1;
+
+      const ingredientsContainerElement = document.getElementById('ingredient-container');
+      const addIngredientButtonElement = document.getElementById('add-ingredient');
+      const removeIngredientButtonElement = document.getElementById('remove-ingredient');
+
+      addIngredient = () => {
+        ingredientCount++;
+        const newIngredientElement = document.createElement("input");
+        document.getElementById("ingredient-container").appendChild(newIngredientElement);
+        newIngredientElement.setAttribute('class', 'input-ingredients');
+        newIngredientElement.setAttribute('type', 'text');
+        newIngredientElement.setAttribute('name', 'ingredients');
+        newIngredientElement.setAttribute('placeholder', `Ingredient ${ingredientCount}`);
+        console.log(ingredientCount);
+      }
+
+      removeIngredient = () => {
+        if (ingredientsContainerElement.lastElementChild.getAttribute('class') === 'input-ingredients') {
+          if (ingredientCount > 0) ingredientCount--;
+          ingredientsContainerElement.removeChild(ingredientsContainerElement.lastElementChild);
+        }
+      }
+
+      addIngredientButtonElement.addEventListener('click', addIngredient);
+      removeIngredientButtonElement.addEventListener('click', removeIngredient);
+
+    </script>
+
+  </div>
 
   <label for='input-instructions'>Instructions:</label>
-  <input
-    type='text'
-    name='instructions'
-    id='input-instructions'
-    placeholder='How To Make The Dish'
-  />
+  <input type='text' name='instructions' id='input-instructions' placeholder='How To Make The Dish' />
 
-  <label for='input-picture'>Add your images</label>
-  <input
-    id='input-picture'
-    type='file'
-    name='picture'
-    accept='image/*'
-    required
-  />
+  {{!-- <label for='input-picture'>Add your images</label>
+  <input id='input-picture' type='file' name='picture' accept='image/*' required /> --}}
 
   <button>Publish</button>
 
