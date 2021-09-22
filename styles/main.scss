@@ -69,6 +69,10 @@ label {
   margin-bottom: 0.5em;
 }
 
+.heading-secondary {
+  @include secondary;
+}
+
 .spacer {
   height: 0.8em;
   background-color: $beige;

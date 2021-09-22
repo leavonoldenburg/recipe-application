@@ -61,11 +61,11 @@ const recipeSchema = new mongoose.Schema(
       type: mongoose.Schema.Types.ObjectId,
       required: true,
       ref: 'User'
-    }
+    },
 
-    // picture: {
-    //   type: String
-    // }
+    picture: {
+      type: String
+    }
 
     //ref recipe
   },

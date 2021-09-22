@@ -25,7 +25,7 @@ recipeRouter.post(
       ingredients,
       instructions
     } = req.body;
-    // const picture = req.file.path;
+    const picture = req.file.path;
     Recipe.create({
       title,
       level,
@@ -35,7 +35,7 @@ recipeRouter.post(
       dishType,
       ingredients,
       instructions,
-      // picture,
+      picture,
       creator: req.user._id
     })
       .then((recipe) => {
