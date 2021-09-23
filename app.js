@@ -27,8 +27,14 @@ const app = express();
 // const Recipe = require('./models/recipe');
 // const Comment = require('./models/comment');
 // const Relation = require('./models/relation');
+
 // ### Register partials ###
 hbs.registerPartials(path.join(__dirname, 'views/partials'));
+
+// ### Register helper-date ###
+hbs.registerHelper('date', (value) => {
+  return `${value.toLocaleDateString()}`;
+});
 
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'hbs');

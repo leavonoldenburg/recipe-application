@@ -21,17 +21,17 @@ const recipeSchema = new mongoose.Schema(
     },
 
     diet: {
-      type: String,
+      type: [String],
       enum: ['Vegetarian', 'Omnivore', 'Vegan', 'Pescatarian']
     },
 
     cuisine: {
-      type: String,
+      type: [String],
       enum: ['Asian', 'European', 'American', 'African']
     },
 
     dishType: {
-      type: String,
+      type: [String],
       enum: [
         'Appetizers & Starters',
         'Meat dishes',
@@ -48,9 +48,7 @@ const recipeSchema = new mongoose.Schema(
     },
 
     ingredients: {
-      type: String,
-      required: true,
-      minlength: 3
+      type: [String]
     },
 
     instructions: {
@@ -59,11 +57,11 @@ const recipeSchema = new mongoose.Schema(
       minlength: 3
     },
 
-    // creator: {
-    //   type: mongoose.Schema.Types.ObjectId,
-    //   required: true,
-    //   ref: 'User'
-    // },
+    creator: {
+      type: mongoose.Schema.Types.ObjectId,
+      required: true,
+      ref: 'User'
+    },
 
     picture: {
       type: String

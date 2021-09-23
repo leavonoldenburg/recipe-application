@@ -11,6 +11,7 @@
 body {
   display: flex;
   justify-content: center;
+  background-color: $offwhite;
 }
 
 a {
@@ -29,32 +30,32 @@ p {
   }
 }
 
-form {
-  display: flex;
-  flex-direction: column;
-}
+// form {
+//   display: flex;
+//   flex-direction: column;
+// }
 
-input:not([type="checkbox"]),
-input:not([type="radio"]),
-input:not([type="range"]),
-textarea,
-select {
-  padding: 1em;
-  border: 1px solid grey;
-  border-radius: 0;
-  margin-bottom: 1em;
-  font: inherit;
-  color: inherit;
-}
+// input:not([type="checkbox"]),
+// input:not([type="radio"]),
+// input:not([type="range"]),
+// textarea,
+// select {
+//   padding: 1em;
+//   border: 1px solid grey;
+//   border-radius: 0;
+//   margin-bottom: 1em;
+//   font: inherit;
+//   color: inherit;
+// }
 
-textarea {
-  min-height: 8em;
-  resize: vertical;
-}
+// textarea {
+//   min-height: 8em;
+//   resize: vertical;
+// }
 
-label {
-  margin-bottom: 0.5em;
-}
+// label {
+//   margin-bottom: 0.5em;
+// }
 
 .wrapper {
   box-shadow: 0px 0px 5px grey;
@@ -69,7 +70,19 @@ label {
   margin-bottom: 0.5em;
 }
 
+.heading-secondary {
+  @include secondary;
+}
+
 .spacer {
   height: 0.8em;
   background-color: $beige;
+}
+
+.form-card {
+  @include card-shadow;
+}
+
+.no-decoration-link:hover {
+  @include no-deco;
 }
