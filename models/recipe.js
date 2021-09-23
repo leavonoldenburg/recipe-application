@@ -31,7 +31,7 @@ const recipeSchema = new mongoose.Schema(
     },
 
     dishType: {
-      type: String,
+      type: [String],
       enum: [
         'Appetizers & Starters',
         'Meat dishes',

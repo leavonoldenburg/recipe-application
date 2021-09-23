@@ -30,3 +30,12 @@
    box-shadow: 0 3px 8px #00000054;
    transform: scale(1.01);
 }
+
+#input-picture::before {
+   content: "Add image";
+   position: absolute;
+   z-index: 2;
+   display: block;
+   background-color: #eee;
+   width: 85px;
+}
