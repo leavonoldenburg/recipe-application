@@ -17,6 +17,8 @@ const profileRouter = require('./routes/profile');
 const usersRouter = require('./routes/users');
 const recipeRouter = require('./routes/recipe');
 const contactRouter = require('./routes/contact');
+const aboutRouter = require('./routes/about');
+
 const hbs = require('hbs');
 
 const app = express();
@@ -70,6 +72,7 @@ app.use('/profile', profileRouter);
 app.use('/users', usersRouter);
 app.use('/recipe', recipeRouter);
 app.use('/contact', contactRouter);
+app.use('/about', aboutRouter);
 
 // Catch missing routes and forward to error handler
 app.use((req, res, next) => {
