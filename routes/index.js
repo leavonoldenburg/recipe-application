@@ -10,8 +10,8 @@ router.get('/confirmation', (req, res, next) => {
 
 router.get('/', (req, res, next) => {
   Recipe.find()
+    .populate('creator', 'username picture')
     .then((recipes) => {
-      console.log(recipes);
       res.render('home', { recipes });
     })
     .catch((error) => {

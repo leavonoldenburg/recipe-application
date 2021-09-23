@@ -82,7 +82,6 @@ recipeRouter.get('/:id', (req, res, next) => {
   const { id } = req.params;
   Recipe.findById(id)
     .then((recipe) => {
-      console.log(recipe);
       // const ownRecipe =
       //   req.user && String(req.user._id) === String(recipe._id);
       res.render('recipe-detail', {

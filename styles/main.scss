@@ -82,3 +82,7 @@ p {
 .form-card {
   @include card-shadow;
 }
+
+.no-decoration-link:hover {
+  @include no-deco;
+}
