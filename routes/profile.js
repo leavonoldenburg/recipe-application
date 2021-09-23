@@ -2,6 +2,7 @@ const express = require('express');
 const User = require('./../models/user');
 const routeGuardMiddleware = require('./../middleware/route-guard');
 const upload = require('./../middleware/file-upload');
+const Recipe = require('./../models/recipe');
 
 const profileRouter = express.Router();
 
@@ -49,12 +50,20 @@ profileRouter.post(
 
 profileRouter.get('/:id', routeGuardMiddleware, (req, res, next) => {
   const { id } = req.params;
+  let profile;
   User.findById(id)
-    .then((profile) => {
+    .then((document) => {
+      profile = document;
+      return Recipe.find({ creator: id })
+        .sort({ publishingDate: -1 })
+        .populate('creator', 'username picture');
+    })
+    .then((recipe) => {
       const ownProfile =
-        req.user && String(req.user._id) === String(profile._id);
+        req.user && String(req.user._id) === String(recipe._id);
       res.render('profile', {
         profile,
+        recipe,
         ownProfile
       });
     })

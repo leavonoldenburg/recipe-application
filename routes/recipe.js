@@ -17,8 +17,8 @@ recipeRouter.post(
   (req, res, next) => {
     const {
       title,
-      level,
       cookingTime,
+      level,
       diet,
       cuisine,
       dishType,
@@ -28,8 +28,8 @@ recipeRouter.post(
     const picture = req.file.path;
     Recipe.create({
       title,
-      level,
       cookingTime,
+      level,
       diet,
       cuisine,
       dishType,
@@ -47,7 +47,7 @@ recipeRouter.post(
   }
 );
 
-recipeRouter.get('/:id/edit', (req, res, next) => {
+recipeRouter.get('/:id/edit', routeGuardMiddleware, (req, res, next) => {
   const { id } = req.params;
   let ingredients;
   Recipe.findById(id)
@@ -66,7 +66,7 @@ recipeRouter.get('/:id/edit', (req, res, next) => {
     });
 });
 
-recipeRouter.post('/:id/edit', (req, res, next) => {
+recipeRouter.post('/:id/edit', routeGuardMiddleware, (req, res, next) => {
   const { id } = req.params;
   const {
     title,
