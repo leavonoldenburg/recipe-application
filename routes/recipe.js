@@ -47,36 +47,68 @@ recipeRouter.post(
   }
 );
 
-// recipeRouter.get('/newingredient', (req, res, next) => {
-//   Ingredient.find({})
-//     .then((ingredients) => {
-//       res.render('ingredients', { ingredients });
-//     })
-//     .catch((error) => {
-//       next(error);
-//     });
-// });
+recipeRouter.get('/:id/edit', (req, res, next) => {
+  const { id } = req.params;
+  let ingredients;
+  Recipe.findById(id)
+    .then((document) => {
+      ingredients = document.ingredients;
+      return Recipe.findById(id);
+    })
+    .then((recipe) => {
+      res.render('recipe-edit', {
+        recipe,
+        ingredients
+      });
+    })
+    .catch((error) => {
+      next(error);
+    });
+});
 
-// recipeRouter.post('/newingredient', (req, res, next) => {
-//   console.log(req.body);
-//   const ingredients = req.body.ingredients;
-// const id = req.body._id;
-// if (id) {
-//   Ingredient.findByIdAndUpdate(id, {
-//     $push: { name: { ingredients } }
-//   });
-// } else {
-// Ingredient.create({
-//   name: ingredients
-// })
-//   .then(() => {
-//     res.redirect('/recipe/newingredient');
-//   })
-//   .catch((error) => {
-//     next(error);
-//   });
-// }
-// });
+recipeRouter.post('/:id/edit', (req, res, next) => {
+  const { id } = req.params;
+  const {
+    title,
+    level,
+    cookingTime,
+    diet,
+    cuisine,
+    dishType,
+    ingredients,
+    instructions
+  } = req.body;
+  const picture = req.file.path;
+  Recipe.findByIdAndUpdate(id, {
+    title,
+    level,
+    cookingTime,
+    diet,
+    cuisine,
+    dishType,
+    ingredients,
+    instructions,
+    picture,
+    creator: req.user._id
+  })
+    .then((recipe) => {
+      res.redirect(`/recipe/${recipe._id}`);
+    })
+    .catch((error) => {
+      next(error);
+    });
+});
+
+recipeRouter.post('/:id/delete', (req, res, next) => {
+  const { id } = req.params;
+  Recipe.findByIdAndDelete(id)
+    .then(() => {
+      res.redirect('/');
+    })
+    .catch((error) => {
+      next(error);
+    });
+});
 
 recipeRouter.get('/:id', (req, res, next) => {
   const { id } = req.params;

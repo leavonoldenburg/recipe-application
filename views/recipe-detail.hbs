@@ -7,9 +7,8 @@
 <p>{{recipe.cuisine}}</p>
 <p>{{recipe.dishType}}</p>
 <ul>
-  {{#each ingredients}}
-    {{> existing-ingreddient}}
-    
+  {{#each recipe.ingredients}}
+    <ul><li>{{ingredients}}</li></ul>
   {{/each}}
 </ul>
 

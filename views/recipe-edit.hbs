@@ -1,14 +1,10 @@
-<div class='secondary-bar'>
-  <div class='heading-secondary'>40 recipes have already been added this month!</div>
-</div>
-
 <div class='container-fluid mx-5-lg px-5 py-3'>
 
   <div class='card form-card px-5 py-3'>
 
-    <form id='recipe-create-form' method='POST' enctype='multipart/form-data'>
+    <form id='recipe-edit-form' method='POST' enctype='multipart/form-data'>
 
-      <h1>Create your own recipe</h1>
+      <h1>Update your own recipe</h1>
 
       <div class='row'>
         <div class='col-9 form-floating'>
@@ -17,7 +13,7 @@
             class='form-control'
             type='text'
             name='title'
-            placeholder='What did you cook today?'
+            value='{{recipe.title}}'
           />
           <label for='input-title' class='ms-4'>What did you cook today?</label>
         </div>
@@ -27,7 +23,7 @@
             class='form-control form-control-sm'
             type='number'
             name='cookingTime'
-            placeholder='Cooking time'
+            value='{{recipe.cookingTime}}'
           />
         </div>
       </div>
@@ -41,6 +37,7 @@
             <option value='Advanced'>Advanced</option>
           </select>
         </div>
+
         <div class='col'>
           <select class='form-select' name='diet' id='input-diet' multiple>
             <option selected>Diet:</option>
@@ -50,6 +47,7 @@
             <option value='Vegan'>Vegan</option>
           </select>
         </div>
+
         <div class='col'>
           <select
             class='form-select'
@@ -64,6 +62,7 @@
             <option value='African'>African</option>
           </select>
         </div>
+
         <div class='col'>
           <select
             class='form-select'
@@ -87,7 +86,7 @@
         </div>
       </div>
 
-      <div class='row mt-4'>
+      {{!-- <div class='row mt-4'>
         <div class='col'>
           <div
             id='ingredient-container'
@@ -134,7 +133,25 @@
 
           </div>
         </div>
-      </div>
+      </div> --}}
+
+<div class='row mt-4'>
+       <div class='col'>
+          <div
+            id='ingredient-container'
+            style='display: flex; flex-direction: column'
+          >
+{{#each ingredients}}
+<input
+            id='input-ingredients'
+            class='form-control'
+            type='text'
+            name='ingredients'
+            value='{{ingredients}}'
+          />
+{{/each}}
+          </div>
+          </div>
 
       <div class='row mt-4'>
         <div class='col'>
@@ -143,7 +160,7 @@
             id='input-instructions'
             class='form-control'
             name='instructions'
-          ></textarea>
+          >{{recipe.instructions}}</textarea>
         </div>
       </div>
 
@@ -161,7 +178,7 @@
         </div>
       </div>
 
-      <button>Publish your recipe</button>
+      <button>Update your recipe</button>
 
     </form>
   </div>
