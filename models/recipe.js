@@ -20,6 +20,11 @@ const recipeSchema = new mongoose.Schema(
       max: 360
     },
 
+    servings: {
+      type: Number,
+      min: 1
+    },
+
     diet: {
       type: [String],
       enum: ['Vegetarian', 'Omnivore', 'Vegan', 'Pescatarian']

@@ -18,6 +18,7 @@ recipeRouter.post(
     const {
       title,
       cookingTime,
+      servings,
       level,
       diet,
       cuisine,
@@ -29,6 +30,7 @@ recipeRouter.post(
     Recipe.create({
       title,
       cookingTime,
+      servings,
       level,
       diet,
       cuisine,
