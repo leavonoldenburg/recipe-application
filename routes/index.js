@@ -11,11 +11,15 @@ router.get('/confirmation', (req, res) => {
 
 // ### GET root route ###
 router.get('/', (req, res, next) => {
-  let recipeCount;
+  let recipeCount, pageButtons;
   Recipe.find()
     // get recipes total
     .then((count) => {
       recipeCount = count.length;
+      // create page button array
+      pageButtons = [...Array(Math.ceil(recipeCount / 12)).keys()]
+        .map((el) => el + 1)
+        .slice(1);
     })
     // get first page recipes
     .then(() => {
@@ -23,7 +27,8 @@ router.get('/', (req, res, next) => {
         .limit(12)
         .populate('creator', 'username picture')
         .then((recipes) => {
-          res.render('home', { recipes, recipeCount });
+          // pass Recipes, Recipe total, Page button array
+          res.render('home', { recipes, recipeCount, pageButtons });
         });
     })
     .catch((error) => {
@@ -32,13 +37,17 @@ router.get('/', (req, res, next) => {
 });
 
 // ### GET page route ###
-router.get('/:page', (req, res, next) => {
+router.get('/page/:page', (req, res, next) => {
   const page = Number(req.params.page);
-  let recipeCount;
+  let recipeCount, pageButtons;
   Recipe.find()
     // get recipes total
     .then((count) => {
       recipeCount = count.length;
+      // create page button array
+      pageButtons = [...Array(Math.ceil(recipeCount / 12)).keys()]
+        .map((el) => el + 1)
+        .slice(1);
     })
     // get recipes according to page
     .then(() => {
@@ -48,7 +57,8 @@ router.get('/:page', (req, res, next) => {
         .limit(12)
         .populate('creator', 'username picture')
         .then((recipes) => {
-          res.render('home', { recipes, recipeCount });
+          // pass Recipes, Recipe total, Page button array
+          res.render('home', { recipes, recipeCount, pageButtons });
         });
     })
     .catch((error) => {

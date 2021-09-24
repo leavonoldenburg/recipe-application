@@ -2,10 +2,15 @@
    <div class="secondary-bar">
       <div id="recipe-count">{{recipeCount}} Recepies</div>
       <div id="paging">
-         <div class="homebar-label">Page</div>
-         <div class="btn btn-sm btn-page-active">1</div>
-         <div class="btn btn-sm btn-page">2</div>
-         <div class="btn btn-sm btn-page">3</div>
+         <!-- ### Build up the pagination buttons ### -->
+         <a href="/">
+            <div class="btn btn-sm btn-page-active">1</div>
+         </a>
+         {{#each pageButtons}}
+         <a href="/page/{{this}}">
+            <div class="btn btn-sm btn-page">{{this}}</div>
+         </a>
+         {{/each}}
       </div>
       <div id="sorting">
          <div class="homebar-label">Sort by</div>
