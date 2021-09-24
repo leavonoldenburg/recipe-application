@@ -27,8 +27,9 @@ router.get('/', (req, res, next) => {
         .limit(12)
         .populate('creator', 'username picture')
         .then((recipes) => {
-          // pass Recipes, Recipe total, Page button array
-          res.render('home', { recipes, recipeCount, pageButtons });
+          const range = `0 - ${recipes.length}`;
+          // pass Recipes, Recipe total, Page button array, Recipe range
+          res.render('home', { recipes, recipeCount, pageButtons, range });
         });
     })
     .catch((error) => {
@@ -57,8 +58,9 @@ router.get('/page/:page', (req, res, next) => {
         .limit(12)
         .populate('creator', 'username picture')
         .then((recipes) => {
-          // pass Recipes, Recipe total, Page button array
-          res.render('home', { recipes, recipeCount, pageButtons });
+          const range = `${skipCount + 1} - ${skipCount + recipes.length}`;
+          // pass Recipes, Recipe total, Page button array, Recipe range
+          res.render('home', { recipes, recipeCount, pageButtons, range });
         });
     })
     .catch((error) => {

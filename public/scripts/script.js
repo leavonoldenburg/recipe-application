@@ -1,6 +1,7 @@
 window.addEventListener(
   'load',
   () => {
+    //
     // ##########################
     // ##  RECIPE CREATE FORM  ##
     // ##########################
@@ -46,6 +47,24 @@ window.addEventListener(
     if (removeIngredientButtonElement) {
       removeIngredientButtonElement.addEventListener('click', removeIngredient);
     }
+    //
+    // ######################################
+    // ##  CHANGE PAGINATION BUTTON COLOR  ##
+    // ######################################
+    //
+    // ### Get page number ###
+    let page = Number(
+      document.getElementById('recipe-count').innerText.split(' ')[0]
+    );
+    page = page === 0 ? 0 : (page - 1) / 12;
+    // ### Set css target depending on page ###
+    const paginationButtonElements = document.querySelectorAll('.btn-page');
+    console.log(paginationButtonElements);
+    paginationButtonElements[page].setAttribute(
+      'class',
+      'btn btn-sm btn-page active-page'
+    );
+
     console.log('Ironmaker app started successfully!');
   },
   false
