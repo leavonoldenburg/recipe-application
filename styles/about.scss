@@ -1,12 +1,12 @@
 .allAboutElements {
-  background-color: $turquoise;
+  background-color: $offwhite;
   a,
   p,
   h1 {
     color: $dark-pine;
   }
   a:hover {
-    color: $pine;
+    color: $petrol;
   }
   p {
     display: block;
@@ -20,7 +20,9 @@
   span {
     margin: 1em;
     border: 0.5em solid $pine;
+    border-radius: 1em;
     background-color: $beige;
+    box-shadow: 10px 10px 5px #888888;
   }
 }
 .img {
