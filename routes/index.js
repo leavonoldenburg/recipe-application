@@ -68,4 +68,9 @@ router.get('/page/:page', (req, res, next) => {
     });
 });
 
+// ### GET route test sorting/filtering ###
+router.get('/test-sorting-filtering', (req, res, next) => {
+  console.log(req.query);
+});
+
 module.exports = router;
