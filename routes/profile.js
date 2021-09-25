@@ -2,7 +2,10 @@ const express = require('express');
 const User = require('./../models/user');
 const routeGuardMiddleware = require('./../middleware/route-guard');
 const upload = require('./../middleware/file-upload');
+<<<<<<< Updated upstream
 const Recipe = require('./../models/recipe');
+=======
+>>>>>>> Stashed changes
 
 const profileRouter = express.Router();
 
