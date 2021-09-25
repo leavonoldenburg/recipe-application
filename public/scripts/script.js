@@ -59,13 +59,21 @@ window.addEventListener(
     page = page === 0 ? 0 : (page - 1) / 12;
     // ### Set css target depending on page ###
     const paginationButtonElements = document.querySelectorAll('.btn-page');
-    console.log(paginationButtonElements);
     paginationButtonElements[page].setAttribute(
       'class',
       'btn btn-sm btn-page active-page'
     );
-
-    console.log('Ironmaker app started successfully!');
+    //
+    // ###############################
+    // ##  HANDLE DROPDOWN SORTING  ##
+    // ###############################
+    //
+    // ### Get sorting field value ###
+    const getSortingOption = () => {
+      const sortingElement = document.querySelector('#sorting-form');
+      console.log(sortingElement.value);
+      console.log('Ironmaker app started successfully!');
+    };
   },
   false
 );
