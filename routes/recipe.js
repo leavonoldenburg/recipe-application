@@ -1,7 +1,15 @@
 const express = require('express');
 const Recipe = require('../models/recipe');
-// const Ingredient = require('../models/ingredient');
 const upload = require('../middleware/file-upload');
+const nodemailer = require('nodemailer');
+
+const transporter = nodemailer.createTransport({
+  service: 'Gmail',
+  auth: {
+    user: process.env.MAIL_USER,
+    pass: process.env.MAIL_PASSWORD
+  }
+});
 
 const routeGuardMiddleware = require('../middleware/route-guard');
 const recipeRouter = express.Router();
@@ -51,16 +59,10 @@ recipeRouter.post(
 
 recipeRouter.get('/:id/edit', routeGuardMiddleware, (req, res, next) => {
   const { id } = req.params;
-  let ingredients;
   Recipe.findById(id)
-    .then((document) => {
-      ingredients = document.ingredients;
-      return Recipe.findById(id);
-    })
     .then((recipe) => {
       res.render('recipe-edit', {
-        recipe,
-        ingredients
+        recipe
       });
     })
     .catch((error) => {
@@ -68,41 +70,49 @@ recipeRouter.get('/:id/edit', routeGuardMiddleware, (req, res, next) => {
     });
 });
 
-recipeRouter.post('/:id/edit', routeGuardMiddleware, (req, res, next) => {
-  const { id } = req.params;
-  const {
-    title,
-    level,
-    cookingTime,
-    diet,
-    cuisine,
-    dishType,
-    ingredients,
-    instructions
-  } = req.body;
-  const picture = req.file.path;
-  Recipe.findByIdAndUpdate(id, {
-    title,
-    level,
-    cookingTime,
-    diet,
-    cuisine,
-    dishType,
-    ingredients,
-    instructions,
-    picture,
-    creator: req.user._id
-  })
-    .then((recipe) => {
-      res.redirect(`/recipe/${recipe._id}`);
+recipeRouter.post(
+  '/:id/edit',
+  routeGuardMiddleware,
+  upload.single('picture'),
+  (req, res, next) => {
+    const { id } = req.params;
+    let picture;
+    const {
+      title,
+      level,
+      cookingTime,
+      diet,
+      cuisine,
+      dishType,
+      ingredients,
+      instructions
+    } = req.body;
+    if (req.file) {
+      const picture = req.file.path;
+    }
+    Recipe.findByIdAndUpdate(id, {
+      title,
+      level,
+      cookingTime,
+      diet,
+      cuisine,
+      dishType,
+      ingredients,
+      instructions,
+      picture,
+      creator: req.user._id
     })
-    .catch((error) => {
-      next(error);
-    });
-});
+      .then((recipe) => {
+        res.redirect(`/recipe/${recipe._id}`);
+      })
+      .catch((error) => {
+        next(error);
+      });
+  }
+);
 
-recipeRouter.post('/:id/delete', (req, res, next) => {
-  const { id } = req.params;
+recipeRouter.post('/:id/delete', routeGuardMiddleware, (req, res, next) => {
+  const id = req.params;
   Recipe.findByIdAndDelete(id)
     .then(() => {
       res.redirect('/');
@@ -114,13 +124,21 @@ recipeRouter.post('/:id/delete', (req, res, next) => {
 
 recipeRouter.get('/:id', (req, res, next) => {
   const { id } = req.params;
+  let ingredient;
   Recipe.findById(id)
+    .then((document) => {
+      console.log(document);
+      ingredient = document.ingredients;
+      return Recipe.findById(id);
+    })
     .then((recipe) => {
-      // const ownRecipe =
-      //   req.user && String(req.user._id) === String(recipe._id);
+      const ownRecipe =
+        req.user && String(req.user._id) === String(recipe.creator);
+
       res.render('recipe-detail', {
-        recipe
-        // ownRecipe
+        ingredient,
+        recipe,
+        ownRecipe
       });
     })
     .catch((error) => {

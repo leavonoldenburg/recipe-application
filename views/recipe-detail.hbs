@@ -6,12 +6,19 @@
 <p>{{recipe.diet}}</p>
 <p>{{recipe.cuisine}}</p>
 <p>{{recipe.dishType}}</p>
+
 <ul>
   {{#each recipe.ingredients}}
-    <ul><li>{{ingredients}}</li></ul>
+    <li>{{this}}</li>
   {{/each}}
 </ul>
 
-<ol>
-  <li>{{recipe.instructions}}</li>
-</ol>
+{{recipe.instructions}}
+
+{{#if ownRecipe}}
+  <a href='/recipe/{{recipe._id}}/edit'>
+    <button>Update Recipe</button>
+  </a>
+  <a href='/recipe/{{recipe._id}}/delete'>
+    <button>Delete Recipe Forever</button></a>
+{{/if}}

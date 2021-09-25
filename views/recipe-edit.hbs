@@ -86,69 +86,19 @@
         </div>
       </div>
 
-      {{!-- <div class='row mt-4'>
-        <div class='col'>
-          <div
-            id='ingredient-container'
-            style='display: flex; flex-direction: column'
-          >
-
-            <button type='button' id='add-ingredient'>Add Ingredient!</button>
-            <button type='button' id='remove-ingredient'>Remove Ingredient!</button>
-
-            <input
-              class='input-ingredients'
-              type='text'
-              name='ingredients'
-              placeholder='Ingredient 1'
-            />
-
-            <script>
-
-              let ingredientCount = 1; const ingredientsContainerElement =
-              document.getElementById('ingredient-container'); const
-              addIngredientButtonElement =
-              document.getElementById('add-ingredient'); const
-              removeIngredientButtonElement =
-              document.getElementById('remove-ingredient'); addIngredient = ()
-              => { ingredientCount++; const newIngredientElement =
-              document.createElement("input");
-              document.getElementById("ingredient-container").appendChild(newIngredientElement);
-              newIngredientElement.setAttribute('class', 'input-ingredients');
-              newIngredientElement.setAttribute('type', 'text');
-              newIngredientElement.setAttribute('name', 'ingredients');
-              newIngredientElement.setAttribute('placeholder', `Ingredient
-              ${ingredientCount}`); console.log(ingredientCount); }
-              removeIngredient = () => { if
-              (ingredientsContainerElement.lastElementChild.getAttribute('class')
-              === 'input-ingredients') { if (ingredientCount > 0)
-              ingredientCount--;
-              ingredientsContainerElement.removeChild(ingredientsContainerElement.lastElementChild);
-              } } addIngredientButtonElement.addEventListener('click',
-              addIngredient);
-              removeIngredientButtonElement.addEventListener('click',
-              removeIngredient);
-
-            </script>
-
-          </div>
-        </div>
-      </div> --}}
-
 <div class='row mt-4'>
        <div class='col'>
           <div
             id='ingredient-container'
             style='display: flex; flex-direction: column'
           >
-{{#each ingredients}}
-<input
-            id='input-ingredients'
-            class='form-control'
-            type='text'
-            name='ingredients'
-            value='{{ingredients}}'
-          />
+{{#each recipe.ingredients}}
+            <input
+              class='input-ingredients'
+              type='text'
+              name='ingredients'
+              value='{{this}}'
+            />
 {{/each}}
           </div>
           </div>
