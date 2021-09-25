@@ -1,5 +1,41 @@
-.about {
+.allAboutElements {
+  background-color: $turquoise;
+  a,
+  p,
+  h1 {
+    color: $dark-pine;
+  }
+  a:hover {
+    color: $pine;
+  }
+  p {
+    display: block;
+    justify-content: space-around;
+    font-family: 'Arial';
+    margin: 0.5em;
+  }
+  h1 {
+    text-align: center;
+  }
+  span {
+    margin: 1em;
+    border: 0.5em solid $pine;
+    background-color: $beige;
+  }
+}
+.img {
   width: 5em;
-  border-radius: 2em;
-  text-align: center;
+  height: 5em;
+  border-radius: 50%;
+}
+
+.aboutA {
+  display: flex;
+  justify-content: center;
+  font-size: 1.5em;
+}
+
+.aboutElements {
+  display: flex;
+  justify-content: space-around;
 }

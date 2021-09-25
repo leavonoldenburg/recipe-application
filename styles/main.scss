@@ -1,8 +1,9 @@
 // ### Import mixins/vars ###
-@import "_mixins", "_variables";
+@import '_mixins', '_variables';
 
 // ### Import scss files ###
-@import "header", "navbar", "hero", "home", "users", "footer", "recipes";
+@import 'header', 'navbar', 'hero', 'home', 'users', 'footer', 'recipes',
+  'about';
 
 * {
   box-sizing: border-box;
