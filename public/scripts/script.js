@@ -68,12 +68,17 @@ window.addEventListener(
     // ##  HANDLE DROPDOWN SORTING  ##
     // ###############################
     //
+    let sortBy;
+    const sortingElement = document.querySelector('#sorting-form');
     // ### Get sorting field value ###
     const getSortingOption = () => {
-      const sortingElement = document.querySelector('#sorting-form');
-      console.log(sortingElement.value);
-      console.log('Ironmaker app started successfully!');
+      sortBy = sortingElement.value;
+      console.log(sortBy);
     };
+    // ### Add event listeners to dropdown ###
+    sortingElement.addEventListener('submit', getSortingOption);
+
+    console.log('Ironmaker app started successfully!');
   },
   false
 );
