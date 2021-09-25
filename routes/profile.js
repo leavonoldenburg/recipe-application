@@ -61,9 +61,12 @@ profileRouter.get('/:id', routeGuardMiddleware, (req, res, next) => {
         .sort({ publishingDate: -1 })
         .populate('creator', 'username picture');
     })
+    // .then(() => {
+    //   return User.findById(id);
+    // })
     .then((recipe) => {
       const ownProfile =
-        req.user && String(req.user._id) === String(recipe._id);
+        req.user && String(req.user._id) === String(profile._id);
       res.render('profile', {
         profile,
         recipe,

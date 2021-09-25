@@ -19,6 +19,7 @@
   <a href='/recipe/{{recipe._id}}/edit'>
     <button>Update Recipe</button>
   </a>
-  <a href='/recipe/{{recipe._id}}/delete'>
-    <button>Delete Recipe Forever</button></a>
+  <form action='/recipe/{{recipe._id}}/delete' method='post'>
+    <button>Delete Recipe Forever</button>
+  </form>
 {{/if}}

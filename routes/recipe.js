@@ -112,7 +112,7 @@ recipeRouter.post(
 );
 
 recipeRouter.post('/:id/delete', routeGuardMiddleware, (req, res, next) => {
-  const id = req.params;
+  const { id } = req.params;
   Recipe.findByIdAndDelete(id)
     .then(() => {
       res.redirect('/');
