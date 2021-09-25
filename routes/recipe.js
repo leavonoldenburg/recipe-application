@@ -163,7 +163,7 @@ recipeRouter.post('/:id', (req, res, next) => {
         subject: subject,
         html: `<h3>You received a recipe from "${name}"</h3>
         <h2>${message}</h2>
-        <a href=\`https://recipe-app0921.herokuapp.com/recipe/${id}\`>Recipe</a>`
+        <a href='https://recipe-app0921.herokuapp.com/recipe/${id}'+ >Recipe</a>`
       });
     })
     .then(() => {
