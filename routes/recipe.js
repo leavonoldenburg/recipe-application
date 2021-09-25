@@ -1,5 +1,6 @@
 const express = require('express');
 const Recipe = require('../models/recipe');
+const Contact = require('../models/contact');
 const upload = require('../middleware/file-upload');
 const nodemailer = require('nodemailer');
 
@@ -140,6 +141,33 @@ recipeRouter.get('/:id', (req, res, next) => {
         recipe,
         ownRecipe
       });
+    })
+    .catch((error) => {
+      next(error);
+    });
+});
+
+recipeRouter.post('/:id', (req, res, next) => {
+  const { id } = req.params;
+  const { name, email, subject, message } = req.body;
+  Contact.create({
+    name,
+    email,
+    subject,
+    message
+  })
+    .then(() => {
+      transporter.sendMail({
+        to: email,
+        sender: 'ironhacknodetest@gmail.com',
+        subject: subject,
+        html: `<h3>You received a recipe from "${name}"</h3>
+        <h2>${message}</h2>
+        <a href=\`https://recipe-app0921.herokuapp.com/recipe/${id}\`>Recipe</a>`
+      });
+    })
+    .then(() => {
+      res.redirect('/confirmation');
     })
     .catch((error) => {
       next(error);
