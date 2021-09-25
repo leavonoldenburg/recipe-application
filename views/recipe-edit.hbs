@@ -29,9 +29,10 @@
       </div>
 
       <div class='row mt-4'>
+        <label for="input-level">Difficulty level:</label>
         <div class='col'>
           <select class='form-select' name='level' id='input-level'>
-            <option selected>Difficulty level</option>
+            <option value="" selected disabled hidden>{{recipe.level}}</option>
             <option value='Easy'>Easy</option>
             <option value='Intermediate'>Intermediate</option>
             <option value='Advanced'>Advanced</option>
@@ -39,8 +40,9 @@
         </div>
 
         <div class='col'>
+          <label for="input-diet">Diet:</label>
           <select class='form-select' name='diet' id='input-diet' multiple>
-            <option selected>Diet:</option>
+            <option value="" selected disabled hidden>{{recipe.diet}}</option>
             <option value='Omnivore'>Omnivore</option>
             <option value='Pescatarian'>Pescatarian</option>
             <option value='Vegetarian'>Vegetarian</option>
@@ -49,13 +51,14 @@
         </div>
 
         <div class='col'>
+          <label for="input-cuisine">Cuisine:</label>
           <select
             class='form-select'
             name='cuisine'
             id='input-cuisine'
             multiple
           >
-            <option selected>Cuisine:</option>
+            <option value="" selected disabled hidden>{{recipe.cuisine}}</option>
             <option value='Asian'>Asian</option>
             <option value='European'>European</option>
             <option value='American'>American</option>
@@ -64,13 +67,16 @@
         </div>
 
         <div class='col'>
+           <label for="input-dishtype">Dish Type:</label>
           <select
             class='form-select'
             name='dishType'
             id='input-dishtype'
             multiple
           >
-            <option selected>Dish Type:</option>
+           
+            
+            <option value="" selected disabled hidden>{{recipe.dishType}}</option>
             <option value='Appetizers & Starters'>Appetizers & Starters</option>
             <option value='Salads'>Salads</option>
             <option value='Soups & Stews'>Soups & Stews</option>
@@ -123,7 +129,6 @@
             name='picture'
             accesp='image/*'
             buttonText='Your label here.'
-            required
           />
         </div>
       </div>

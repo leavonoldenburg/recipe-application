@@ -16,7 +16,9 @@ const routeGuardMiddleware = require('../middleware/route-guard');
 const recipeRouter = express.Router();
 
 recipeRouter.get('/create', routeGuardMiddleware, (req, res, next) => {
-  res.render('recipe-create');
+  Recipe.find().then((recipes) => {
+    res.render('recipe-create', { recipes });
+  });
 });
 
 recipeRouter.post(
@@ -89,7 +91,7 @@ recipeRouter.post(
       instructions
     } = req.body;
     if (req.file) {
-      const picture = req.file.path;
+      picture = req.file.path;
     }
     Recipe.findByIdAndUpdate(id, {
       title,

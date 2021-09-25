@@ -33,9 +33,11 @@ router.post('/', (req, res, next) => {
         sender: email,
         replyTo: email,
         subject: subject,
-        html: `<h3>You received a message from "${name}"</h3>
-        <p>${email}</p>
-        <h2>${message}</h2>`
+        html: `<div style="text-align: center; width: 60%; margin: 0px auto;">
+        <h3>You received a message from "${name}"</h3>
+        <p style="font-size:16px">${email}</p>
+        <p style="font-size:16px">${message}</p>
+        </div>`
       });
     })
     .then(() => {
