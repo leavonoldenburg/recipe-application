@@ -157,13 +157,19 @@ recipeRouter.post('/:id', (req, res, next) => {
     message
   })
     .then(() => {
+      return Recipe.findById(id);
+    })
+    .then((recipe) => {
       transporter.sendMail({
         to: email,
         sender: 'ironhacknodetest@gmail.com',
         subject: subject,
-        html: `<h3>You received a recipe from "${name}"</h3>
-        <h2>${message}</h2>
-        <a href='https://recipe-app0921.herokuapp.com/recipe/${id}'+ >Recipe</a>`
+        html: `<div style="text-align: center; width: 60%; margin: 0px auto;">
+        <img src='https://res.cloudinary.com/dva9l2t1o/image/upload/h_100/v1632573577/ironhack_logo_jnmhiq.png'/>
+        <h2>"${name}" would like you to see this recipe:</h2>
+        <a style="font-size:16px" href='https://recipe-app0921.herokuapp.com/recipe/${id}' >${recipe.title}</a>
+        <p style="font-size:16px">${message}</p>
+        </div>`
       });
     })
     .then(() => {
