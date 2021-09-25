@@ -70,6 +70,10 @@ const recipeSchema = new mongoose.Schema(
 
     picture: {
       type: String
+    },
+
+    ratings: {
+      type: Number
     }
 
     //ref recipe

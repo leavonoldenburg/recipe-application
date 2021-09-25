@@ -49,7 +49,8 @@ recipeRouter.post(
       ingredients,
       instructions,
       picture,
-      creator: req.user._id
+      creator: req.user._id,
+      ratings: 0
     })
       .then((recipe) => {
         res.redirect(`/recipe/${recipe._id}`);
