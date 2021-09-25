@@ -1,3 +1,7 @@
+<div class='secondary-bar'>
+  <div class='heading-secondary'>{{recipes.length}}
+    Recipes have been added so far</div>
+</div>
 <div class='container-fluid mx-5-lg px-5 py-3'>
 
   <div class='card form-card px-5 py-3'>
@@ -8,23 +12,12 @@
 
       <div class='row'>
         <div class='col-9 form-floating'>
-          <input
-            id='input-title'
-            class='form-control'
-            type='text'
-            name='title'
-            value='{{recipe.title}}'
-          />
+          <input id='input-title' class='form-control' type='text' name='title' value='{{recipe.title}}' />
           <label for='input-title' class='ms-4'>What did you cook today?</label>
         </div>
         <div class='col'>
-          <input
-            id='input-cookingtime'
-            class='form-control form-control-sm'
-            type='number'
-            name='cookingTime'
-            value='{{recipe.cookingTime}}'
-          />
+          <input id='input-cookingtime' class='form-control form-control-sm' type='number' name='cookingTime'
+            value='{{recipe.cookingTime}}' />
         </div>
       </div>
 
@@ -52,12 +45,7 @@
 
         <div class='col'>
           <label for="input-cuisine">Cuisine:</label>
-          <select
-            class='form-select'
-            name='cuisine'
-            id='input-cuisine'
-            multiple
-          >
+          <select class='form-select' name='cuisine' id='input-cuisine' multiple>
             <option value="" selected disabled hidden>{{recipe.cuisine}}</option>
             <option value='Asian'>Asian</option>
             <option value='European'>European</option>
@@ -67,15 +55,10 @@
         </div>
 
         <div class='col'>
-           <label for="input-dishtype">Dish Type:</label>
-          <select
-            class='form-select'
-            name='dishType'
-            id='input-dishtype'
-            multiple
-          >
-           
-            
+          <label for="input-dishtype">Dish Type:</label>
+          <select class='form-select' name='dishType' id='input-dishtype' multiple>
+
+
             <option value="" selected disabled hidden>{{recipe.dishType}}</option>
             <option value='Appetizers & Starters'>Appetizers & Starters</option>
             <option value='Salads'>Salads</option>
@@ -92,48 +75,31 @@
         </div>
       </div>
 
-<div class='row mt-4'>
-       <div class='col'>
-          <div
-            id='ingredient-container'
-            style='display: flex; flex-direction: column'
-          >
-{{#each recipe.ingredients}}
-            <input
-              class='input-ingredients'
-              type='text'
-              name='ingredients'
-              value='{{this}}'
-            />
-{{/each}}
-          </div>
-          </div>
-
       <div class='row mt-4'>
         <div class='col'>
-          <span class='input-group-text'>How to make the dish</span>
-          <textarea
-            id='input-instructions'
-            class='form-control'
-            name='instructions'
-          >{{recipe.instructions}}</textarea>
+          <div id='ingredient-container' style='display: flex; flex-direction: column'>
+            {{#each recipe.ingredients}}
+            <input class='input-ingredients' type='text' name='ingredients' value='{{this}}' />
+            {{/each}}
+          </div>
         </div>
-      </div>
 
-      <div class='row my-4'>
-        <div class='col'>
-          <input
-            type='file'
-            class='form-control'
-            id='input-picture'
-            name='picture'
-            accesp='image/*'
-            buttonText='Your label here.'
-          />
+        <div class='row mt-4'>
+          <div class='col'>
+            <span class='input-group-text'>How to make the dish</span>
+            <textarea id='input-instructions' class='form-control'
+              name='instructions'>{{recipe.instructions}}</textarea>
+          </div>
         </div>
-      </div>
 
-      <button>Update your recipe</button>
+        <div class='row my-4'>
+          <div class='col'>
+            <input type='file' class='form-control' id='input-picture' name='picture' accesp='image/*'
+              buttonText='Your label here.' />
+          </div>
+        </div>
+
+        <button>Update your recipe</button>
 
     </form>
   </div>
