@@ -51,12 +51,3 @@
       margin-left: 0.2em;
    }
 }
-
-#input-picture::before {
-   content: "Add image";
-   position: absolute;
-   z-index: 2;
-   display: block;
-   background-color: #eee;
-   width: 85px;
-}
