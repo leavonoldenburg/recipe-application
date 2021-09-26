@@ -11,13 +11,19 @@ router.get('/confirmation', (req, res) => {
 
 // ### GET root route ###
 router.get('/', (req, res, next) => {
-  let sortString, pageButtons, recipeCount;
-  const { sort } = req.query;
+  let sortString, filterString, pageButtons, recipeCount;
+  const { sort, filter } = req.query;
   // Set database sort string
   if (sort === undefined) {
     sortString = 'ratings';
   } else {
     sortString = getSortString(sort);
+  }
+  //Set database filter string
+  if (filter === undefined || filter === 'All recipes') {
+    filterString = {};
+  } else {
+    filterString = getFilterString(filter);
   }
   Recipe.find()
     // Create paging buttons array for hbs
@@ -29,7 +35,7 @@ router.get('/', (req, res, next) => {
     })
     // Get first page recipes
     .then(() => {
-      return Recipe.find()
+      return Recipe.find(filterString)
         .sort({ [sortString]: -1 })
         .limit(12)
         .populate('creator', 'username picture');
@@ -37,9 +43,15 @@ router.get('/', (req, res, next) => {
     .then((recipes) => {
       // Create recipe range string for hbs
       const range = `0 - ${recipes.length}`;
-      // Pass Recipes, Recipe total, Page button array, Recipe range, Sort value
-      res.render('home', { recipes, recipeCount, pageButtons, range, sort });
-      console.log(recipeCount);
+      // Pass Recipes, Recipe total, Page button array, Recipe range, Sort value, Filter value
+      res.render('home', {
+        recipes,
+        recipeCount,
+        pageButtons,
+        range,
+        sort,
+        filter
+      });
     })
     .catch((error) => {
       next(error);
@@ -48,6 +60,7 @@ router.get('/', (req, res, next) => {
 
 // ### GET page route ###
 router.get('/page/:page', (req, res, next) => {
+  console.log(req.query);
   const page = Number(req.params.page);
   let recipeCount, pageButtons;
   Recipe.find()
@@ -88,6 +101,40 @@ function getSortString(formValue) {
     Ratings: 'ratings',
     'Cooking Time': 'cookingTime',
     'Date added': 'createdAt'
+  };
+  for (const [key, value] of Object.entries(valueMap)) {
+    if (key === formValue) return value;
+  }
+}
+
+// ###########################################
+// ##  Get Filter-string from Select-value  ##
+// ###########################################
+
+function getFilterString(formValue) {
+  const valueMap = {
+    Easy: { level: 'Easy' },
+    Intermediate: { level: 'Intermediate' },
+    Advanced: { level: 'Advanced' },
+    Veggie: { diet: 'Vegetarian' },
+    Omnivore: { diet: 'Omnivore' },
+    Vegan: { diet: 'Vegan' },
+    Pescatarian: { diet: 'Pescatarian' },
+    Asian: { cuisine: 'Asian' },
+    European: { cuisine: 'European' },
+    American: { cuisine: 'American' },
+    African: { cuisine: 'African' },
+    'Appetizers & Starters': { dishType: 'Appetizers & Starters' },
+    'Meat dishes': { dishType: 'Meat dishes' },
+    'Soups & Stews': { dishType: 'Soups & Stews' },
+    'Pasta & Noodles': { dishType: 'Pasta & Noodles' },
+    Salads: { dishType: 'Salads' },
+    Burgers: { dishType: 'Burgers' },
+    'Grains & Legumes': { dishType: 'Beans, Grains & Legumes' },
+    'Casseroles & Gratins': { dishType: 'Casseroles & Gratins' },
+    Desserts: { dishType: 'Desserts' },
+    Pizzas: { dishType: 'Pizzas' },
+    'Baked Goods': { dishType: 'Baked Goods' }
   };
   for (const [key, value] of Object.entries(valueMap)) {
     if (key === formValue) return value;
