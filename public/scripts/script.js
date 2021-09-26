@@ -68,15 +68,3 @@ if (document.getElementById('paging')) {
     'btn btn-sm btn-page active-page'
   );
 }
-
-// #########################################
-// ##  HANDLE DROPDOWN SORTING/FILTERING  ##
-// #########################################
-
-if (document.getElementById('sorting')) {
-  // ### Get active page button & hidden input field ###
-  const activePageButtonElement = document.querySelector('.active-page');
-  const hiddenInputFieldElement = document.querySelector('#pass-page-value');
-  // ### Set hidden input field value to page value ###
-  hiddenInputFieldElement.value = activePageButtonElement.innerHTML;
-}

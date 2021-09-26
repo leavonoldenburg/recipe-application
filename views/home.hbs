@@ -1,70 +1,74 @@
 <main>
-   <div class="secondary-bar">
-      <div id="recipe-count">{{range}}&nbsp;&nbsp;&nbsp;of&nbsp;&nbsp;&nbsp;{{recipeCount}} Recipes</div>
-      <div id="paging">
-         <!-- ### Build up the pagination buttons ### -->
-         <a href="/">
-            <div class="btn btn-sm btn-page">1</div>
-         </a>
-         {{#each pageButtons}}
-         <a href="/page/{{this}}">
-            <div class="btn btn-sm btn-page">{{this}}</div>
-         </a>
-         {{/each}}
-      </div>
-      <div id="sorting">
-         <!-- ### Sorting dropdown form begins here ### -->
-         <div class="homebar-label">Sort | Filter by</div>
-         <form id="sorting-form" action="/test-sorting-filtering" method="GET">
-            <!-- Hidden input field to submit active page value -->
-            <input id="pass-page-value" type="text" value="" name="active-page" hidden>
-            <select id="sorting-dropdown" class="form-select form-select-sm" name="select"
-               onchange="this.form.submit()">
-               <!-- Sorting -->
-               <option value="S Rating">Rating</option>
-               <option value="S Date">Date added</option>
-               <option value="S Time">Cooking Time</option>
-               <!-- Filtering -->
-               <optgroup label="Difficulty">
-                  <option value="F Easy">Easy</option>
-                  <option value="F Intermediate">Intermediate</option>
-                  <option value="F Advanced">Advanced</option>
-               </optgroup>
-               <optgroup label="Diet">
-                  <option value="F Veggie">Veggie</option>
-                  <option value="F Omnivore">Omnivore</option>
-                  <option value="F Vegan">Vegan</option>
-                  <option value="F Pescatarian">Pescatarian</option>
-               </optgroup>
-               <optgroup label="Cuisine">
-                  <option value="F Asian">Asian</option>
-                  <option value="F European">European</option>
-                  <option value="F American">American</option>
-                  <option value="F African">African</option>
-               </optgroup>
-               <optgroup label="Dish Type">
-                  <option value="F Appetizers">Appetizers & Starters</option>
-                  <option value="F Meat">Meat dishes</option>
-                  <option value="F Soups">Soups & Stews</option>
-                  <option value="F Pasta">Pasta & Noodles</option>
-                  <option value="F Salads">Salads</option>
-                  <option value="F Burgers">Burgers</option>
-                  <option value="F Beans">Beans, Grains & Legumes</option>
-                  <option value="F Casseroles">Casseroles & Gratins</option>
-                  <option value="F Desserts">Desserts</option>
-                  <option value="F Pizzas">Pizzas</option>
-                  <option value="F Baked">Baked Goods</option>
-               </optgroup>
-            </select>
-         </form>
-      </div>
-   </div>
-   <!-- ### Container recipe cards ### -->
-   <div class="container recipe-container">
-      <div class="row row-cols-xl-4 row-cols-lg-3 row-cols-md-2 row-cols-1">
-         {{#each recipes}}
-         {{>recipe}}
-         {{/each}}
-      </div>
-   </div>
+  <div class="secondary-bar">
+
+    <div id="recipe-count">{{range}}&nbsp;&nbsp;&nbsp;of&nbsp;&nbsp;&nbsp;{{recipeCount}} Recipes</div>
+    <div id="paging">
+      <!-- ### Build up the pagination buttons ### -->
+      <a href="/">
+        <div id="btn-one" class="btn btn-one btn-sm btn-page" onclick='console.log("Hello")'>1</div>
+      </a>
+      {{#each pageButtons}}
+      <a href="/page/{{this}}">
+        <div class="btn btn-sm btn-page">{{this}}</div>
+      </a>
+      {{/each}}
+    </div>
+    <form id="sort-filter-form" action="/" method="GET">
+      <div id="sorting-filtering">
+        <div class="homebar-label">Sort | Filter by</div>
+        <select id="sort-dropdown" class="form-select form-select-sm" name="sort" value="Rating"
+          onchange="this.form.submit()">
+          <!-- ### Sorting ### -->
+          <option selected hidden>{{#if sort}}{{sort}}{{else}}Ratings{{/if}}</option>
+          <option value="Ratings">Ratings</option>
+          <option value="Cooking Time">Cooking Time</option>
+          <option value="Date added">Date added</option>
+        </select>
+        {{!-- <select id="filter-dropdown" class="form-select form-select-sm" name="filter"
+          onchange="this.form.submit()">
+          <!-- ### Filtering ###-->
+          <option selected hidden>{{#if filter}}{{filter}}{{else}}All recipes{{/if}}</option>
+          <option value="All recipes">All recipes</option>
+          <optgroup label="Difficulty">
+            <option value="Easy">Easy</option>
+            <option value="Intermediate">Intermediate</option>
+            <option value="Advanced">Advanced</option>
+          </optgroup>
+          <optgroup label="Diet">
+            <option value="Veggie">Veggie</option>
+            <option value="Omnivore">Omnivore</option>
+            <option value="Vegan">Vegan</option>
+            <option value="Pescatarian">Pescatarian</option>
+          </optgroup>
+          <optgroup label="Cuisine">
+            <option value="Asian">Asian</option>
+            <option value="European">European</option>
+            <option value="American">American</option>
+            <option value="African">African</option>
+          </optgroup>
+          <optgroup label="Dish Type">
+            <option value="Appetizers & Starters">Appetizers & Starters</option>
+            <option value="Meat dishes">Meat dishes</option>
+            <option value="Soups & Stews">Soups & Stews</option>
+            <option value="Pasta & Noodles">Pasta & Noodles</option>
+            <option value="Salads">Salads</option>
+            <option value="Burgers">Burgers</option>
+            <option value="Grains & Legumes">Grains & Legumes</option>
+            <option value="Casseroles & Gratins">Casseroles & Gratins</option>
+            <option value="Desserts">Desserts</option>
+            <option value="Pizzas">Pizzas</option>
+            <option value="Baked Goods">Baked Goods</option>
+          </optgroup>
+        </select> --}}
+    </form>
+  </div>
+  </div>
+  <!-- ### Container recipe cards ### -->
+  <div class="container recipe-container">
+    <div class="row row-cols-xl-4 row-cols-lg-3 row-cols-md-2 row-cols-1">
+      {{#each recipes}}
+      {{>recipe}}
+      {{/each}}
+    </div>
+  </div>
 </main>
