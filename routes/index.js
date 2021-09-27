@@ -19,16 +19,17 @@ router.get('/', (req, res, next) => {
   } else {
     sortString = getSortString(sort);
   }
-  //Set database filter string
+  // Set database filter string
   if (filter === undefined || filter === 'All recipes') {
     filterString = {};
   } else {
     filterString = getFilterString(filter);
   }
   Recipe.find()
-    // Create paging buttons array for hbs
+    // Get recipes total
     .then((count) => {
       recipeCount = count.length;
+      // Create paging buttons array for hbs
       pageButtons = [...Array(Math.ceil(recipeCount / 12)).keys()]
         .map((el) => el + 1)
         .slice(1);
@@ -60,30 +61,51 @@ router.get('/', (req, res, next) => {
 
 // ### GET page route ###
 router.get('/page/:page', (req, res, next) => {
-  console.log(req.query);
+  let sortString, filterString, pageButtons, recipeCount, skipCount;
+  const { sort, filter } = req.query;
   const page = Number(req.params.page);
-  let recipeCount, pageButtons;
+  // Set database sort string
+  if (sort === undefined) {
+    sortString = 'ratings';
+  } else {
+    sortString = getSortString(sort);
+  }
+  // Set database filter string
+  if (filter === undefined || filter === 'All recipes') {
+    filterString = {};
+  } else {
+    filterString = getFilterString(filter);
+  }
   Recipe.find()
-    // get recipes total
+    // Get recipes total
     .then((count) => {
       recipeCount = count.length;
-      // create page button array
+      // Create page button array
       pageButtons = [...Array(Math.ceil(recipeCount / 12)).keys()]
         .map((el) => el + 1)
         .slice(1);
     })
-    // get recipes according to page
+    // Get recipes according to page
     .then(() => {
-      const skipCount = (page - 1) * 12;
-      return Recipe.find()
+      skipCount = (page - 1) * 12;
+      return Recipe.find(filterString)
+        .sort({ [sortString]: -1 })
         .skip(skipCount)
         .limit(12)
-        .populate('creator', 'username picture')
-        .then((recipes) => {
-          const range = `${skipCount + 1} - ${skipCount + recipes.length}`;
-          // pass Recipes, Recipe total, Page button array, Recipe range
-          res.render('home', { recipes, recipeCount, pageButtons, range });
-        });
+        .populate('creator', 'username picture');
+    })
+    .then((recipes) => {
+      // Create recipe range string for hbs
+      const range = `${skipCount + 1} - ${skipCount + recipes.length}`;
+      // Pass Recipes, Recipe total, Page button array, Recipe range, Sort value, Filter value
+      res.render('home', {
+        recipes,
+        recipeCount,
+        pageButtons,
+        range,
+        sort,
+        filter
+      });
     })
     .catch((error) => {
       next(error);

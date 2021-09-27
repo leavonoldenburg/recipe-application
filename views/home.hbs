@@ -1,19 +1,16 @@
 <main>
   <div class="secondary-bar">
-
-    <div id="recipe-count">{{range}}&nbsp;&nbsp;&nbsp;of&nbsp;&nbsp;&nbsp;{{recipeCount}} Recipes</div>
-    <div id="paging">
-      <!-- ### Build up the pagination buttons ### -->
-      <a href="/">
-        <div id="btn-one" class="btn btn-one btn-sm btn-page" onclick='console.log("Hello")'>1</div>
-      </a>
-      {{#each pageButtons}}
-      <a href="/page/{{this}}">
-        <div class="btn btn-sm btn-page">{{this}}</div>
-      </a>
-      {{/each}}
-    </div>
-    <form id="sort-filter-form" action="/" method="GET">
+    <form id="sort-filter-pagination-form" action="/" method="GET">
+      <div id="recipe-count">{{range}}&nbsp;&nbsp;&nbsp;of&nbsp;&nbsp;&nbsp;{{recipeCount}} Recipes</div>
+      <div id="paging">
+        <!-- ### Build up the pagination buttons ### -->
+        <a href="/">
+          <div id="btn-one" class="btn btn-one btn-sm btn-page">1</div>
+        </a>
+        {{#each pageButtons}}
+        <button class="btn btn-sm btn-page" onclick="this.form.action='/page/{{this}}'">{{this}}</button>
+        {{/each}}
+      </div>
       <div id="sorting-filtering">
         <div class="homebar-label">Sort | Filter by</div>
         <select id="sort-dropdown" class="form-select form-select-sm" name="sort" value="Rating"

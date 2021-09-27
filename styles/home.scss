@@ -47,8 +47,10 @@ main {
   width: 10em;
 }
 
-#sort-filter-form {
+#sort-filter-pagination-form {
+  width: 100%;
   display: flex;
+  justify-content: space-around;
   align-items: center;
   margin: 0;
 }
