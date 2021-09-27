@@ -86,20 +86,21 @@
 
         <div class='row mt-4'>
           <div class='col'>
-            <span class='input-group-text'>How to make the dish</span>
-            <textarea id='input-instructions' class='form-control'
-              name='instructions'>{{recipe.instructions}}</textarea>
+            <div id='instructions-container' style='display: flex; flex-direction: column'>
+              {{#each recipe.instructions}}
+              <input class='input-instructions' type='text' name='instructions' value='{{this}}' />
+              {{/each}}
+            </div>
           </div>
-        </div>
 
-        <div class='row my-4'>
-          <div class='col'>
-            <input type='file' class='form-control' id='input-picture' name='picture' accesp='image/*'
-              buttonText='Your label here.' />
+          <div class='row my-4'>
+            <div class='col'>
+              <input type='file' class='form-control' id='input-picture' name='picture' accesp='image/*'
+                buttonText='Your label here.' />
+            </div>
           </div>
-        </div>
 
-        <button>Update your recipe</button>
+          <button>Update your recipe</button>
 
     </form>
   </div>
