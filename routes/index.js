@@ -119,21 +119,12 @@ router.get('/page/:page', (req, res, next) => {
 const { RecipeSearchClient } = require('edamam-api');
 
 const client = new RecipeSearchClient({
-  appId: process.env.APP_ID,
-  appKey: process.env.API_KEY
+  // appId: process.env.APP_ID,
+  // appKey: process.env.API_KEY
 });
 
 // ### GET API test route ###
 router.get('/apitest', (req, res, next) => {
-  client
-    .search({ query: 'Bread', limit: { from: 0, to: 12 } })
-    .then((query) => {
-      console.log(query.hits.length);
-      const recipes = query.hits;
-      recipes.forEach((el) => {
-        console.log(el.recipe.label);
-      });
-    });
   res.render('home');
 });
 
