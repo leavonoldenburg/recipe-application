@@ -3,7 +3,7 @@ const Recipe = require('../models/recipe');
 const Contact = require('../models/contact');
 const upload = require('../middleware/file-upload');
 const nodemailer = require('nodemailer');
-const Comment = require('../models/comments');
+const Comment = require('../models/comment');
 
 const transporter = nodemailer.createTransport({
   service: 'Gmail',

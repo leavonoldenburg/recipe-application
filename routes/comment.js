@@ -1,7 +1,7 @@
 'use strict';
 
 const express = require('express');
-const Comment = require('./../models/comments');
+const Comment = require('./../models/comment');
 const commentRouter = express.Router();
 
 commentRouter.post('/', (req, res, next) => {

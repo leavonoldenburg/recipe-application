@@ -115,3 +115,26 @@
     </form>
   </div>
 </div>
+
+{{! comments }}
+<div>
+  <h1>Comment Section</h1>
+  {{#each comment}}
+    <p>{{this}}</p>
+    <br />
+  {{/each}}
+
+  {{#if user}}
+    <form action='/recipe/{{recipe._id}}/comment' method='POST'>
+      <input
+        id='comment'
+        type='text'
+        name='comment'
+        placeholder='What do you think...'
+      />
+      <label for='comment'></label>
+      <button>Post comment</button>
+    </form>
+  {{/if}}
+</div>
+{{!}}
