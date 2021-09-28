@@ -4,6 +4,17 @@ const express = require('express');
 const Recipe = require('../models/recipe');
 const router = express.Router();
 
+// #########################
+// ##  Edamam Recipe API  ##
+// #########################
+
+const { RecipeSearchClient } = require('edamam-api');
+
+const client = new RecipeSearchClient({
+  appId: process.env.APP_ID,
+  appKey: process.env.API_KEY
+});
+
 // ### GET confirmation route ###
 router.get('/confirmation', (req, res) => {
   res.render('confirmation');
@@ -112,19 +123,17 @@ router.get('/page/:page', (req, res, next) => {
     });
 });
 
-// #########################
-// ##  Edamam Recipe API  ##
-// #########################
-
-const { RecipeSearchClient } = require('edamam-api');
-
-const client = new RecipeSearchClient({
-  // appId: process.env.APP_ID,
-  // appKey: process.env.API_KEY
-});
-
 // ### GET API test route ###
 router.get('/apitest', (req, res, next) => {
+  client
+    .search({ query: 'Bread', limit: { from: 0, to: 12 } })
+    .then((query) => {
+      console.log(query.hits.length);
+      const recipes = query.hits;
+      recipes.forEach((el) => {
+        console.log(el.recipe.label);
+      });
+    });
   res.render('home');
 });
 
