@@ -6,7 +6,7 @@ const relationSchema = new mongoose.Schema({
     ref: 'User'
   },
 
-  recipeRef: {
+  refRecipe: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'Recipe'
   }

@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 
 const commentSchema = new mongoose.Schema(
   {
-    message: {
+    comment: {
       type: String,
       required: true,
       minlength: 3,
@@ -14,11 +14,16 @@ const commentSchema = new mongoose.Schema(
       required: true,
       ref: 'User'
     },
-    // ref recipe
-    picture: {
-      type: String
+
+    refRecipe: {
+      type: mongoose.Schema.Types.ObjectId,
+      required: true,
+      ref: 'Recipe'
     }
   },
+  // picture: {
+  //   type: String
+  // },
   {
     timestamps: {
       createdAt: 'creationDate',

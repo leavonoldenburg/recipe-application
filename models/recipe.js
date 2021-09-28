@@ -71,7 +71,9 @@ const recipeSchema = new mongoose.Schema(
     },
 
     ratings: {
-      type: Number
+      type: Number,
+      default: 0,
+      min: 0
     }
 
     //ref recipe

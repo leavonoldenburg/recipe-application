@@ -3,7 +3,8 @@ const Recipe = require('../models/recipe');
 const Contact = require('../models/contact');
 const upload = require('../middleware/file-upload');
 const nodemailer = require('nodemailer');
-const Comment = require('../models/comment');
+const Comment = require('../models/comments');
+const Relation = require('../models/relation');
 
 const transporter = nodemailer.createTransport({
   service: 'Gmail',
@@ -85,9 +86,15 @@ recipeRouter.post('/:id/comment', (req, res, next) => {
 
 recipeRouter.get('/:id/edit', routeGuardMiddleware, (req, res, next) => {
   const { id } = req.params;
-  Recipe.findById(id)
+  let recipes;
+  Recipe.find()
+    .then((all) => {
+      recipes = all;
+      return Recipe.findById(id);
+    })
     .then((recipe) => {
       res.render('recipe-edit', {
+        recipes,
         recipe
       });
     })
@@ -148,30 +155,6 @@ recipeRouter.post('/:id/delete', routeGuardMiddleware, (req, res, next) => {
     });
 });
 
-recipeRouter.get('/:id', (req, res, next) => {
-  const { id } = req.params;
-  let ingredient;
-  Recipe.findById(id)
-    .then((document) => {
-      console.log(document);
-      ingredient = document.ingredients;
-      return Recipe.findById(id);
-    })
-    .then((recipe) => {
-      const ownRecipe =
-        req.user && String(req.user._id) === String(recipe.creator);
-
-      res.render('recipe-detail', {
-        ingredient,
-        recipe,
-        ownRecipe
-      });
-    })
-    .catch((error) => {
-      next(error);
-    });
-});
-
 recipeRouter.post('/:id/send', (req, res, next) => {
   const { id } = req.params;
   const { name, email, subject, message } = req.body;
@@ -199,6 +182,78 @@ recipeRouter.post('/:id/send', (req, res, next) => {
     })
     .then(() => {
       res.redirect('/confirmation');
+    })
+    .catch((error) => {
+      next(error);
+    });
+});
+
+recipeRouter.post('/:id/vote', routeGuardMiddleware, (req, res, next) => {
+  const { id } = req.params;
+  let recipe;
+  Recipe.findById(id).then((document) => {
+    recipe = document;
+    // Relation.findOne({
+    //   refRecipe: recipe._id,
+    //   creator: req.user._id
+    // })
+    //   .then((vote) => {
+    // if (vote) {
+    //   Relation.findOneAndDelete({
+    //     refRecipe: recipe._id,
+    //     creator: req.user._id
+    //   });
+    // } else {
+    return (
+      Relation.create({
+        creator: req.user._id,
+        refRecipe: recipe._id
+      })
+        // }
+        // });
+        // })
+        .then(() => {
+          return Recipe.findByIdAndUpdate(id, { $inc: { ratings: 1 } });
+        })
+        .then((recipes) => {
+          res.redirect(`/recipe/${recipes._id}`);
+        })
+        .catch((error) => {
+          next(error);
+        })
+    );
+  });
+});
+
+recipeRouter.get('/:id', (req, res, next) => {
+  const { id } = req.params;
+  let recipes;
+  let ratings;
+  let ingredient;
+  Recipe.findById(id)
+    .then((document) => {
+      recipes = document;
+      ingredient = document.ingredients;
+      return Relation.findOne({
+        refRecipe: recipes._id,
+        creator: req.user._id
+      });
+    })
+    .then((vote) => {
+      if (vote) {
+        ratings = req.user && String(req.user._id) === String(vote.creator);
+      }
+      return Recipe.findById(id);
+    })
+    .then((recipe) => {
+      const ownRecipe =
+        req.user && String(req.user._id) === String(recipe.creator);
+      res.render('recipe-detail', {
+        ratings,
+        ingredient,
+        recipe,
+        ownRecipe
+      });
     })
     .catch((error) => {
       next(error);
