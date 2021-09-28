@@ -57,9 +57,7 @@ const recipeSchema = new mongoose.Schema(
     },
 
     instructions: {
-      type: String,
-      required: true,
-      minlength: 3
+      type: [String]
     },
 
     creator: {
@@ -70,6 +68,10 @@ const recipeSchema = new mongoose.Schema(
 
     picture: {
       type: String
+    },
+
+    ratings: {
+      type: Number
     }
 
     //ref recipe

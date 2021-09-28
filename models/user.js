@@ -40,7 +40,11 @@ const userSchema = new mongoose.Schema({
     required: true,
     minlength: 5
   }
-});
+},
+  {
+    timestamps: true
+  }
+);
 
 const User = mongoose.model('User', userSchema);
 

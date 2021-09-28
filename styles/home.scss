@@ -1,43 +1,73 @@
 // ### Home styles ###
 
 main {
-   background-color: $white;
-   padding-bottom: 2em;
+  background-color: $white;
+  padding-bottom: 2em;
 }
 
 #recipe-count,
 #paging,
-#sorting {
-   display: flex;
-   align-items: center;
-   @include secondary;
-   .btn {
-      margin-left: 0.3em;
-      color: $white;
-   }
-   .btn-page {
-      background-color: $grey;
-   }
+#sorting-filtering {
+  display: flex;
+  align-items: center;
+  @include secondary;
+  .btn {
+    color: $white;
+  }
+}
+
+#btn-one {
+  margin-left: 0;
+}
+
+.btn-page {
+  background-color: $grey;
+  margin-left: 0.3em;
 }
 
 #recipe-list {
-   padding: 1em;
-   color: $pine;
+  padding: 1em;
+  color: $pine;
 }
 
 .active-page {
-   background-color: $turquoise !important;
-   color: $pine !important;
+  background-color: $turquoise !important;
+  color: $pine !important;
 }
 
 .homebar-label {
-   margin-right: 0.7em;
-   white-space: nowrap;
+  margin-right: 0.7em;
+  white-space: nowrap;
 }
 
 .form-select {
-   margin: 0;
-   background-color: $offwhite;
-   color: $pine;
-   width: 10em;
+  margin: 0;
+  background-color: $offwhite;
+  color: $pine;
+  width: 10em;
+}
+
+#sort-filter-pagination-form {
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  margin: 0;
+}
+
+#sort-dropdown {
+  width: 9em;
+}
+#filter-dropdown {
+  width: 12em;
+  margin-left: 0.3em;
+}
+
+#pass-page-value {
+  width: 1em;
+}
+
+.form-select:focus {
+  border-color: #ced4da;
+  box-shadow: none;
 }

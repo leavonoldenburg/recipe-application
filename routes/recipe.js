@@ -50,7 +50,8 @@ recipeRouter.post(
       ingredients,
       instructions,
       picture,
-      creator: req.user._id
+      creator: req.user._id,
+      ratings: 0
     })
       .then((recipe) => {
         res.redirect(`/recipe/${recipe._id}`);
@@ -171,7 +172,7 @@ recipeRouter.get('/:id', (req, res, next) => {
     });
 });
 
-recipeRouter.post('/:id', (req, res, next) => {
+recipeRouter.post('/:id/send', (req, res, next) => {
   const { id } = req.params;
   const { name, email, subject, message } = req.body;
   Contact.create({
