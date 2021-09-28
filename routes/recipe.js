@@ -3,6 +3,7 @@ const Recipe = require('../models/recipe');
 const Contact = require('../models/contact');
 const upload = require('../middleware/file-upload');
 const nodemailer = require('nodemailer');
+const Comment = require('../models/comments');
 
 const transporter = nodemailer.createTransport({
   service: 'Gmail',
@@ -59,6 +60,27 @@ recipeRouter.post(
       });
   }
 );
+
+recipeRouter.post('/:id/comment', (req, res, next) => {
+  const { comment } = req.body;
+  const { id } = req.params;
+  let recipe;
+  Recipe.findById(id)
+    .then((document) => {
+      recipe = document;
+      return Comment.create({
+        comment,
+        creator: req.user._id,
+        refRecipe: recipe._id
+      });
+    })
+    .then(() => {
+      res.redirect(`/recipe/${id}`);
+    })
+    .catch((error) => {
+      next(error);
+    });
+});
 
 recipeRouter.get('/:id/edit', routeGuardMiddleware, (req, res, next) => {
   const { id } = req.params;

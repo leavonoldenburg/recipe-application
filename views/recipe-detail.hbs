@@ -1,59 +1,117 @@
-<img src='{{recipe.picture}}' alt='{{recipe.title}}' />
-
-<h1>{{recipe.title}}</h1>
-<p>{{recipe.level}}</p>
-<p>{{recipe.cookingTime}}</p>
-<p>{{recipe.diet}}</p>
-<p>{{recipe.cuisine}}</p>
-<p>{{recipe.dishType}}</p>
-
-<ul>
-  {{#each recipe.ingredients}}
-    <li>{{this}}</li>
-  {{/each}}
-</ul>
-
-{{recipe.instructions}}
-
-<form method='POST'>
-  <label for='input-name'>Name</label>
-  <input type='text' id='input-name' name='name' placeholder='Your Name' />
-
-  <label for='input-email'>Email</label>
-  <input
-    type='email'
-    id='input-email'
-    name='email'
-    placeholder="Your Friend's Email"
-    required
-  />
-
-  <label for='input-subject'>Subject</label>
-  <input
-    type='text'
-    id='input-subject'
-    name='subject'
-    placeholder='Subject'
-    required
-  />
-
-  <label for='input-message'>Message</label>
-  <input
-    type='text'
-    name='message'
-    id='input-message'
-    placeholder='Your Message'
-    required
-  />
-
-  <button>Send Recipe to Friend</button>
-</form>
-
-{{#if ownRecipe}}
-  <a href='/recipe/{{recipe._id}}/edit'>
-    <button>Update Recipe</button>
-  </a>
-  <form action='/recipe/{{recipe._id}}/delete' method='post'>
-    <button>Delete Recipe Forever</button>
-  </form>
-{{/if}}
+<div class='container-fluid px-5 py-4'>
+  <div class='row'>
+    <div class='col mb-3'>
+      <div id='recipe-detail-top' class='card px-3 pb-2'>
+        <div>
+          <div id='recipe-title'>{{recipe.title}}</div>
+          <div>{{recipe.level}}
+            |
+            {{recipe.cookingTime}}
+            |
+            {{recipe.diet}}
+            |
+            {{recipe.cuisine}}
+            |
+            {{recipe.dishType}}
+          </div>
+        </div>
+        <div id='recipe-buttons'>
+          {{#unless ownRecipe}}
+            <button class='btn btn-secondary btn-sm'>♥️</button>
+          {{/unless}}
+          {{#if ownRecipe}}
+            <a href='/recipe/{{recipe._id}}/edit'>
+              <button class='btn btn-secondary btn-sm'>Update Recipe</button>
+            </a>
+            <form action='/recipe/{{recipe._id}}/delete' method='post'>
+              <button class='btn btn-secondary btn-sm'>Delete Recipe Forever</button>
+            </form>
+          {{/if}}
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class='row mb-3'>
+    <div class='col-12 col-md-6'>
+      <div id='recipe-image-card' class='card p-3'>
+        <img src='{{recipe.picture}}' alt='{{recipe.title}}' />
+      </div>
+    </div>
+    <div class='col'>
+      <div id='ingredients-card' class='card p-3'>
+        <h2>Ingredients</h2>
+        <ul>
+          {{#each recipe.ingredients}}
+            <li>{{this}}</li>
+          {{/each}}
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class='row'>
+    <div class='col mb-2'>
+      <div id='recipe-instructions' class='card p-3 pb-0'>
+        <h2>Preparation steps</h2>
+        <ul>
+          {{#each recipe.instructions}}
+            <li>{{this}}</li>
+          {{/each}}
+        </ul>
+      </div>
+    </div>
+  </div>
+  <hr />
+  <div class='card p-3 pb-0 my-4'>
+    <h2>Send this recipe to a friend!</h2>
+    <form action='/recipe/{{recipe._id}}/send' method='POST'>
+      <div class='row'>
+        <div class='form-floating mb-3 col-12 col-md-6'>
+          <input
+            type='text'
+            class='form-control'
+            name='name'
+            id='input-name'
+            placeholder='name'
+            required
+          />
+          <label for='input-name' class='ms-3'>Your friends name</label>
+        </div>
+        <div class='form-floating mb-3 col-12 col-md-6'>
+          <input
+            type='email'
+            class='form-control'
+            name='email'
+            id='input-email'
+            placeholder='email'
+            required
+          />
+          <label for='input-email' class='ms-3'>Your friend's email address</label>
+        </div>
+      </div>
+      <div class='form-floating mb-3'>
+        <input
+          type='text'
+          class='form-control'
+          name='subject'
+          id='input-subject'
+          placeholder='subject'
+          disabled
+        />
+        <label for='input-subject'>I found this awesome recipe on Iron Cooking
+          Will - have a look!</label>
+      </div>
+      <div class='form-floating mb-3'>
+        <textarea
+          class='form-control'
+          name='message'
+          placeholder='message'
+          id='input-message'
+          style='height: 100px'
+          required
+        ></textarea>
+        <label for='input-message'>Your message</label>
+      </div>
+      <button type='submit' class='btn btn-primary'>Send Recipe!</button>
+    </form>
+  </div>
+</div>
