@@ -5,9 +5,6 @@
       <div id="paging">
         <div class="homebar-label">Page</div>
         <!-- ### Build up the pagination buttons ### -->
-        <a href="/">
-          <div id="btn-one" class="btn btn-one btn-sm btn-page">1</div>
-        </a>
         {{#each pageButtons}}
         <button class="btn btn-sm btn-page" onclick="this.form.action='/page/{{this}}'">{{this}}</button>
         {{/each}}

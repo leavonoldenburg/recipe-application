@@ -25,14 +25,14 @@ router.get('/', (req, res, next) => {
   } else {
     filterString = getFilterString(filter);
   }
-  Recipe.find()
+  Recipe.find(filterString)
     // Get recipes total
     .then((count) => {
       recipeCount = count.length;
       // Create paging buttons array for hbs
-      pageButtons = [...Array(Math.ceil(recipeCount / 12)).keys()]
-        .map((el) => el + 1)
-        .slice(1);
+      pageButtons = [...Array(Math.ceil(recipeCount / 12)).keys()].map(
+        (el) => el + 1
+      );
     })
     // Get first page recipes
     .then(() => {
@@ -76,14 +76,14 @@ router.get('/page/:page', (req, res, next) => {
   } else {
     filterString = getFilterString(filter);
   }
-  Recipe.find()
+  Recipe.find(filterString)
     // Get recipes total
     .then((count) => {
       recipeCount = count.length;
       // Create page button array
-      pageButtons = [...Array(Math.ceil(recipeCount / 12)).keys()]
-        .map((el) => el + 1)
-        .slice(1);
+      pageButtons = [...Array(Math.ceil(recipeCount / 12)).keys()].map(
+        (el) => el + 1
+      );
     })
     // Get recipes according to page
     .then(() => {
