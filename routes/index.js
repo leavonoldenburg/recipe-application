@@ -2,6 +2,8 @@
 
 const express = require('express');
 const Recipe = require('../models/recipe');
+const routeGuardMiddleware = require('../middleware/route-guard');
+const upload = require('../middleware/file-upload');
 const router = express.Router();
 
 // #########################
@@ -134,17 +136,83 @@ router.get('/page/:page', (req, res, next) => {
 
 // ### GET API test route ###
 router.get('/apitest', (req, res, next) => {
+  const { searchRecipe } = req.query;
   client
-    .search({ query: 'Bread', limit: { from: 0, to: 12 } })
+    .search({ query: searchRecipe, limit: { from: 0, to: 12 } })
     .then((query) => {
-      console.log(query.hits.length);
-      const recipes = query.hits;
-      recipes.forEach((el) => {
-        console.log(el.recipe.label);
-      });
+      const recipes_api = query.hits;
+      res.render('home', { recipes_api });
+      console.log(recipes_api[0]);
+    })
+    .catch((error) => {
+      next(error);
     });
-  res.render('home');
 });
+
+// ### POST API add recipe route ###
+router.post(
+  '/api/add-recipe',
+  routeGuardMiddleware,
+  upload.single('picture'),
+  (req, res, next) => {
+    let level;
+    const { cookingTime } = req.body;
+    if (cookingTime <= 30) {
+      level = 'Easy';
+    } else if (cookingTime <= 90) {
+      level = 'Intermediate';
+    } else {
+      level = 'Advanced';
+    }
+    req.body.level = level;
+    req.body.diet = getApiDiet(req.body.diet);
+    req.body.cuisine = getApiCuisine(req.body.cuisine, req.body.title);
+    req.body.dishType = getApiDishType(req.body.dishType, req.body.title);
+    console.log(req.body);
+    const {
+      title,
+      servings,
+      diet,
+      cuisine,
+      dishType,
+      ingredients,
+      instructions,
+      picture
+    } = req.body;
+    // console.log(
+    //   title,
+    //   cookingTime,
+    //   servings,
+    //   level,
+    //   diet,
+    //   cuisine,
+    //   dishType,
+    //   ingredients,
+    //   instructions,
+    //   picture
+    // );
+    Recipe.create({
+      title,
+      cookingTime,
+      servings,
+      level,
+      diet,
+      cuisine,
+      dishType,
+      ingredients,
+      instructions,
+      picture,
+      creator: req.user._id,
+      ratings: 0
+    })
+      .then((recipe) => {
+        res.redirect(`/recipe/${recipe._id}`);
+      })
+      .catch((error) => {
+        next(error);
+      });
+  }
+);
 
 module.exports = router;
 
@@ -198,4 +266,160 @@ function getFilterString(formValue) {
   for (const [key, value] of Object.entries(valueMap)) {
     if (key === formValue) return value;
   }
+}
+
+// ####################
+// ##  API Get diet  ##
+// ####################
+
+function getApiDiet(dietString) {
+  const dietArr = dietString.split(',');
+  const result = dietArr.filter(
+    (el) =>
+      el.toLowerCase() === 'pescatarian' ||
+      el.toLowerCase() === 'vegetarian' ||
+      el.toLowerCase() === 'vegan'
+  );
+  return !result.length ? ['Omnivore'] : result;
+}
+
+// #######################
+// ##  API Get cuisine  ##
+// #######################
+
+function getApiCuisine(cuisineString, title) {
+  const asian = [
+    'asian',
+    'chinese',
+    'indian',
+    'japanese',
+    'kosher',
+    'south east asian',
+    'middle eastern'
+  ];
+  const american = ['american', 'caribbean', 'mexican', 'south american'];
+  const european = [
+    'british',
+    'central europe',
+    'eastern europe',
+    'french',
+    'italian',
+    'mediterranean',
+    'nordic'
+  ];
+  if (title.includes('Africa') || title.includes('Morocc')) return ['African'];
+  if (asian.includes(cuisineString)) return ['Asian'];
+  if (american.includes(cuisineString)) return ['American'];
+  if (european.includes(cuisineString)) return ['European'];
+}
+
+// #########################
+// ##  API Get dish type  ##
+// #########################
+
+function getApiDishType(dishType, title) {
+  const appetizersStarters = [
+    'alcohol-cocktail',
+    'starter',
+    'cereals',
+    'drinks',
+    'condiments and sauces',
+    'omelet',
+    'sandwiches'
+  ];
+  const soupsStews = ['soup'];
+  const salads = ['salad'];
+  const beansGrainsLegumes = ['egg', 'preps', 'preserve'];
+  const desserts = ['dessert', 'desserts', 'biscuits and cookies', 'pancake'];
+  const bakedGoods = ['bread'];
+  // Catchwords dish types
+  const casserolesGratins = [
+    'gratin',
+    'gratins',
+    'casserole',
+    'cornbake',
+    'potpie',
+    'souffle'
+  ];
+  const burgers = ['cheeseburger', 'burger', 'burgers'];
+  const pizzas = ['pizza', 'pizzas', 'pizzadillas', 'stromboli', 'pizzagna'];
+  const pastaNoodles = [
+    'pasta',
+    'spaghetti',
+    'fettuccine',
+    'penne',
+    'carbonara',
+    'mostaccioli',
+    'gnocchi',
+    'orecchiette',
+    'noodles',
+    'lasagna',
+    'ziti',
+    'ravioli',
+    'rigatoni',
+    'bolognese',
+    'papardelle',
+    'bucatini'
+  ];
+  const meatDishes = [
+    'chicken',
+    'lamb',
+    'meat',
+    'steak',
+    'turkey',
+    'bacon',
+    'kebab',
+    'legs',
+    'chop',
+    'duck',
+    'pork',
+    'ribs',
+    'fish',
+    'prawn',
+    'roast'
+  ];
+  if (
+    title
+      .split(' ')
+      .map((el) => el.toLowerCase())
+      .filter((el) => burgers.includes(el)).length
+  )
+    return ['Burgers'];
+  if (
+    title
+      .split(' ')
+      .map((el) => el.toLowerCase())
+      .filter((el) => casserolesGratins.includes(el)).length
+  )
+    return ['Casseroles & Gratins'];
+  if (
+    title
+      .split(' ')
+      .map((el) => el.toLowerCase())
+      .filter((el) => pizzas.includes(el)).length
+  )
+    return ['Pizzas'];
+  if (
+    title
+      .split(' ')
+      .map((el) => el.toLowerCase())
+      .filter((el) => pastaNoodles.includes(el)).length
+  )
+    return ['Pasta & Noodles'];
+  if (
+    title
+      .split(' ')
+      .map((el) => el.toLowerCase())
+      .filter((el) => meatDishes.includes(el)).length
+  )
+    return ['Meat dishes'];
+  if (appetizersStarters.includes(dishType.split(',')[0]))
+    return ['Appetizers & Starters'];
+  if (soupsStews.includes(dishType.split(',')[0])) return ['Soups & Stews'];
+  if (salads.includes(dishType.split(',')[0])) return ['Salads'];
+  if (desserts.includes(dishType.split(',')[0])) return ['Desserts'];
+  if (bakedGoods.includes(dishType.split(',')[0])) return ['Baked Goods'];
+  if (beansGrainsLegumes.includes(dishType.split(',')[0]))
+    return ['Beans, Grains & Legumes'];
+  return ['Meat dishes'];
 }
