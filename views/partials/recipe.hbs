@@ -1,15 +1,15 @@
 <div class='col'>
   <a class='no-decoration-link' href='/recipe/{{_id}}'>
     <div class='card recipe-card'>
-      <div
-        class='recipe-image p-2'
-        style="background-image: url('{{this.picture}}')"
-      >
-        <div class='card-body card'>
+      <div class='recipe-image p-2' style="background-image: url('{{this.picture}}')">
+        <div class='card-body card pb-2'>
           <h4 class='card-title'>{{this.title}}</h4>
           <div class='card-text date-text'>added: {{date this.createdAt}}</div>
-          <div class='card-text card-avatar'>{{this.creator.username}}
-            <img src='{{this.creator.picture}}' /></div>
+          <div class='card-text card-avatar'>
+            <div><i class="card-clock far fa-clock"></i>{{this.cookingTime}}<i
+                class="card-star fas fa-star"></i>{{this.ratings}}</div>
+            <div id="card-creator">{{this.creator.username}} <img src='{{this.creator.picture}}' /></div>
+          </div>
         </div>
       </div>
     </div>

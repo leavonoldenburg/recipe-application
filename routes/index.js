@@ -22,13 +22,15 @@ router.get('/confirmation', (req, res) => {
 
 // ### GET root route ###
 router.get('/', (req, res, next) => {
-  let sortString, filterString, pageButtons, recipeCount;
+  let sortString, sortDirection, filterString, pageButtons, recipeCount;
   const { sort, filter } = req.query;
-  // Set database sort string
+  // Set database sort string and direction
   if (sort === undefined) {
     sortString = 'ratings';
+    sortDirection = -1;
   } else {
-    sortString = getSortString(sort);
+    sortString = Object.keys(getSortString(sort))[0];
+    sortDirection = Object.values(getSortString(sort))[0];
   }
   // Set database filter string
   if (filter === undefined || filter === 'All recipes') {
@@ -48,7 +50,7 @@ router.get('/', (req, res, next) => {
     // Get first page recipes
     .then(() => {
       return Recipe.find(filterString)
-        .sort({ [sortString]: -1 })
+        .sort({ [sortString]: sortDirection })
         .limit(12)
         .populate('creator', 'username picture');
     })
@@ -72,14 +74,21 @@ router.get('/', (req, res, next) => {
 
 // ### GET page route ###
 router.get('/page/:page', (req, res, next) => {
-  let sortString, filterString, pageButtons, recipeCount, skipCount;
+  let sortString,
+    sortDirection,
+    filterString,
+    pageButtons,
+    recipeCount,
+    skipCount;
   const { sort, filter } = req.query;
   const page = Number(req.params.page);
-  // Set database sort string
+  // Set database sort string and direction
   if (sort === undefined) {
     sortString = 'ratings';
+    sortDirection = -1;
   } else {
-    sortString = getSortString(sort);
+    sortString = Object.keys(getSortString(sort))[0];
+    sortDirection = Object.values(getSortString(sort))[0];
   }
   // Set database filter string
   if (filter === undefined || filter === 'All recipes') {
@@ -100,14 +109,14 @@ router.get('/page/:page', (req, res, next) => {
     .then(() => {
       skipCount = (page - 1) * 12;
       return Recipe.find(filterString)
-        .sort({ [sortString]: -1 })
+        .sort({ [sortString]: sortDirection })
         .skip(skipCount)
         .limit(12)
         .populate('creator', 'username picture');
     })
     .then((recipes) => {
       // Create recipe range string for hbs
-      const range = `${skipCount + 1} - ${skipCount + recipes.length}`;
+      const range = `${skipCount + 1} - ${skipCount + recipes.length} `;
       // Pass Recipes, Recipe total, Page button array, Recipe range, Sort value, Filter value
       res.render('home', {
         recipes,
@@ -145,9 +154,12 @@ module.exports = router;
 
 function getSortString(formValue) {
   const valueMap = {
-    Ratings: 'ratings',
-    'Cooking Time': 'cookingTime',
-    'Date added': 'createdAt'
+    'Ratings ▼': { ratings: -1 },
+    'Ratings ▲': { ratings: 1 },
+    'Cooking Time ▼': { cookingTime: -1 },
+    'Cooking Time ▲': { cookingTime: 1 },
+    'Date added ▼': { createdAt: -1 },
+    'Date added ▲': { createdAt: 1 }
   };
   for (const [key, value] of Object.entries(valueMap)) {
     if (key === formValue) return value;

@@ -14,10 +14,13 @@
         <select id="sort-dropdown" class="form-select form-select-sm" name="sort" value="Rating"
           onchange="this.form.submit()">
           <!-- ### Sorting ### -->
-          <option selected hidden>{{#if sort}}{{sort}}{{else}}Ratings{{/if}}</option>
-          <option value="Ratings">Ratings</option>
-          <option value="Cooking Time">Cooking Time</option>
-          <option value="Date added">Date added</option>
+          <option selected hidden>{{#if sort}}{{sort}}{{else}}Ratings ▼{{/if}}</option>
+          <option value="Ratings ▲">Ratings ▲</option>
+          <option value="Ratings ▼">Ratings ▼</option>
+          <option value="Cooking Time ▲">Cooking Time ▲</option>
+          <option value="Cooking Time ▼">Cooking Time ▼</option>
+          <option value="Date added ▲">Date added ▲</option>
+          <option value="Date added ▼">Date added ▼</option>
         </select>
         <select id="filter-dropdown" class="form-select form-select-sm" name="filter" onchange="this.form.submit()">
           <!-- ### Filtering ###-->
