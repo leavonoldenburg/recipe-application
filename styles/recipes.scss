@@ -91,11 +91,19 @@
   }
 }
 
+#hidden-form {
+  position: relative;
+  left: -10000px;
+}
+
 #recipe-buttons {
   margin-top: 1em;
 }
 
 #add-recipe-btn {
+  position: absolute;
+  bottom: -0.9em;
+  left: 10020px;
   color: $pine;
   height: 2em;
   width: 2em;

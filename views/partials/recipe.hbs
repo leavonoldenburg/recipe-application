@@ -13,7 +13,7 @@
             {{#if this.title}}<div id="card-creator">{{this.creator.username}} <img src='{{this.creator.picture}}' />
             </div>{{/if}}
             {{#if this.recipe}}
-            <form id="hidden-form" action="/api/add-recipe" method="POST" style="position: absolute; left: -10000px;">
+            <form id="hidden-form" action="/api/add-recipe" method="POST">
               <input type="text" name="title" value="{{recipe.label}}" hidden>
               <input type="number" name="cookingTime" value="{{recipe.totalTime}}" hidden>
               <input type="text" name="servings" value="{{recipe.yield}}" hidden>
@@ -25,9 +25,8 @@
               <input type="text" name="dishType" value="{{recipe.dishType}}" hidden>
               <input type="url" name="instructions[]" value="{{recipe.shareAs}}" hidden>
               <input type="url" name="picture" value="{{recipe.image}}" hidden>
-              <button id="blocked">Add recipe!</button>
+              <button id="add-recipe-btn" class="btn"><i class="fas fa-2x fa-plus-circle"></i></button>
             </form>
-            <label id="add-recipe-btn" class="btn" for="blocked"><i class="fas fa-2x fa-plus-circle"></i></label>
             {{/if}}
           </div>
         </div>

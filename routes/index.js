@@ -144,7 +144,7 @@ router.get('/api-search', (req, res, next) => {
       const recipes_api = query.hits;
       // Pass first 12 hits to view
       res.render('home', { recipes_api });
-      console.log(recipes_api[0]);
+      // console.log(recipes_api[0]);
     })
     .catch((error) => {
       next(error);
@@ -164,7 +164,7 @@ router.post(
     req.body.diet = getApiDiet(req.body.diet);
     req.body.cuisine = getApiCuisine(req.body.cuisine, req.body.title);
     req.body.dishType = getApiDishType(req.body.dishType, req.body.title);
-    console.log(req.body);
+    // console.log(req.body);
     const {
       title,
       servings,
