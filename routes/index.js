@@ -134,13 +134,15 @@ router.get('/page/:page', (req, res, next) => {
     });
 });
 
-// ### GET API test route ###
-router.get('/apitest', (req, res, next) => {
+// ### GET API search route ###
+router.get('/api-search', (req, res, next) => {
   const { searchRecipe } = req.query;
   client
+    // Search api by hero search field
     .search({ query: searchRecipe, limit: { from: 0, to: 12 } })
     .then((query) => {
       const recipes_api = query.hits;
+      // Pass first 12 hits to view
       res.render('home', { recipes_api });
       console.log(recipes_api[0]);
     })
@@ -156,15 +158,9 @@ router.post(
   upload.single('picture'),
   (req, res, next) => {
     let level;
-    const { cookingTime } = req.body;
-    if (cookingTime <= 30) {
-      level = 'Easy';
-    } else if (cookingTime <= 90) {
-      level = 'Intermediate';
-    } else {
-      level = 'Advanced';
-    }
-    req.body.level = level;
+    let { cookingTime } = req.body;
+    cookingTime = cookingTime < 1 ? 1 : cookingTime;
+    req.body.level = getApiLevel(req.body.cookingTime);
     req.body.diet = getApiDiet(req.body.diet);
     req.body.cuisine = getApiCuisine(req.body.cuisine, req.body.title);
     req.body.dishType = getApiDishType(req.body.dishType, req.body.title);
@@ -179,18 +175,6 @@ router.post(
       instructions,
       picture
     } = req.body;
-    // console.log(
-    //   title,
-    //   cookingTime,
-    //   servings,
-    //   level,
-    //   diet,
-    //   cuisine,
-    //   dishType,
-    //   ingredients,
-    //   instructions,
-    //   picture
-    // );
     Recipe.create({
       title,
       cookingTime,
@@ -266,6 +250,14 @@ function getFilterString(formValue) {
   for (const [key, value] of Object.entries(valueMap)) {
     if (key === formValue) return value;
   }
+}
+
+// ###########################
+// ##  API Calculate level  ##
+// ###########################
+
+function getApiLevel(time) {
+  return time <= 30 ? 'Easy' : time <= 90 ? 'Intermediate' : 'Advanced';
 }
 
 // ####################

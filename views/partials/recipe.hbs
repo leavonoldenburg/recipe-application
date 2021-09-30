@@ -1,5 +1,5 @@
 <div class='col'>
-  {{!-- <a class='no-decoration-link' href='/recipe/{{_id}}'> --}}
+  {{#if this.title}}<a class='no-decoration-link' href='/recipe/{{_id}}'>{{/if}}
     <div class='card recipe-card'>
       <div class='recipe-image p-2'
         style="background-image: url('{{#if this.title}}{{this.picture}}{{else}}{{recipe.image}}{{/if}}')">
@@ -13,7 +13,7 @@
             {{#if this.title}}<div id="card-creator">{{this.creator.username}} <img src='{{this.creator.picture}}' />
             </div>{{/if}}
             {{#if this.recipe}}
-            <form action="/api/add-recipe" method="POST">
+            <form id="hidden-form" action="/api/add-recipe" method="POST" style="position: absolute; left: -10000px;">
               <input type="text" name="title" value="{{recipe.label}}" hidden>
               <input type="number" name="cookingTime" value="{{recipe.totalTime}}" hidden>
               <input type="text" name="servings" value="{{recipe.yield}}" hidden>
@@ -27,11 +27,12 @@
               <input type="url" name="picture" value="{{recipe.image}}" hidden>
               <button id="blocked">Add recipe!</button>
             </form>
+            <label id="add-recipe-btn" class="btn" for="blocked"><i class="fas fa-2x fa-plus-circle"></i></label>
             {{/if}}
           </div>
         </div>
       </div>
     </div>
-    {{!--
-  </a> --}}
+    {{#if this.title}}
+  </a>{{/if}}
 </div>
