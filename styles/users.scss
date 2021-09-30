@@ -1,5 +1,28 @@
 // ### User-list styles ###
 
-// .heading-user {
-//    @include secondary;
-// }
+.user-card {
+  display: flex;
+  flex-direction: row;
+  @include image-shadow;
+  color: $dark-pine;
+  background-color: #f1f0e9;
+  img {
+    border-radius: 50%;
+    width: 5.25em;
+    margin-right: 1.5em;
+  }
+  a {
+    text-decoration: none;
+  }
+}
+
+#user-view-name h1 {
+  font-family: $font-acme;
+  margin-bottom: 0;
+  div {
+    font-size: 0.9em;
+  }
+}
+
+#user-view-image {
+}
