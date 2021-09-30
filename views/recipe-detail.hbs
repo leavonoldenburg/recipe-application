@@ -157,7 +157,11 @@
   {{/if}}
 
   {{#each comment}}
-    <p>{{this}}</p>
+    {{this.creator.username}}
+    {{this.comment}}
+
+    <br />
   {{/each}}
+  {{#if ownComment}}{{/if}}
 </div>
 {{!}}

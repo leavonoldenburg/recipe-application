@@ -236,9 +236,15 @@ recipeRouter.get('/:id', (req, res, next) => {
   let recipes;
   let ratings;
   let ingredient;
-  Comment.findById()
+  let ownComment;
+
+  Recipe.findById(id)
+    .then((find) => {
+      return Comment.find({ refRecipe: find._id }).populate('creator');
+    })
     .then((comments) => {
       comment = comments;
+      ownComment = req.user && String(req.user._id) === String(comment.creator);
       return Recipe.findById(id);
     })
     .then((document) => {
@@ -260,11 +266,13 @@ recipeRouter.get('/:id', (req, res, next) => {
     .then((recipe) => {
       const ownRecipe =
         req.user && String(req.user._id) === String(recipe.creator);
+      console.log(comment);
       res.render('recipe-detail', {
         ratings,
         ingredient,
         recipe,
         ownRecipe,
+        ownComment,
         comment
       });
     })
