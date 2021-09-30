@@ -1,0 +1,14 @@
+.commentDiv {
+  h1 {
+    text-align: center;
+  }
+  button {
+    border-radius: 7%;
+    background-color: $petrol;
+    border: none;
+  }
+  .commentStyle {
+    display: flex;
+    justify-content: center;
+  }
+}

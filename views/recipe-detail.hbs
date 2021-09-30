@@ -4,14 +4,20 @@
       <div id='recipe-detail-top' class='card px-3 pb-2'>
         <div>
           <div id='recipe-title'>{{recipe.title}}</div>
-          <div>{{recipe.level}}
+
+          <div>
+            <i class='fas fa-tachometer-alt'></i>
+            {{recipe.level}}
             |
-            {{recipe.cookingTime}}
-            |
+            <i class='fas fa-clock'></i>
+            {{recipe.cookingTime}}min |
+            <i class='fas fa-seedling'></i>
             {{recipe.diet}}
             |
+            <i class='fas fa-globe-africa'></i>
             {{recipe.cuisine}}
             |
+            <i class='fas fa-utensils'></i>
             {{recipe.dishType}}
           </div>
         </div>
@@ -130,15 +136,15 @@
 </div>
 
 {{! comments }}
-<div>
+<div class='commentDiv'>
   <h1>Comment Section</h1>
-  {{#each comment}}
-    <p>{{this}}</p>
-    <br />
-  {{/each}}
 
   {{#if user}}
-    <form action='/recipe/{{recipe._id}}/comment' method='POST'>
+    <form
+      class='commentStyle'
+      action='/recipe/{{recipe._id}}/comment'
+      method='POST'
+    >
       <input
         id='comment'
         type='text'
@@ -149,5 +155,9 @@
       <button>Post comment</button>
     </form>
   {{/if}}
+
+  {{#each comment}}
+    <p>{{this}}</p>
+  {{/each}}
 </div>
 {{!}}

@@ -3,7 +3,11 @@
 
 // ### Import scss files ###
 @import 'header', 'navbar', 'hero', 'home', 'users', 'footer', 'recipes',
+<<<<<<< Updated upstream
   'about', 'profile';
+=======
+  'about', 'comment';
+>>>>>>> Stashed changes
 
 * {
   box-sizing: border-box;

@@ -155,6 +155,39 @@ recipeRouter.post('/:id/delete', routeGuardMiddleware, (req, res, next) => {
     });
 });
 
+<<<<<<< Updated upstream
+=======
+recipeRouter.get('/:id', (req, res, next) => {
+  const { id } = req.params;
+  let ingredient;
+  let comment;
+  Comment.find()
+    .then((comments) => {
+      comment = comments;
+      return Recipe.findById(id);
+    })
+    .then((document) => {
+      console.log(document);
+      ingredient = document.ingredients;
+      return Recipe.findById(id);
+    })
+    .then((recipe) => {
+      const ownRecipe =
+        req.user && String(req.user._id) === String(recipe.creator);
+
+      res.render('recipe-detail', {
+        ingredient,
+        recipe,
+        ownRecipe,
+        comment
+      });
+    })
+    .catch((error) => {
+      next(error);
+    });
+});
+
+>>>>>>> Stashed changes
 recipeRouter.post('/:id/send', (req, res, next) => {
   const { id } = req.params;
   const { name, email, subject, message } = req.body;
