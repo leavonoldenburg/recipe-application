@@ -50,9 +50,13 @@ profileRouter.post(
 
 profileRouter.post('/:id/delete', routeGuardMiddleware, (req, res, next) => {
   const { id } = req.params;
-  User.findByIdAndDelete(id).then(() => {
-    res.redirect('/');
-  });
+  User.findById(id)
+    .then((user) => {
+      Recipe.find({ creator: user._id });
+    })
+    .then(() => {
+      res.redirect('/');
+    });
 });
 
 profileRouter.get('/:id', routeGuardMiddleware, (req, res, next) => {

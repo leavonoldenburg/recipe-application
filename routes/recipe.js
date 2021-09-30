@@ -232,10 +232,15 @@ recipeRouter.post('/:id/vote', routeGuardMiddleware, (req, res, next) => {
 
 recipeRouter.get('/:id', (req, res, next) => {
   const { id } = req.params;
+  let comment;
   let recipes;
   let ratings;
   let ingredient;
-  Recipe.findById(id)
+  Comment.findById()
+    .then((comments) => {
+      comment = comments;
+      return Recipe.findById(id);
+    })
     .then((document) => {
       recipes = document;
       ingredient = document.ingredients;
@@ -259,7 +264,8 @@ recipeRouter.get('/:id', (req, res, next) => {
         ratings,
         ingredient,
         recipe,
-        ownRecipe
+        ownRecipe,
+        comment
       });
     })
     .catch((error) => {

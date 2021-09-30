@@ -6,3 +6,24 @@
 .recipe-container {
   margin-bottom: 20px;
 }
+
+#profile-detail-top {
+  display: flex;
+  flex-direction: row;
+  word-wrap: unset;
+  justify-content: space-between;
+  align-items: center;
+  div {
+    button {
+      width: 100%;
+    }
+  }
+}
+
+#profile-mail {
+  white-space: nowrap;
+}
+
+#profile-name {
+  white-space: nowrap;
+}
