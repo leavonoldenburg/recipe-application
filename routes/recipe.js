@@ -236,7 +236,10 @@ recipeRouter.get('/:id', (req, res, next) => {
   let recipes;
   let ratings;
   let ingredient;
-  Comment.findById()
+  Recipe.findById(id)
+    .then((find) => {
+      return Comment.find({ refRecipe: find._id });
+    })
     .then((comments) => {
       comment = comments;
       return Recipe.findById(id);

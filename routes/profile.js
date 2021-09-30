@@ -3,6 +3,8 @@ const User = require('./../models/user');
 const routeGuardMiddleware = require('./../middleware/route-guard');
 const upload = require('./../middleware/file-upload');
 const Recipe = require('./../models/recipe');
+const Comment = require('./../models/comment');
+const Relation = require('../models/relation');
 
 const profileRouter = express.Router();
 
@@ -52,7 +54,10 @@ profileRouter.post('/:id/delete', routeGuardMiddleware, (req, res, next) => {
   const { id } = req.params;
   User.findById(id)
     .then((user) => {
-      Recipe.find({ creator: user._id });
+      Recipe.deleteMany({ creator: user._id });
+      Comment.deleteMany({ creator: req.user._id });
+      Relation.deleteMany({ creator: req.user._id });
+      User.findByIdAndDelete(id);
     })
     .then(() => {
       res.redirect('/');
