@@ -6,7 +6,7 @@ const Recipe = require('./../models/recipe');
 
 const profileRouter = express.Router();
 
-profileRouter.get('/edit/:id', routeGuardMiddleware, (req, res, next) => {
+profileRouter.get('/:id/edit', routeGuardMiddleware, (req, res, next) => {
   const { id } = req.params;
   User.findById(id)
     .then((profile) => {
@@ -23,7 +23,7 @@ profileRouter.get('/edit/:id', routeGuardMiddleware, (req, res, next) => {
 });
 
 profileRouter.post(
-  '/edit/:id',
+  '/:id/edit',
   routeGuardMiddleware,
   upload.single('picture'),
   (req, res, next) => {
@@ -48,6 +48,13 @@ profileRouter.post(
   }
 );
 
+profileRouter.post('/:id/delete', routeGuardMiddleware, (req, res, next) => {
+  const { id } = req.params;
+  User.findByIdAndDelete(id).then(() => {
+    res.redirect('/');
+  });
+});
+
 profileRouter.get('/:id', routeGuardMiddleware, (req, res, next) => {
   const { id } = req.params;
   let profile;
@@ -58,9 +65,6 @@ profileRouter.get('/:id', routeGuardMiddleware, (req, res, next) => {
         .sort({ publishingDate: -1 })
         .populate('creator', 'username picture');
     })
-    // .then(() => {
-    //   return User.findById(id);
-    // })
     .then((recipe) => {
       const ownProfile =
         req.user && String(req.user._id) === String(profile._id);

@@ -1,19 +1,54 @@
 <h1>Edit Your User Info</h1>
 
-<form method='POST' enctype='multipart/form-data'>
-  <label for='input-name'>Update Username</label>
-  <input type='text' id='input-name' name='username' value={{user.username}} />
-  <label for='input-email'>Update Email</label>
-  <input type='email' id='input-email' name='email' value={{user.email}} />
-  <label for='input-password'>Update Password</label>
-  <input
-    type='password'
-    name='password'
-    id='input-password'
-    value={{user.password}}
-  />
-  <label for='input-picture'>New Profile Picture</label>
-  <input id='input-picture' type='file' name='picture' accept='image/*' />
+<div class='card p-5 mx-5 my-4'>
 
-  <button>Edit</button>
-</form>
+  <form method='POST' enctype='multipart/form-data'>
+
+    <div class='form-floating mb-3'>
+      <input
+        type='text'
+        class='form-control'
+        name='name'
+        id='input-name'
+        value={{user.username}}
+      />
+      <label for='input-name'>Update Username</label>
+    </div>
+
+    <div class='form-floating mb-3'>
+      <input
+        type='email'
+        class='form-control'
+        name='email'
+        id='input-email'
+        value={{user.email}}
+      />
+      <label for='input-email'>Update Email</label>
+    </div>
+
+    <div class='form-floating mb-3'>
+      <input
+        type='password'
+        class='form-control'
+        name='subject'
+        id='input-password'
+        value={{user.password}}
+      />
+      <label for='input-password'>Update Password</label>
+    </div>
+
+    <div class='form-floating mb-3'>
+      <input
+        type='file'
+        class='form-control'
+        name='picture'
+        placeholder='message'
+        id='input-picture'
+        accept='image/*'
+      />
+      <label for='input-picture'>New Profile Picture</label>
+    </div>
+
+    <button type='submit' class='btn btn-primary'>Update User Info</button>
+  </form>
+</div>
