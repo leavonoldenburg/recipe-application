@@ -24,11 +24,15 @@
           onchange="this.form.submit()">
           <!-- ### Sorting ### -->
           {{#if recipes}}<option selected hidden>{{#if sort}}{{sort}}{{else}}Ratings ▼{{/if}}</option>{{/if}}
-          {{#if recipes_api}}<option selected hidden>{{#if sort}}{{sort}}{{else}}Cooking Time ▲{{/if}}</option>{{/if}}
+          {{#if recipes_api}}<option selected hidden>{{#if sort}}{{sort}}{{else}}Cooking Time ▼{{/if}}</option>{{/if}}
           {{#if recipes}}<option value="Ratings ▲">Ratings ▲</option>{{/if}}
           {{#if recipes}}<option value="Ratings ▼">Ratings ▼</option>{{/if}}
           <option value="Cooking Time ▲">Cooking Time ▲</option>
           <option value="Cooking Time ▼">Cooking Time ▼</option>
+          {{#if recipes_api}}<option value="Calories ▲">Calories ▲</option>{{/if}}
+          {{#if recipes_api}}<option value="Calories ▼">Calories ▼</option>{{/if}}
+          {{#if recipes_api}}<option value="Ingredients ▲">Ingredients ▲</option>{{/if}}
+          {{#if recipes_api}}<option value="Ingredients ▼">Ingredients ▼</option>{{/if}}
           {{#if recipes}}<option value="Date added ▲">Date added ▲</option>{{/if}}
           {{#if recipes}}<option value="Date added ▼">Date added ▼</option>{{/if}}
         </select>
