@@ -1,15 +1,20 @@
 <main>
   <div class="secondary-bar">
     <form id="sort-filter-pagination-form" action="/" method="GET">
+      {{#if recipes}}
       <div id="recipe-count">{{range}}&nbsp;&nbsp;&nbsp;of&nbsp;&nbsp;&nbsp;{{recipeCount}} Recipes</div>
-      <div id="paging">
+      {{else}}
+      <div id="recipe-count" class="count-api">{{recipeCount_api}} Recipes found out of +2.300.000 other delicious
+        creations.</div>
+      {{/if}}
+      <div id="paging" {{#if recipes_api}}hidden{{/if}}>
         <div class="homebar-label">Page</div>
         <!-- ### Build up the pagination buttons ### -->
         {{#each pageButtons}}
         <button class="btn btn-sm btn-page" onclick="this.form.action='/page/{{this}}'">{{this}}</button>
         {{/each}}
       </div>
-      <div id="sorting-filtering">
+      <div id="sorting-filtering" {{#if recipes_api}}hidden{{/if}}>
         <div class="homebar-label">Sort | Filter by</div>
         <select id="sort-dropdown" class="form-select form-select-sm" name="sort" value="Rating"
           onchange="this.form.submit()">

@@ -7,7 +7,7 @@ const upload = require('../middleware/file-upload');
 const router = express.Router();
 
 const LocalStorage = require('node-localstorage').LocalStorage;
-let localStorage = new LocalStorage('./scratch');
+const localStorage = new LocalStorage('./localstorage');
 
 // #########################
 // ##  Edamam Recipe API  ##
@@ -142,23 +142,17 @@ router.get('/api-search', (req, res, next) => {
   const { searchRecipe } = req.query;
   client
     // Search api by hero search field
-    .search({ query: searchRecipe, limit: { from: 0, to: 2 } })
+    .search({ query: searchRecipe, limit: { from: 0, to: 100 } })
     .then((query) => {
       const recipes_api = query.hits;
+      const recipeCount_api = recipes_api.length;
+      // Save stringified query result to localstorage
       if (localStorage.getItem('recipe') !== null) {
         localStorage.removeItem('recipe');
       }
-      recipes_api.forEach((recipe) => {
-        localStorage.setItem('recipe', JSON.stringify(recipe));
-      });
-      let localtest = JSON.parse(localStorage.getItem('recipe'));
-      console.log(recipes_api);
-      console.log(localtest);
-      // console.log(recipes_api.length);
-      // const recipes_api = JSON.parse(localStorage.getItem('recipe'));
-      // Pass first 12 hits to view
-      res.render('home', { recipes_api });
-      // console.log(recipes_api[0]);
+      localStorage.setItem('recipes', JSON.stringify(recipes_api));
+      // Pass all hits to the view
+      res.render('home', { recipes_api, recipeCount_api });
     })
     .catch((error) => {
       next(error);
