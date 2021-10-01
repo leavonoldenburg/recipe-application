@@ -144,19 +144,45 @@ router.get('/api-search', (req, res, next) => {
     // Search api by hero search field
     .search({ query: searchRecipe, limit: { from: 0, to: 100 } })
     .then((query) => {
-      const recipes_api = query.hits;
-      const recipeCount_api = recipes_api.length;
+      let recipes_api = query.hits;
+      // Create paging buttons array for hbs
+      const recipeCount = recipes_api.length;
+      const pageButtons = [...Array(Math.ceil(recipeCount / 20)).keys()].map(
+        (el) => el + 1
+      );
       // Save stringified query result to localstorage
       if (localStorage.getItem('recipe') !== null) {
         localStorage.removeItem('recipe');
       }
       localStorage.setItem('recipes', JSON.stringify(recipes_api));
+      // Create recipe range string for hbs
+      const range = `0 - ${recipeCount > 19 ? 20 : recipeCount}`;
+      // Get first page recipes
+      recipes_api = recipes_api.slice(0, 20);
       // Pass all hits to the view
-      res.render('home', { recipes_api, recipeCount_api });
+      res.render('home', { recipes_api, recipeCount, pageButtons, range });
     })
     .catch((error) => {
       next(error);
     });
+});
+
+// ### GET API page route ###
+router.get('/api-page/:page', (req, res, next) => {
+  const page = Number(req.params.page);
+  // Getting the recipes from localstorage
+  const recipes = JSON.parse(localStorage.getItem('recipes'));
+  // Get recipes according to page
+  const skipCount = (page - 1) * 20;
+  const recipes_api = recipes.slice(skipCount, skipCount + 20);
+  // Create recipe range string for hbs
+  const range = `${skipCount + 1} - ${skipCount + recipes_api.length} `;
+  // Create paging buttons array for hbs
+  const recipeCount = recipes.length;
+  const pageButtons = [...Array(Math.ceil(recipeCount / 20)).keys()].map(
+    (el) => el + 1
+  );
+  res.render('home', { recipes_api, pageButtons, range });
 });
 
 // ### POST API add recipe route ###

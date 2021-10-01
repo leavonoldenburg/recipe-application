@@ -100,14 +100,19 @@ if (addIngredientButtonElement) {
 // ##  CHANGE PAGINATION BUTTON COLOR  ##
 // ######################################
 
-if (document.getElementById('paging')) {
+if (document.querySelector('#paging')) {
   // ### Get page number ###
   let page = Number(
     document.getElementById('recipe-count').innerText.split(' ')[0]
   );
-  page = page === 0 ? 0 : (page - 1) / 12;
+  // ### Check if 12 (home) or 20 (api) recipes are shown
+  if (document.querySelector('.btn-api') === null) {
+    page = page === 0 ? 0 : (page - 1) / 12;
+  } else {
+    page = page === 0 ? 0 : (page - 1) / 20;
+  }
   // ### Set css target depending on page ###
-  const paginationButtonElements = document.querySelectorAll('.btn-page');
+  const paginationButtonElements = document.getElementsByClassName('btn-page');
   paginationButtonElements[page].setAttribute(
     'class',
     'btn btn-sm btn-page active-page'
