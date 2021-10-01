@@ -170,12 +170,12 @@
       {{this.creator.username}}:
       {{this.comment}}
 
+      <hr />
       {{#if ownComment}}
-        <form method='POST'>
+        <form action='/recipe/{{recipe._id}}/comment/delete' method='POST'>
           <button>Delete your comment</button>
         </form>
       {{/if}}
-      <hr />
     {{/each}}
   </section>
 </div>
