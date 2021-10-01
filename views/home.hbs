@@ -1,6 +1,6 @@
 <main>
   <div class="secondary-bar">
-    <form id="sort-filter-pagination-form" action="/" method="GET">
+    <form id="sort-filter-pagination-form" {{#if recipes}}action="/" {{else}}action="/api-search" {{/if}} method="GET">
       <div id="recipe-count">{{range}}&nbsp;&nbsp;&nbsp;of&nbsp;&nbsp;&nbsp;{{recipeCount}} Recipes</div>
       {{!-- <div id="recipe-count" class="count-api">{{recipeCount_api}} Recipes found out of +2.300.000 other delicious
         creations.</div> --}}
@@ -21,15 +21,16 @@
       <div id="sorting-filtering">
         <div class="homebar-label">Sort | Filter by</div>
         <select id="sort-dropdown" class="form-select form-select-sm" name="sort" value="Rating"
-          onchange="this.form.submit()" {{#if recipes_api}}disabled{{/if}}>
+          onchange="this.form.submit()">
           <!-- ### Sorting ### -->
-          <option selected hidden>{{#if sort}}{{sort}}{{else}}Ratings ▼{{/if}}</option>
-          <option value="Ratings ▲">Ratings ▲</option>
-          <option value="Ratings ▼">Ratings ▼</option>
+          {{#if recipes}}<option selected hidden>{{#if sort}}{{sort}}{{else}}Ratings ▼{{/if}}</option>{{/if}}
+          {{#if recipes_api}}<option selected hidden>{{#if sort}}{{sort}}{{else}}Cooking Time ▲{{/if}}</option>{{/if}}
+          {{#if recipes}}<option value="Ratings ▲">Ratings ▲</option>{{/if}}
+          {{#if recipes}}<option value="Ratings ▼">Ratings ▼</option>{{/if}}
           <option value="Cooking Time ▲">Cooking Time ▲</option>
           <option value="Cooking Time ▼">Cooking Time ▼</option>
-          <option value="Date added ▲">Date added ▲</option>
-          <option value="Date added ▼">Date added ▼</option>
+          {{#if recipes}}<option value="Date added ▲">Date added ▲</option>{{/if}}
+          {{#if recipes}}<option value="Date added ▼">Date added ▼</option>{{/if}}
         </select>
         <select id="filter-dropdown" class="form-select form-select-sm" name="filter" onchange="this.form.submit()"
           {{#if recipes_api}}disabled{{/if}}>

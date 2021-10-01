@@ -1,3 +1,4 @@
+/* eslint-disable prefer-arrow-callback */
 'use strict';
 
 const express = require('express');
@@ -139,32 +140,56 @@ router.get('/page/:page', (req, res, next) => {
 
 // ### GET API search route ###
 router.get('/api-search', (req, res, next) => {
-  const { searchRecipe } = req.query;
-  client
-    // Search api by hero search field
-    .search({ query: searchRecipe, limit: { from: 0, to: 100 } })
-    .then((query) => {
-      let recipes_api = query.hits;
-      // Create paging buttons array for hbs
-      const recipeCount = recipes_api.length;
-      const pageButtons = [...Array(Math.ceil(recipeCount / 20)).keys()].map(
-        (el) => el + 1
-      );
-      // Save stringified query result to localstorage
-      if (localStorage.getItem('recipe') !== null) {
-        localStorage.removeItem('recipe');
-      }
-      localStorage.setItem('recipes', JSON.stringify(recipes_api));
-      // Create recipe range string for hbs
-      const range = `0 - ${recipeCount > 19 ? 20 : recipeCount}`;
-      // Get first page recipes
-      recipes_api = recipes_api.slice(0, 20);
-      // Pass all hits to the view
-      res.render('home', { recipes_api, recipeCount, pageButtons, range });
-    })
-    .catch((error) => {
-      next(error);
-    });
+  if (req.query.searchRecipe) {
+    const { searchRecipe } = req.query;
+    const sort = 'Cooking Time ▲';
+    client
+      // Search api by hero search field
+      .search({ query: searchRecipe, limit: { from: 0, to: 100 } })
+      .then((query) => {
+        let recipes_api = query.hits;
+        // Create paging buttons array for hbs
+        const recipeCount = recipes_api.length;
+        const pageButtons = [...Array(Math.ceil(recipeCount / 20)).keys()].map(
+          (el) => el + 1
+        );
+        // Sort array cooking Time ascending
+        getSortedArray(recipes_api, sort);
+        // Save stringified query result to localstorage
+        if (localStorage.getItem('recipe') !== null) {
+          localStorage.removeItem('recipe');
+        }
+        localStorage.setItem('recipes', JSON.stringify(recipes_api));
+        // Create recipe range string for hbs
+        const range = `0 - ${recipeCount > 19 ? 20 : recipeCount}`;
+        // Get first page recipes
+        recipes_api = recipes_api.slice(0, 20);
+        // Pass all hits to the view
+        res.render('home', { recipes_api, recipeCount, pageButtons, range });
+      })
+      .catch((error) => {
+        next(error);
+      });
+  } else {
+    const { sort } = req.query;
+    // Get the stringified array from localstore
+    const recipes = JSON.parse(localStorage.getItem('recipes'));
+    // Sort the array depending by option value
+    getSortedArray(recipes, sort);
+    // Save stringified query result to localstorage
+    localStorage.setItem('recipes', JSON.stringify(recipes));
+    // Create paging buttons array for hbs
+    const recipeCount = recipes.length;
+    const pageButtons = [...Array(Math.ceil(recipeCount / 20)).keys()].map(
+      (el) => el + 1
+    );
+    // Create recipe range string for hbs
+    const range = `0 - ${recipeCount > 19 ? 20 : recipeCount}`;
+    // Get first page recipes
+    const recipes_api = recipes.slice(0, 20);
+    // Pass all hits to the view
+    res.render('home', { recipes_api, recipeCount, pageButtons, range, sort });
+  }
 });
 
 // ### GET API page route ###
@@ -449,3 +474,20 @@ function getApiDishType(dishType, title) {
     return ['Beans, Grains & Legumes'];
   return ['Meat dishes'];
 }
+
+// ################################
+// ##  SORT ARRAY BY SORTSTRING  ##
+// ################################
+
+const getSortedArray = (recipes, sortString) => {
+  if (sortString === 'Cooking Time ▼') {
+    recipes.sort((a, b) => {
+      return b.recipe.totalTime - a.recipe.totalTime;
+    });
+  }
+  if (sortString === 'Cooking Time ▲') {
+    recipes.sort((a, b) => {
+      return a.recipe.totalTime - b.recipe.totalTime;
+    });
+  }
+};
