@@ -54,12 +54,19 @@ profileRouter.post('/:id/delete', routeGuardMiddleware, (req, res, next) => {
   const { id } = req.params;
   User.findById(id)
     .then((user) => {
-      Recipe.deleteMany({ creator: user._id });
-      Comment.deleteMany({ creator: req.user._id });
-      Relation.deleteMany({ creator: req.user._id });
-      User.findByIdAndDelete(id);
+      return Recipe.deleteMany({ creator: user._id });
     })
     .then(() => {
+      return Comment.deleteMany({ creator: req.user._id });
+    })
+    .then(() => {
+      return Relation.deleteMany({ creator: req.user._id });
+    })
+    .then(() => {
+      return User.findByIdAndDelete(id);
+    })
+    .then(() => {
+      req.session.destroy();
       res.redirect('/');
     });
 });

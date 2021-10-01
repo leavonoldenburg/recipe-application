@@ -15,10 +15,15 @@ const baseRouter = require('./routes/index');
 const authenticationRouter = require('./routes/authentication');
 const profileRouter = require('./routes/profile');
 const usersRouter = require('./routes/users');
-const recipeRouter = require('./routes/recipe');
+const recipeCommentRouter = require('./routes/recipe/comment');
+const recipeCreateRouter = require('./routes/recipe/create');
+const recipeDeleteRouter = require('./routes/recipe/delete');
+const recipeEditRouter = require('./routes/recipe/edit');
+const recipeIndexRouter = require('./routes/recipe/index');
+const recipeMailRouter = require('./routes/recipe/mail');
+const recipeRatingsRouter = require('./routes/recipe/ratings');
 const contactRouter = require('./routes/contact');
 const aboutRouter = require('./routes/about');
-const commentRouter = require('./routes/comment');
 
 const hbs = require('hbs');
 
@@ -77,10 +82,15 @@ app.use('/', baseRouter);
 app.use('/authentication', authenticationRouter);
 app.use('/profile', profileRouter);
 app.use('/users', usersRouter);
-app.use('/recipe', recipeRouter);
+app.use('/recipe', recipeCommentRouter);
+app.use('/recipe', recipeCreateRouter);
+app.use('/recipe', recipeDeleteRouter);
+app.use('/recipe', recipeEditRouter);
+app.use('/recipe', recipeIndexRouter);
+app.use('/recipe', recipeMailRouter);
+app.use('/recipe', recipeRatingsRouter);
 app.use('/contact', contactRouter);
 app.use('/about', aboutRouter);
-app.use('/comment', commentRouter);
 
 // Catch missing routes and forward to error handler
 app.use((req, res, next) => {

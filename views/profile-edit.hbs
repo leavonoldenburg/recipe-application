@@ -1,7 +1,8 @@
 <div class='secondary-bar'></div>
-<h1>Edit Your User Info</h1>
 
 <div class='card p-5 mx-5 my-4'>
+
+  <h1>Edit Your User Info</h1>
 
   <form method='POST' enctype='multipart/form-data'>
 
@@ -9,7 +10,7 @@
       <input
         type='text'
         class='form-control'
-        name='name'
+        name='username'
         id='input-name'
         value={{user.username}}
       />
@@ -50,6 +51,6 @@
       <label for='input-picture'>New Profile Picture</label>
     </div>
 
-    <button type='submit' class='btn btn-primary'>Update User Info</button>
+    <button type='submit' class='btn btn-secondary'>Update User Info</button>
   </form>
 </div>

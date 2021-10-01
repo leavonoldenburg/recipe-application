@@ -1,3 +1,6 @@
+<div class='secondary-bar'>
+</div>
+
 <div class='container-fluid px-5 py-4'>
   <div class='row'>
     <div class='col mb-3'>
@@ -19,32 +22,37 @@
             |
             <i class='fas fa-utensils'></i>
             {{recipe.dishType}}
+            |
+            <i class='fas fa-utensils'></i>
+            {{recipe.servings}}
           </div>
         </div>
         <div id='recipe-buttons'>
-          {{#unless ownRecipe}}
-            {{#if ratings}}
-              <form action='/recipe/{{recipe._id}}/vote' method='POST'>
-                <button
-                  class='btn btn-secondary btn-sm'
-                  style='background: red;'
-                >♥️</button>
-              </form>
+          {{#if user}}
+            {{#unless ownRecipe}}
+              {{#if ratings}}
+                <form action='/recipe/{{recipe._id}}/vote' method='POST'>
+                  <button
+                    class='btn btn-secondary btn-sm'
+                    style='background: red;'
+                  >♥️</button>
+                </form>
 
-            {{else}}
-              <form action='/recipe/{{recipe._id}}/vote' method='POST'>
-                <button class='btn btn-secondary btn-sm'>♥️</button>
+              {{else}}
+                <form action='/recipe/{{recipe._id}}/vote' method='POST'>
+                  <button class='btn btn-secondary btn-sm'>♥️</button>
+                </form>
+              {{/if}}
+
+            {{/unless}}
+            {{#if ownRecipe}}
+              <a href='/recipe/{{recipe._id}}/edit'>
+                <button class='btn btn-secondary btn-sm'>Update Recipe</button>
+              </a>
+              <form action='/recipe/{{recipe._id}}/delete' method='post'>
+                <button class='btn btn-secondary btn-sm'>Delete Recipe Forever</button>
               </form>
             {{/if}}
-
-          {{/unless}}
-          {{#if ownRecipe}}
-            <a href='/recipe/{{recipe._id}}/edit'>
-              <button class='btn btn-secondary btn-sm'>Update Recipe</button>
-            </a>
-            <form action='/recipe/{{recipe._id}}/delete' method='post'>
-              <button class='btn btn-secondary btn-sm'>Delete Recipe Forever</button>
-            </form>
           {{/if}}
         </div>
       </div>
@@ -79,7 +87,9 @@
       </div>
     </div>
   </div>
+
   <hr />
+
   <div class='card p-3 pb-0 my-4'>
     <h2>Send this recipe to a friend!</h2>
     <form action='/recipe/{{recipe._id}}/send' method='POST'>
@@ -130,10 +140,9 @@
         ></textarea>
         <label for='input-message'>Your message</label>
       </div>
-      <button type='submit' class='btn btn-primary'>Send Recipe!</button>
+      <button type='submit' class='btn btn-secondary'>Send Recipe!</button>
     </form>
   </div>
-</div>
 
 {{! comments }}
 <div class='commentDiv'>

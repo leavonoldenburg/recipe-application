@@ -13,13 +13,13 @@ const transporter = nodemailer.createTransport({
   }
 });
 
-const router = new Router();
+const contactRouter = new Router();
 
-router.get('/', (req, res, next) => {
+contactRouter.get('/', (req, res, next) => {
   res.render('contact');
 });
 
-router.post('/', (req, res, next) => {
+contactRouter.post('/', (req, res, next) => {
   const { name, email, subject, message } = req.body;
   Contact.create({
     name,
@@ -33,9 +33,9 @@ router.post('/', (req, res, next) => {
         sender: email,
         replyTo: email,
         subject: subject,
-        html: `<div style="text-align: center; width: 60%; margin: 0px auto;">
+        html: `<div>
         <h3>You received a message from "${name}"</h3>
-        <p style="font-size:16px">${email}</p>
+        <p style="font-size:13px">${email}</p>
         <p style="font-size:16px">${message}</p>
         </div>`
       });
@@ -48,4 +48,4 @@ router.post('/', (req, res, next) => {
     });
 });
 
-module.exports = router;
+module.exports = contactRouter;
