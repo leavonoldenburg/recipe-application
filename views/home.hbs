@@ -1,28 +1,43 @@
 <main>
   <div class="secondary-bar">
-    <form id="sort-filter-pagination-form" action="/" method="GET">
+    <form id="sort-filter-pagination-form" {{#if recipes}}action="/" {{else}}action="/api-search" {{/if}} method="GET">
       <div id="recipe-count">{{range}}&nbsp;&nbsp;&nbsp;of&nbsp;&nbsp;&nbsp;{{recipeCount}} Recipes</div>
-      <div id="paging">
+      {{!-- <div id="recipe-count" class="count-api">{{recipeCount_api}} Recipes found out of +2.300.000 other delicious
+        creations.</div> --}}
+      <div id="paging" class="paging-bar">
         <div class="homebar-label">Page</div>
         <!-- ### Build up the pagination buttons ### -->
+        {{#if recipes}}
         {{#each pageButtons}}
         <button class="btn btn-sm btn-page" onclick="this.form.action='/page/{{this}}'">{{this}}</button>
         {{/each}}
+        {{/if}}
+        {{#if recipes_api}}
+        {{#each pageButtons}}
+        <button class="btn btn-sm btn-page btn-api" onclick="this.form.action='/api-page/{{this}}'">{{this}}</button>
+        {{/each}}
+        {{/if}}
       </div>
       <div id="sorting-filtering">
         <div class="homebar-label">Sort | Filter by</div>
         <select id="sort-dropdown" class="form-select form-select-sm" name="sort" value="Rating"
           onchange="this.form.submit()">
           <!-- ### Sorting ### -->
-          <option selected hidden>{{#if sort}}{{sort}}{{else}}Ratings ▼{{/if}}</option>
-          <option value="Ratings ▲">Ratings ▲</option>
-          <option value="Ratings ▼">Ratings ▼</option>
+          {{#if recipes}}<option selected hidden>{{#if sort}}{{sort}}{{else}}Ratings ▼{{/if}}</option>{{/if}}
+          {{#if recipes_api}}<option selected hidden>{{#if sort}}{{sort}}{{else}}Cooking Time ▼{{/if}}</option>{{/if}}
+          {{#if recipes}}<option value="Ratings ▲">Ratings ▲</option>{{/if}}
+          {{#if recipes}}<option value="Ratings ▼">Ratings ▼</option>{{/if}}
           <option value="Cooking Time ▲">Cooking Time ▲</option>
           <option value="Cooking Time ▼">Cooking Time ▼</option>
-          <option value="Date added ▲">Date added ▲</option>
-          <option value="Date added ▼">Date added ▼</option>
+          {{#if recipes_api}}<option value="Calories ▲">Calories ▲</option>{{/if}}
+          {{#if recipes_api}}<option value="Calories ▼">Calories ▼</option>{{/if}}
+          {{#if recipes_api}}<option value="Ingredients ▲">Ingredients ▲</option>{{/if}}
+          {{#if recipes_api}}<option value="Ingredients ▼">Ingredients ▼</option>{{/if}}
+          {{#if recipes}}<option value="Date added ▲">Date added ▲</option>{{/if}}
+          {{#if recipes}}<option value="Date added ▼">Date added ▼</option>{{/if}}
         </select>
-        <select id="filter-dropdown" class="form-select form-select-sm" name="filter" onchange="this.form.submit()">
+        <select id="filter-dropdown" class="form-select form-select-sm" name="filter" onchange="this.form.submit()"
+          {{#if recipes_api}}disabled{{/if}}>
           <!-- ### Filtering ###-->
           <option selected hidden>{{#if filter}}{{filter}}{{else}}All recipes{{/if}}</option>
           <option value="All recipes">All recipes</option>
@@ -61,7 +76,7 @@
   </div>
   </div>
   <!-- ### Container recipe cards ### -->
-  <div class="container recipe-container">
+  <div class="container-fluid recipe-container">
     <div class="row row-cols-xxl-4 row-cols-lg-3 row-cols-md-2 row-cols-1">
       {{#each recipes}}
       {{>recipe}}
