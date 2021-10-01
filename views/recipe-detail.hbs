@@ -137,7 +137,8 @@
 
 {{! comments }}
 <div class='commentDiv'>
-  <h1>Comment Section</h1>
+  <hr />
+  <h6>Comment Section</h6>
 
   {{#if user}}
     <form
@@ -155,13 +156,18 @@
       <button>Post comment</button>
     </form>
   {{/if}}
+  <section>
+    {{#each comment}}
+      {{this.creator.username}}:
+      {{this.comment}}
 
-  {{#each comment}}
-    {{this.creator.username}}
-    {{this.comment}}
-
-    <br />
-  {{/each}}
-  {{#if ownComment}}{{/if}}
+      {{#if ownComment}}
+        <form method='POST'>
+          <button>Delete your comment</button>
+        </form>
+      {{/if}}
+      <hr />
+    {{/each}}
+  </section>
 </div>
 {{!}}

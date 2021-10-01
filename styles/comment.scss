@@ -1,11 +1,15 @@
 .commentDiv {
-  h1 {
-    text-align: center;
+  background-color: $beige;
+  h6 {
+    display: flex;
+    justify-content: center;
+    color: $dark-pine;
+    font-size: 4em;
   }
   button {
-    border-radius: 7%;
-    background-color: $petrol;
+    background-color: $dark-pine;
     border: none;
+    color: $turquoise;
   }
   .commentStyle {
     display: flex;
