@@ -8,8 +8,8 @@
           {{#if this.title}}<div class='card-text date-text'>added: {{date this.createdAt}}</div>{{/if}}
           <div class='card-text card-avatar'>
             <div><i class="card-clock far fa-clock"></i>{{#if
-              this.title}}{{this.cookingTime}}{{else}}{{recipe.totalTime}}{{/if}}{{#if this.title}}<i
-                class="card-star fas fa-star"></i>{{this.ratings}}{{/if}}</div>
+              this.title}}{{this.cookingTime}} min{{else}}{{recipe.totalTime}} min{{/if}}{{#if this.title}}<i
+                class="card-star fas fa-heart"></i>{{this.ratings}}{{/if}}</div>
             {{#if this.title}}<div id="card-creator">{{this.creator.username}} <img src='{{this.creator.picture}}' />
             </div>{{/if}}
             {{#if this.recipe}}
