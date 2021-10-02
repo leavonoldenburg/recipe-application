@@ -13,36 +13,22 @@
 
       <div class='row'>
         <div class='col-9 form-floating'>
-          <input
-            id='input-title'
-            class='form-control'
-            type='text'
-            name='title'
-            placeholder='What did you cook today?'
-          />
+          <input id='input-title' class='form-control' type='text' name='title'
+            placeholder='What did you cook today?' />
           <label for='input-title' class='ms-4'>What did you cook today?</label>
         </div>
         <div class='col'>
-          <input
-            id='input-cookingtime'
-            class='form-control form-control-sm'
-            type='number'
-            name='cookingTime'
-            placeholder='Cooking time'
-          />
-          <input
-            id='input-servings'
-            class='form-control form-control-sm'
-            type='number'
-            name='servings'
-            placeholder='Servings'
-          />
+          <input id='input-cookingtime' class='form-control form-control-sm' type='number' name='cookingTime'
+            placeholder='Cooking time' />
+          <input id='input-servings' class='form-control form-control-sm' type='number' name='servings'
+            placeholder='Servings' />
         </div>
       </div>
 
       <div class='row mt-4'>
-        <label for='input-level'>Difficulty level:</label>
+
         <div class='col'>
+          <label for='input-level'>Difficulty level:</label>
           <select class='form-select' name='level' id='input-level'>
             <option value='Easy'>Easy</option>
             <option value='Intermediate'>Intermediate</option>
@@ -60,12 +46,7 @@
         </div>
         <div class='col'>
           <label for='input-cuisine'>Cuisine:</label>
-          <select
-            class='form-select'
-            name='cuisine'
-            id='input-cuisine'
-            multiple
-          >
+          <select class='form-select' name='cuisine' id='input-cuisine' multiple>
             <option value='Asian'>Asian</option>
             <option value='European'>European</option>
             <option value='American'>American</option>
@@ -74,12 +55,7 @@
         </div>
         <div class='col'>
           <label for='input-dishtype'>Dish Type:</label>
-          <select
-            class='form-select'
-            name='dishType'
-            id='input-dishtype'
-            multiple
-          >
+          <select class='form-select' name='dishType' id='input-dishtype' multiple>
             <option value='Appetizers & Starters'>Appetizers & Starters</option>
             <option value='Salads'>Salads</option>
             <option value='Soups & Stews'>Soups & Stews</option>
@@ -97,20 +73,15 @@
 
       <div class='row mt-4'>
         <div class='col'>
-          <div
-            id='ingredient-container'
-            style='display: flex; flex-direction: column'
-          >
+          <div id='ingredient-container' style='display: flex; flex-direction: column'>
+            <div class="form-button-container py-2">
+              <button class="btn btn-sm btn-outline-secondary" type='button' id='add-ingredient'>Add
+                Ingredient!</button>
+              <button class="btn btn-sm btn-outline-secondary" type='button' id='remove-ingredient'>Remove
+                Ingredient!</button>
+            </div>
 
-            <button type='button' id='add-ingredient'>Add Ingredient!</button>
-            <button type='button' id='remove-ingredient'>Remove Ingredient!</button>
-
-            <input
-              class='input-ingredients'
-              type='text'
-              name='ingredients'
-              placeholder='Ingredient 1'
-            />
+            <input class='input-ingredients' type='text' name='ingredients' placeholder='Ingredient 1' />
 
           </div>
         </div>
@@ -118,21 +89,16 @@
 
       <div class='row mt-4'>
         <div class='col'>
-          <div
-            id='instructions-container'
-            style='display: flex; flex-direction: column'
-          >
+          <div id='instructions-container' style='display: flex; flex-direction: column'>
 
-            <button type='button' id='add-instruction'>Add Preparation Step!</button>
-            <button type='button' id='remove-instruction'>Remove Preparation
-              Step!</button>
+            <div class="form-button-container py-2">
+              <button class="btn btn-sm btn-outline-secondary" type='button' id='add-instruction'>Add Preparation
+                Step!</button>
+              <button class="btn btn-sm btn-outline-secondary" type='button' id='remove-instruction'>Remove Preparation
+                Step!</button>
+            </div>
 
-            <input
-              class='input-instructions'
-              type='text'
-              name='instructions'
-              placeholder='Preparation Step 1'
-            />
+            <input class='input-instructions' type='text' name='instructions' placeholder='Preparation Step 1' />
 
           </div>
         </div>
@@ -141,18 +107,11 @@
       <div class='row my-4'>
         <div class='col'>
           <h3><label for='input-picture'>Add your Recipe Image</label></h3>
-          <input
-            type='file'
-            class='form-control'
-            id='input-picture'
-            name='picture'
-            accesp='image/*'
-            required
-          />
+          <input type='file' class='form-control' id='input-picture' name='picture' accesp='image/*' required />
         </div>
       </div>
 
-      <button type='submit' class='btn btn-secondary'>Publish your recipe</button>
+      <button type='submit' class='btn btn-secondary create-recipe-btn'>Publish your recipe</button>
 
     </form>
   </div>

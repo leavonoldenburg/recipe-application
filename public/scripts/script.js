@@ -57,7 +57,7 @@ const addIngredient = () => {
 };
 // ### Remove ingredient input field function ###
 const removeIngredient = () => {
-  if (ingredientsContainerElement.childElementCount > 3) {
+  if (ingredientsContainerElement.childElementCount > 2) {
     ingredientCount--;
     ingredientsContainerElement.removeChild(
       ingredientsContainerElement.lastElementChild
@@ -81,7 +81,7 @@ const addInstruction = () => {
 };
 // ### Remove instruction input field function ###
 const removeInstruction = () => {
-  if (instructionsContainerElement.childElementCount > 3) {
+  if (instructionsContainerElement.childElementCount > 2) {
     instructionsCount--;
     instructionsContainerElement.removeChild(
       instructionsContainerElement.lastElementChild
