@@ -14,31 +14,22 @@
           <input id='input-title' class='form-control' type='text' name='title' value='{{recipe.title}}' />
           <label for='input-title' class='ms-4'>What did you cook today?</label>
         </div>
-        
-          <div class='col'>
-          <input
-            id='input-cookingtime'
-            class='form-control form-control-sm'
-            type='number'
-            name='cookingTime'
-            value={{recipe.cookingTime}}
-          />
+
+        <div class='col'>
+          <input id='input-cookingtime' class='form-control form-control-sm' type='number' name='cookingTime'
+            value={{recipe.cookingTime}} />
           <label for="input-cookingtime">Cooking Time</label>
-          
-          <input
-            id='input-servings'
-            class='form-control form-control-sm'
-            type='number'
-            name='servings'
-            value={{recipe.servings}}
-          />
+
+          <input id='input-servings' class='form-control form-control-sm' type='number' name='servings'
+            value={{recipe.servings}} />
           <label for="input-servings">Servings</label>
         </div>
       </div>
 
       <div class='row mt-4'>
-        <label for="input-level">Difficulty level:</label>
+
         <div class='col'>
+          <label for="input-level">Difficulty level:</label>
           <select class='form-select' name='level' id='input-level'>
             <option value="" selected disabled hidden>{{recipe.level}}</option>
             <option value='Easy'>Easy</option>
@@ -117,9 +108,9 @@
                 buttonText='Your label here.' />
             </div>
           </div>
-
-          <button type='submit' class='btn btn-secondary'>Update your recipe</button>
-
+          <div>
+            <button id="update-btn" type='submit' class='btn btn-secondary'>Update your recipe</button>
+          </div>
     </form>
   </div>
 </div>

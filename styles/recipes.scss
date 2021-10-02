@@ -113,3 +113,31 @@
     top: -0.25em;
   }
 }
+
+#update-btn {
+  background-color: $pine;
+  color: $offwhite;
+  font-weight: bold;
+  font-size: 1em;
+  padding: 0.3em 0.5em;
+}
+
+.create-recipe-btn {
+  background-color: $pine;
+  color: $offwhite;
+  font-weight: bold;
+  font-size: 1em;
+  padding: 0.3em 0.5em;
+}
+
+#add-ingredient,
+#remove-ingredient,
+#add-instruction,
+#remove-instruction {
+  background-color: $pine;
+  color: $offwhite;
+  font-weight: bold;
+  font-size: 1em;
+  padding: 0.1em 0.5em;
+  width: 14em;
+}
