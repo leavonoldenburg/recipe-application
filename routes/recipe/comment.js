@@ -2,9 +2,9 @@ const express = require('express');
 const Recipe = require('./../../models/recipe');
 const Comment = require('./../../models/comment');
 const routeGuardMiddleware = require('../../middleware/route-guard');
-const recipeRouter = express.Router();
+const commentRouter = express.Router();
 
-recipeRouter.post(
+commentRouter.post(
   '/:id/comment/delete/:commentId',
   routeGuardMiddleware,
   (req, res, next) => {
@@ -12,14 +12,14 @@ recipeRouter.post(
     const { commentId } = req.params;
     Comment.findByIdAndDelete(commentId)
       .then(() => {
-        res.redirect(`recipe/${id}`);
+        res.redirect(`/recipe/${id}`);
       })
       .catch((error) => {
         next(error);
       });
   }
 );
-recipeRouter.post('/:id/comment', routeGuardMiddleware, (req, res, next) => {
+commentRouter.post('/:id/comment', routeGuardMiddleware, (req, res, next) => {
   const { comment } = req.body;
   const { id } = req.params;
   let recipe;
@@ -40,4 +40,4 @@ recipeRouter.post('/:id/comment', routeGuardMiddleware, (req, res, next) => {
     });
 });
 
-module.exports = recipeRouter;
+module.exports = commentRouter;

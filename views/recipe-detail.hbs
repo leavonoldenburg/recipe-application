@@ -174,15 +174,12 @@
     {{#each comment}}
       {{this.creator.username}}:
       {{this.comment}}
-HERE {{recipe._id}}
-
-      <hr />
       {{#if this.ownComment}}
         <form action='/recipe/{{this.refRecipe}}/comment/delete/{{this._id}}' method='POST'>
-        
-          <button>Delete your comment</button>
+        <button>Delete your comment </button> 
         </form>
       {{/if}}
+      <hr />
     {{/each}}
   </p>
 </div>
