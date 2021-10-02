@@ -18,11 +18,20 @@ recipeRouter.get('/:id', (req, res, next) => {
       return Comment.find({ refRecipe: find._id }).populate('creator');
     })
     .then((comments) => {
+      comments.forEach((eachComment) => {
+        if (req.user) {
+          ownComment =
+            req.user &&
+            String(req.user._id) === String(eachComment.creator._id);
+          eachComment.ownComment = ownComment;
+        }
+      });
       comment = comments;
-      if (req.user) {
-        ownComment =
-          req.user && String(req.user._id) === String(comment.creator);
-      }
+      console.log(comment);
+      // if (req.user) {
+      //   ownComment =
+      //     req.user && String(req.user._id) === String(comment.creator._id);
+      // }
       return Recipe.findById(id);
     })
     .then((document) => {
@@ -49,13 +58,15 @@ recipeRouter.get('/:id', (req, res, next) => {
       if (req.user) {
         ownRecipe = req.user && String(req.user._id) === String(recipe.creator);
       }
+      console.log(recipe);
       res.render('recipe-detail', {
         ratings,
         ingredient,
         recipe,
         ownRecipe,
-        ownComment,
-        comment
+        recipeId: recipe._id,
+        comment,
+        userId: req.user._id
       });
     })
     .catch((error) => {

@@ -147,8 +147,9 @@
 {{! comments }}
 <div class='commentDiv'>
   <hr />
-  <h6>Comment Section</h6>
-
+ 
+ <h6>Comment Section</h6>
+ <p>
   {{#if user}}
     <form
       class='commentStyle'
@@ -165,18 +166,24 @@
       <button>Post comment</button>
     </form>
   {{/if}}
-  <section>
+ </p>
+
+ <br/>
+  <p>
+
     {{#each comment}}
       {{this.creator.username}}:
       {{this.comment}}
+HERE {{recipe._id}}
 
       <hr />
-      {{#if ownComment}}
-        <form action='/recipe/{{recipe._id}}/comment/delete' method='POST'>
+      {{#if this.ownComment}}
+        <form action='/recipe/{{this.refRecipe}}/comment/delete/{{this._id}}' method='POST'>
+        
           <button>Delete your comment</button>
         </form>
       {{/if}}
     {{/each}}
-  </section>
+  </p>
 </div>
 {{!}}
