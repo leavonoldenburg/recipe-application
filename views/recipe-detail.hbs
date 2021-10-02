@@ -147,7 +147,6 @@
 {{! comments }}
 <div class='commentDiv'>
   <hr />
- 
  <h6>Comment Section</h6>
  <p>
   {{#if user}}
@@ -163,20 +162,20 @@
         placeholder='What do you think...'
       />
       <label for='comment'></label>
-      <button>Post comment</button>
+      <button class="postButton">Post comment</button>
     </form>
   {{/if}}
  </p>
 
  <br/>
-  <p>
 
+  <p>
     {{#each comment}}
       {{this.creator.username}}:
       {{this.comment}}
       {{#if this.ownComment}}
         <form action='/recipe/{{this.refRecipe}}/comment/delete/{{this._id}}' method='POST'>
-        <button>Delete your comment </button> 
+        <button class="deleteButton">Delete your comment </button> 
         </form>
       {{/if}}
       <hr />
