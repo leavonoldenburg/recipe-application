@@ -140,7 +140,7 @@
         ></textarea>
         <label for='input-message'>Your message</label>
       </div>
-      <button type='submit' class='btn btn-secondary'>Send Recipe!</button>
+      <button type='submit' class='btn sendRecipeButton' >Send Recipe!</button>
     </form>
   </div>
 
@@ -169,10 +169,15 @@
 
  <br/>
 
-  <p>
+  <p class="p2">
     {{#each comment}}
-      {{this.creator.username}}:
+     
+     {{this.creator.username}}:
+
       {{this.comment}}
+
+
+
       {{#if this.ownComment}}
         <form action='/recipe/{{this.refRecipe}}/comment/delete/{{this._id}}' method='POST'>
         <button class="deleteButton">Delete your comment </button> 
