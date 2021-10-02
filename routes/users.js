@@ -3,11 +3,10 @@ const User = require('../models/user');
 const Comment = require('../models/comment');
 const routeGuardMiddleware = require('../middleware/route-guard');
 const Recipe = require('../models/recipe');
-//const upload = require('../middleware/file-upload');
 
 const usersRouter = express.Router();
 
-usersRouter.get('/', routeGuardMiddleware, (req, res, next) => {
+usersRouter.get('/', (req, res, next) => {
   let recipe;
   let comment;
   Recipe.find()

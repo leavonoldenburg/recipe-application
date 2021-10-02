@@ -71,7 +71,7 @@ profileRouter.post('/:id/delete', routeGuardMiddleware, (req, res, next) => {
     });
 });
 
-profileRouter.get('/:id', routeGuardMiddleware, (req, res, next) => {
+profileRouter.get('/:id', (req, res, next) => {
   const { id } = req.params;
   let profile;
   User.findById(id)
