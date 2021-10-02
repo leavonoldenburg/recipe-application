@@ -1,5 +1,6 @@
 #profile-pic {
-  margin-right: 10px;
+  margin-right: 0.5em;
+  border-radius: 50%;
   float: left;
 }
 
@@ -12,7 +13,7 @@
   flex-direction: row;
   word-wrap: unset;
   justify-content: space-between;
-  align-items: center;
+  align-items: flex-start;
   div {
     button {
       width: 100%;
@@ -22,8 +23,20 @@
 
 #profile-mail {
   white-space: nowrap;
+  margin-top: 0.5em;
 }
 
 #profile-name {
   white-space: nowrap;
+  margin-top: 1em;
+}
+
+.edit-user-info-btn,
+.delete-user-btn {
+  background-color: $pine;
+  color: $offwhite;
+  font-weight: bold;
+  font-size: 1em;
+  padding: 0.1em 0.5em;
+  width: 14em;
 }

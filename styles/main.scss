@@ -60,3 +60,11 @@ p {
 .no-decoration-link:hover {
   @include no-deco;
 }
+
+#contact-msg-btn {
+  background-color: $pine;
+  color: $offwhite;
+  font-weight: bold;
+  font-size: 1em;
+  padding: 0.3em 0.5em;
+}
