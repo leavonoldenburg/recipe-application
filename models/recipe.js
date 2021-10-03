@@ -16,8 +16,7 @@ const recipeSchema = new mongoose.Schema(
 
     cookingTime: {
       type: Number,
-      min: 1,
-      max: 360
+      min: 1
     },
 
     servings: {

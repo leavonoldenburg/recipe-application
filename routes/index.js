@@ -142,7 +142,7 @@ router.get('/page/:page', (req, res, next) => {
 router.get('/api-search', (req, res, next) => {
   if (req.query.searchRecipe) {
     const { searchRecipe } = req.query;
-    const sort = 'Cooking Time ▼';
+    const sort = 'Ingredients ▼';
     client
       // Search api by hero search field
       .search({ query: searchRecipe, limit: { from: 0, to: 100 } })
